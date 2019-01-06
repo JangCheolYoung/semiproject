@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+form {
+	display: block;
+	margin-top: 0em;
+	width: 400px;
+	height: 470px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#signUp {
+	text-align: center;
+}
+
+div {
+	display: block;
+}
+
+input {
+	height: 42px;
+	border-radius: 5px;
+}
+
+#id, #password, #password2, #nickname, #email, #pass_ques, #pass_answ {
+	width: 100%;
+}
+
+#gender {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 170px;
+}
+
+#male, #female {
+	width: 100px;
+	height: 30px;
+	border: 1px solid gray;
+	background-color: white;
+	cursor: pointer;
+}
+
+#male {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#signBtn {
+	margin-top: 10px;
+	width: 402px;
+	background-color: #ff5675;
+	padding: 0px;
+	border: 1px solid #ff2d5e;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+#sign_img {
+	width: 250px;
+}
+
+#top_bar {
+	width: 100%;
+	height: 80px;
+	margin: auto;
+	position: absolute;
+}
+
+#logo{
+	height: 80px;
+	position: relative;
+	height: 80px;
+}
+
+.go_main{
+	text-align: center;
+	
+}
+
+h1 {
+	margin-top: 60px;
+}

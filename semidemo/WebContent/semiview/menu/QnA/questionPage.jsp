@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 .layer {
-	position: absolute;
-	top: 0;
-	left: 15%;
+
+	text-align: center;
+	width: 80%;
+	margin-left:auto;
+	margin-right: auto;
+	
 }
 
 #topbannerDiv {
@@ -150,6 +153,21 @@
 
 /*-------------------------------------------------------------------------*/
 
+#content{
+	background-color: yellow;
+	width: 100%;
+	height: 500px;
+}
+#qna_img{
+	width: 100px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	position: relative;
+	display: block;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -165,7 +183,7 @@
 </script>
 </head>
 <body>
-	<div class="layer" id="wrap">
+	<div class="layer" id="wrap">	
 		<div id="topbannerDiv">
 			<img id="momsRecipe" src="../semiview/images/mammaLogo.png" />
 
@@ -188,8 +206,13 @@
 			</ul>
 		</div>
 		<div id="content"
-			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<div id="inputContent"></div>
+			alt="페이지마다 바뀔 DIV 요소입니다.">
+			<div id="inputContent">
+				<div id="qna_img">
+					<img alt="qna 텍스트 이미지입니다." src="../semiview/images/QnALogo.png"/>
+				</div>
+			
+			</div>
 		</div>
 	</div>
 	<a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>

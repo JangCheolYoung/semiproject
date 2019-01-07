@@ -30,7 +30,7 @@
 			height : 75px;
 			display : block;
 			position: relative;
-			margin-left: 93%;
+			margin-left: 90%;
 		}
 		
 		

@@ -77,7 +77,11 @@ public class semiMainController extends HttpServlet{
 		}else if(action.equals("/qnaView.do")) {
 
 			path = "/semiview/menu/QnA/qnaView.jsp";
+		}else if(action.equals("/qnaWrite.do")) {
+
+			path = "/semiview/menu/QnA/qnaWrite.jsp";
 		}
+		
 		
 		if(path!="") { //기본값이 아닐때, path가 설정되어 있을때, sendRedirect방식을 사용할때, forward방식을 사용하지 않을때
 			RequestDispatcher dis = req.getRequestDispatcher(path);

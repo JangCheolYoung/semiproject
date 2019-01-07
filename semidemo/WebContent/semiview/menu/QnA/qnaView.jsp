@@ -206,8 +206,7 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<img alt="Q&A 로고입니다." src="../semiview/images/QnALogo.png"/>
-			
+			<h1>이곳은 Q&A 상세정보 페이지 입니다.</h1>
 			
 			<div id="inputContent"></div>
 		</div>

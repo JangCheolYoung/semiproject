@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import semidemo.dto.QnaDTO;
 
 public class QnaDAO {
 	private Connection conn;
@@ -47,4 +51,41 @@ public class QnaDAO {
 	}// end exit()
 	
 	// ------------------------------------------------------------------------------
+
+	public List<QnaDTO> listMethod(){
+		List<QnaDTO> list = new ArrayList<QnaDTO>();
+
+		try {
+			conn=init();
+			String sql="select * from qna order by qna_num desc";
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				QnaDTO dto = new QnaDTO();
+				dto.setNickname(rs.getString("nickname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setWrite_date(rs.getDate("write_date"));
+				dto.setReadcount(rs.getInt("readcount"));
+				list.add(dto);
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}// end listMethod()///////////////////////////////////////////////
+
+
 }//end class

@@ -207,36 +207,8 @@ table, tr, th, td {
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
 			<img alt="Q&A 로고입니다." src="../semiview/images/QnALogo.png"/>
-			<select name="category">
-				<option value="all">전체</option>
-				<option value="recipe">레시피</option>
-				<option value="momtalk">맘톡</option>
-				<option value="handout">무료나눔</option>
-				<option value="info">육아정보</option>
-				<option value="etc">기타</option>
-			</select>
-			<a href="#" ><img alt="" src="../semiview/images/write_off.png"/></a>
 			
-			<table>
-			<thead>
-				<tr>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일시</th>
-					<th>조회수</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${requestScope.list}" var="dto">
-					<tr>
-						<td><a href="qnaView.do?num=${dto.qna_num}">${dto.title}</td>
-						<td>${dto.nickname}</td>
-						<td>${dto.write_date}</td>
-						<td>${dto.readcount}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-			</table>
+			
 			<div id="inputContent"></div>
 		</div>
 	</div>

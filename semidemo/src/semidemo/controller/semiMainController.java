@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semidemo.action.QnAListAction;
+
 //시작하는 곳 (메인 페이지)
 @WebServlet("/mammaMain/*")
 public class semiMainController extends HttpServlet{
@@ -69,11 +71,13 @@ public class semiMainController extends HttpServlet{
 			
 		}else if(action.equals("/question.do")) {
 			//Q&A 페이지로 이동
+			QnAListAction qnaList = new QnAListAction();
+			qnaList.execute(req, resp);
 			path = "/semiview/menu/QnA/questionPage.jsp";
-			
+		}else if(action.equals("/qnaView.do")) {
+
+			path = "/semiview/menu/QnA/qnaView.jsp";
 		}
-		
-		
 		
 		if(path!="") { //기본값이 아닐때, path가 설정되어 있을때, sendRedirect방식을 사용할때, forward방식을 사용하지 않을때
 			RequestDispatcher dis = req.getRequestDispatcher(path);

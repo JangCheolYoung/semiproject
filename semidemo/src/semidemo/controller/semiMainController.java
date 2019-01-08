@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semidemo.action.QnAListAction;
+import semidemo.action.QnAViewAction;
+import semidemo.action.QnAWriteAction;
 
 //시작하는 곳 (메인 페이지)
 @WebServlet("/mammaMain/*")
@@ -68,20 +70,33 @@ public class semiMainController extends HttpServlet{
 		}else if(action.equals("/info.do")) {
 			//육아정보 페이지로 이동
 			path = "/semiview/menu/information/informationPage.jsp";
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
 			
 		}else if(action.equals("/question.do")) {
 			//Q&A 페이지로 이동
 			QnAListAction qnaList = new QnAListAction();
 			qnaList.execute(req, resp);
 			path = "/semiview/menu/QnA/questionPage.jsp";
+			
 		}else if(action.equals("/qnaView.do")) {
-
+			QnAViewAction qnaView = new QnAViewAction();
+			//System.out.println("semiMainController에서 찍어본 dto.content = "+qnaView.strContent(req, resp));
+			qnaView.execute(req, resp);
+			
 			path = "/semiview/menu/QnA/qnaView.jsp";
-		}else if(action.equals("/qnaWrite.do")) {
-
+			
+		}else if(action.equals("/qnaWriteform.do")) {
 			path = "/semiview/menu/QnA/qnaWrite.jsp";
+			
+		}else if(action.equals("/qnaWrite.do")) {
+			QnAWriteAction qnaWrite = new QnAWriteAction();
+			qnaWrite.execute(req, resp);
+			resp.sendRedirect("question.do");
+			
 		}
 		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		if(path!="") { //기본값이 아닐때, path가 설정되어 있을때, sendRedirect방식을 사용할때, forward방식을 사용하지 않을때
 			RequestDispatcher dis = req.getRequestDispatcher(path);

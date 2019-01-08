@@ -206,8 +206,27 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<h1>이곳은 Q&A 상세정보 페이지 입니다.</h1>
-			
+			<table>
+		<tr>
+			<td width="20%">글쓴이</td>
+			<td>${dto.nickname}</td>
+			<td width="20%">조회수</td>
+			<td>${dto.readcount}</td>
+		</tr>
+
+		<tr>
+			<td>제목</td>
+			<td colspan="3">${dto.title}</td>
+		</tr>
+
+
+		<tr>
+			<td>내용</td>
+
+			<td colspan="3">${dto.content}</td>
+		</tr>
+
+	</table>
 			<div id="inputContent"></div>
 		</div>
 	</div>

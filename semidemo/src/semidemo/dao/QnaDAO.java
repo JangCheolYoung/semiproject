@@ -62,6 +62,7 @@ public class QnaDAO {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				QnaDTO dto = new QnaDTO();
+				dto.setQna_num(rs.getInt("qna_num"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setTitle(rs.getString("title"));
 				dto.setWrite_date(rs.getDate("write_date"));
@@ -87,5 +88,71 @@ public class QnaDAO {
 		return list;
 	}// end listMethod()///////////////////////////////////////////////
 
+	// 게시물 등록하는 메소드.
+	public void insertMethod(QnaDTO dto) {
+		try {
+			conn = init();
+
+		
+				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image)"
+						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, board_num_seq.nextval, 0, 0, ?, ?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getTitle());
+				pstmt.setString(2, dto.getContent());
+				pstmt.setString(3, dto.getImage());
+
+		
+			// executeUpdate()는 마지막에 해주는 작업으로 밑으로 뺀다.
+			pstmt.executeUpdate();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}// end insertMethod()//////////////////////////////////////
+	
+	//상세 페이지 정보를 가져오는 메소드.
+	public QnaDTO qnaViewMethod(int num) {
+		QnaDTO dto = null;
+		
+		try {
+			conn=init();
+			String sql = "select * from qna where qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new QnaDTO();
+				dto.setQna_num(rs.getInt("qna_num"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setWrite_date(rs.getDate("write_date"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setRef(rs.getInt("ref"));
+				dto.setRe_step(rs.getInt("re_step"));
+				dto.setRe_level(rs.getInt("re_level"));
+				dto.setContent(rs.getString("content"));
+				//System.out.println(rs.getString("content"));
+				//System.out.println("viewmethod = "+dto.getContent());
+				dto.setContent(rs.getString("image"));
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 
 }//end class

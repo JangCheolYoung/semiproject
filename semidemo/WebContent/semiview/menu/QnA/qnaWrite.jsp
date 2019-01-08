@@ -154,7 +154,7 @@
 #content{
 	width: 100%;
 	height: 700px;
-	background-color: yellow;
+	background-color: aqua;
 }
 
 table {
@@ -168,15 +168,20 @@ table, tr, th, td {
 
 
 #qna_title{
-	width: 300px;
-	height: 30px;
+	width: 200px;
+	height: 40px;
 	border-radius: 5px;
 }
 #qna_content{
-	width: 600px;
-	height: 500px;
+	width: 700px;
+	height: 200px;
 	border-radius: 5px;
 
+}
+
+#category{
+	width: 100px;
+	height: 40px;
 }
 
 </style>
@@ -189,8 +194,9 @@ table, tr, th, td {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
-		
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -218,9 +224,9 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<form name="qnaWrite" method="get" action="question.do">
+			<form action="qnaWrite.do" id="qnaWrite" method="post" enctype="multipart/form-data">
 				<div>
-					<select name="category">
+					<select name="category" id="category">
 						<option>분류</option>
 						<option value="recipe">레시피</option>
 						<option value="momtalk">맘톡</option>
@@ -230,15 +236,15 @@ table, tr, th, td {
 					</select>
 				</div>
 				<div>
-					<input type="text" id="qna_title" name="title" placeholder="제목을 입력하세요."/>
+					<input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요."/>
 				</div>
 				<div>
-					<input type="text" id="qna_content" name="content" placeholder="내용을 입력하세요."/>
+					<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요."></textarea>
 				</div>
-				<input type="button" value="첨부파일"/>
-				<input type="submit" value="등록"/>
+				<input type="button" id="file" name="file" value="첨부파일"/>
+				<input type="submit" name="submit" value="등록"/>
 				<a href="question.do"><input type="button" value="취소"/></a>
-			</form>	
+			</form>
 			<div id="inputContent"></div>
 		</div>
 	</div>

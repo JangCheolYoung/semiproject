@@ -154,7 +154,7 @@
 #content{
 	width: 100%;
 	height: 700px;
-	background-color: yellow;
+	background-color: aqua;
 }
 
 table {
@@ -177,6 +177,12 @@ table, tr, th, td {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
+		
+		$('#writeBtn').hover(
+				function() {
+				$(this).attr("src",$(this).attr("src").replace("write_off.png","write_on.png"));},
+				function() {
+				$(this).attr("src",$(this).attr("src").replace("write_on.png","write_off.png"));});
 		
 	});
 </script>
@@ -214,7 +220,7 @@ table, tr, th, td {
 				<option value="info">육아정보</option>
 				<option value="etc">기타</option>
 			</select>
-			<a href="qnaWrite.do" ><img alt="" src="../semiview/images/write_off.png"/></a>
+			<a href="qnaWriteform.do" ><img id="writeBtn" src="../semiview/images/write_off.png"/></a>
 			
 			<table>
 			<thead>
@@ -228,7 +234,7 @@ table, tr, th, td {
 			<tbody>
 				<c:forEach items="${requestScope.list}" var="dto">
 					<tr>
-						<td><a href="qnaView.do?num=${dto.qna_num}">${dto.title}</td>
+						<td><a href="qnaView.do?qna_num=${dto.qna_num}">${dto.title}</td>
 						<td>${dto.nickname}</td>
 						<td>${dto.write_date}</td>
 						<td>${dto.readcount}</td>

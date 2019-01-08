@@ -81,7 +81,6 @@ public class semiMainController extends HttpServlet{
 			
 		}else if(action.equals("/qnaView.do")) {
 			QnAViewAction qnaView = new QnAViewAction();
-			//System.out.println("semiMainController에서 찍어본 dto.content = "+qnaView.strContent(req, resp));
 			qnaView.execute(req, resp);
 			
 			path = "/semiview/menu/QnA/qnaView.jsp";

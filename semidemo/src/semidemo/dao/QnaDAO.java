@@ -140,19 +140,26 @@ public class QnaDAO {
 				dto.setRe_step(rs.getInt("re_step"));
 				dto.setRe_level(rs.getInt("re_level"));
 				dto.setContent(rs.getString("content"));
-				//System.out.println(rs.getString("content"));
-				//System.out.println("viewmethod = "+dto.getContent());
-				dto.setContent(rs.getString("image"));
+				dto.setImage(rs.getString("image"));
 			}
+			
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return dto;
-	}
+	} // end qnaViewMethod()//////////////////////////////////
 
-}//end class
+}//end class/////////////////////////////////////////

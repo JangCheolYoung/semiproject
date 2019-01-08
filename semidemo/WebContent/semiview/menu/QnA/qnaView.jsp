@@ -206,27 +206,11 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<table>
-		<tr>
-			<td width="20%">글쓴이</td>
-			<td>${dto.nickname}</td>
-			<td width="20%">조회수</td>
-			<td>${dto.readcount}</td>
-		</tr>
-
-		<tr>
-			<td>제목</td>
-			<td colspan="3">${dto.title}</td>
-		</tr>
-
-
-		<tr>
-			<td>내용</td>
-
-			<td colspan="3">${dto.content}</td>
-		</tr>
-
-	</table>
+			글쓴이 : ${dto.nickname}<br/>
+			조회수 : ${dto.readcount}<br/>
+			제목 : ${dto.title}<br/>
+			내용 : ${dto.content}<br/>
+			첨부파일 : <img src="../../../../../../${dto.image}"/> 
 			<div id="inputContent"></div>
 		</div>
 	</div>

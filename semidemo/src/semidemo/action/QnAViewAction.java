@@ -13,23 +13,9 @@ public class QnAViewAction {
 		
 		
 		QnaDAO dao = QnaDAO.getInstance();
-		QnaDTO dto = dao.qnaViewMethod(num);
-		req.setAttribute("dto", dto);
+		req.setAttribute("dto", dao.qnaViewMethod(num));
 		
 		
 	}//end execute()/////////////////////////////////////////
 	
-	public String strContent(HttpServletRequest req, HttpServletResponse resp) {
-		String str=null;
-		int num = Integer.parseInt(req.getParameter("qna_num"));
-		
-		
-		QnaDAO dao = QnaDAO.getInstance();
-		QnaDTO dto = dao.qnaViewMethod(num);
-		str= dto.getContent();
-		System.out.println("strContent method = "+str);
-		
-		return str;
-	}
-
 }//end class////////////////////////////////////////////////

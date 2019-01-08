@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import semidemo.dto.QnaDTO;
+import semidemo.dto.QnaPageDTO;
 
 public class QnaDAO {
 	private Connection conn;
@@ -49,18 +50,20 @@ public class QnaDAO {
 		if (conn != null)
 			conn.close();
 	}// end exit()
-	
+
 	// ------------------------------------------------------------------------------
 
-	public List<QnaDTO> listMethod(){
+	public List<QnaDTO> listMethod(QnaPageDTO pdto) {
 		List<QnaDTO> list = new ArrayList<QnaDTO>();
 
 		try {
-			conn=init();
-			String sql="select * from qna order by qna_num desc";
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
+			conn = init();
+			String sql = "select b.* from (select rownum rm, a.* from (select * from qna order by qna_num desc)a)b where rm>=? and rm<=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pdto.getStartRow()); //시작레코드값
+			pstmt.setInt(2, pdto.getEndRow()); //끝레코드값
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				QnaDTO dto = new QnaDTO();
 				dto.setQna_num(rs.getInt("qna_num"));
 				dto.setNickname(rs.getString("nickname"));
@@ -69,14 +72,14 @@ public class QnaDAO {
 				dto.setReadcount(rs.getInt("readcount"));
 				list.add(dto);
 			}
-			
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				exit();
 			} catch (SQLException e) {
@@ -84,7 +87,7 @@ public class QnaDAO {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return list;
 	}// end listMethod()///////////////////////////////////////////////
 
@@ -93,15 +96,13 @@ public class QnaDAO {
 		try {
 			conn = init();
 
-		
-				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image)"
-						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, board_num_seq.nextval, 0, 0, ?, ?)";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, dto.getTitle());
-				pstmt.setString(2, dto.getContent());
-				pstmt.setString(3, dto.getImage());
+			String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image)"
+					+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, board_num_seq.nextval, 0, 0, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getImage());
 
-		
 			// executeUpdate()는 마지막에 해주는 작업으로 밑으로 뺀다.
 			pstmt.executeUpdate();
 
@@ -117,19 +118,19 @@ public class QnaDAO {
 			}
 		}
 	}// end insertMethod()//////////////////////////////////////
-	
-	//상세 페이지 정보를 가져오는 메소드.
+
+	// 상세 페이지 정보를 가져오는 메소드.
 	public QnaDTO qnaViewMethod(int num) {
 		QnaDTO dto = null;
-		
+
 		try {
-			conn=init();
+			conn = init();
 			String sql = "select * from qna where qna_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
 				dto = new QnaDTO();
 				dto.setQna_num(rs.getInt("qna_num"));
 				dto.setNickname(rs.getString("nickname"));
@@ -142,15 +143,14 @@ public class QnaDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setImage(rs.getString("image"));
 			}
-			
-			
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				exit();
 			} catch (SQLException e) {
@@ -158,28 +158,26 @@ public class QnaDAO {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return dto;
 	} // end qnaViewMethod()//////////////////////////////////
-	
-	
-	
+
 	// 게시물 눌렀을때 조회수 증가시켜주는 메소드.
 	public void readCountMethod(int qna_num) {
 		try {
-			conn=init();
-			String sql="update qna set readcount=readcount+1 where qna_num = ?";
-			pstmt=conn.prepareStatement(sql);
+			conn = init();
+			String sql = "update qna set readcount=readcount+1 where qna_num = ?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qna_num);
 			pstmt.executeUpdate();
-			
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				exit();
 			} catch (SQLException e) {
@@ -187,6 +185,34 @@ public class QnaDAO {
 				e.printStackTrace();
 			}
 		}
-	}//end readCountMethod()//////////////////////////
+	}// end readCountMethod()//////////////////////////
 
-}//end class/////////////////////////////////////////
+	// 총 레코드수 반환을 위한 작업
+	public int qnaRowTotalCount() {
+		int cnt = 0;
+
+		try {
+			conn = init();
+			String sql = "select count(*) from qna";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next())
+				cnt = rs.getInt(1); // count(*)
+
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return cnt;
+	}// end rowTotalCount()
+
+}// end class/////////////////////////////////////////

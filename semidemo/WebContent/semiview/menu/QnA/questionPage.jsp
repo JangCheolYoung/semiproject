@@ -225,6 +225,7 @@ table, tr, th, td {
 			<table>
 			<thead>
 				<tr>
+					<th>num</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일시</th>
@@ -234,6 +235,7 @@ table, tr, th, td {
 			<tbody>
 				<c:forEach items="${requestScope.list}" var="dto">
 					<tr>
+						<td>${dto.qna_num}</td>
 						<td><a href="qnaView.do?qna_num=${dto.qna_num}">${dto.title}</td>
 						<td>${dto.nickname}</td>
 						<td>${dto.write_date}</td>
@@ -242,6 +244,28 @@ table, tr, th, td {
 				</c:forEach>
 			</tbody>
 			</table>
+			
+			
+			<c:if test="${requestScope.pdto.startPage > 1 }">
+				<span><a href="question.do?pageNum=${pdto.startPage - pdto.blockShowPage}"/>이전</span>
+			</c:if>
+			
+			
+			<!-- 페이지 이동하는 부분 -->
+			<!-- startPage부터 endPage까지 i가 1씩 증가한다~. 
+				startPage = 1일때 endPage = 5이고 i는 1부터 5까지.
+				startPage = 6일때 endPage = 10이고 i는 6부터 10까지.
+			-->
+			<c:forEach begin="${requestScope.pdto.startPage }" end = "${requestScope.pdto.endPage }" var = "i" >
+				<span><a href="question.do?pageNum=${i}">${i}</a></span>
+			</c:forEach>
+			
+			<c:if test="${requestScope.pdto.endPage < requestScope.pdto.totalPage }">
+				<span><a href="question.do?pageNum=${pdto.startPage + pdto.blockShowPage}"/>다음</span>
+			</c:if>
+			
+			
+			
 			<div id="inputContent"></div>
 		</div>
 	</div>

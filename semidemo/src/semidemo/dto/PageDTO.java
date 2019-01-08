@@ -2,7 +2,7 @@ package semidemo.dto;
 
 public class PageDTO {
 	private int currentPage; // 현재페이지
-	private int totalCount; // 총 레코드수
+	private int totalCount; // 총 레코드수 
 	private int blockCount = 5; // 한 페이지에 보여줄 레코드수 (원래는 10개정도, 테스트 용으로 적게 줄임)
 	private int blockPage = 3; // 한 블록에 보여줄 페이지수
 	private int totalPage; // 총 페이지수

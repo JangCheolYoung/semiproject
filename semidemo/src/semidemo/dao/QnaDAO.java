@@ -161,5 +161,32 @@ public class QnaDAO {
 		
 		return dto;
 	} // end qnaViewMethod()//////////////////////////////////
+	
+	
+	
+	// 게시물 눌렀을때 조회수 증가시켜주는 메소드.
+	public void readCountMethod(int qna_num) {
+		try {
+			conn=init();
+			String sql="update qna set readcount=readcount+1 where qna_num = ?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}//end readCountMethod()//////////////////////////
 
 }//end class/////////////////////////////////////////

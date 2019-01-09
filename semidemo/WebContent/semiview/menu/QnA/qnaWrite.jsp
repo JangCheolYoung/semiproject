@@ -241,7 +241,7 @@ table, tr, th, td {
 				<div>
 					<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요."></textarea>
 				</div>
-				<input type="file" id="file" name="file" value="첨부파일"/>
+				<input type="file" id="image" name="image" value="첨부파일"/>
 				<input type="submit" name="submit" value="등록"/>
 				<a href="question.do"><input type="button" value="취소"/></a>
 			</form>

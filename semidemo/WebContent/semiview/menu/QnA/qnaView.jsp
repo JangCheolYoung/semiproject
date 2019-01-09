@@ -210,7 +210,7 @@ table, tr, th, td {
 			조회수 : ${dto.readcount}<br/>
 			제목 : ${dto.title}<br/>
 			내용 : ${dto.content}<br/>
-			첨부파일 : <img src="../../../../../../${dto.image}"/> 
+			첨부파일 : <img src="../semiview/images/qna/${dto.image}"/> 
 			<div id="inputContent"></div>
 		</div>
 	</div>

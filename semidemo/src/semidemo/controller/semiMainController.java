@@ -87,7 +87,6 @@ public class semiMainController extends HttpServlet{
 			
 		}else if(action.equals("/qnaWriteform.do")) {
 			path = "/semiview/menu/QnA/qnaWrite.jsp";
-			
 		}else if(action.equals("/qnaWrite.do")) {
 			QnAWriteAction qnaWrite = new QnAWriteAction();
 			qnaWrite.execute(req, resp);

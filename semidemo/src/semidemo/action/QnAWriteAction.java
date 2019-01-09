@@ -22,7 +22,7 @@ public class QnAWriteAction {
 		System.out.println("path:"+path);
 		String saveDirectory = path+"/temp";*/
 		
-		String saveDirectory = "c:/temp";
+		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\semidemo\\semiview\\images\\qna";
 		File file = new File(saveDirectory);
 
 		// 파일이 없으면 생성해야 하므로. file.exists()에 not(=!)을 붙인다.
@@ -43,7 +43,7 @@ public class QnAWriteAction {
 		
 		dto.setTitle(multi.getParameter("qna_title"));// multi에서 parameter값을 가져옴.
 		dto.setContent(multi.getParameter("qna_content"));
-		dto.setImage(multi.getFilesystemName("file")); // 첨부파일을 가져올때는 getFilesystemName()을 사용.
+		dto.setImage(multi.getFilesystemName("image")); // 첨부파일을 가져올때는 getFilesystemName()을 사용.
 
 	
 

@@ -194,6 +194,18 @@ table, tr, th, td {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
+	
+		
+		$('#updateBtn').on('click',function(){
+			$('form').attr('action', 'qnaUpdate.do');
+			$('form').submit();
+		});
+		$('#cancelBtn').on('click',function(){
+			$('form').attr('action', 'qnaView.do');
+			$('form').submit();
+		});
+	
+		
 	});
 	
 	
@@ -224,8 +236,9 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<form action="qnaUpdate.do" id="qnaUpdate" method="post" enctype="multipart/form-data">
+			<form name='updateForm' id="qnaUpdate" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="qna_num" value="${dto.qna_num}"/> 
+				<input type="hidden" name="pageNum" value="${param.pageNum}" /> 
 				<div>
 					<select name="category" id="category">
 						<option>분류</option>
@@ -243,10 +256,9 @@ table, tr, th, td {
 					<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
 				</div>
 				<input type="file" id="image" name="image" value="첨부파일"/>
-				<input type="submit" name="submit" value="수정"/>
-				<a href="qnaView.do?qna_num=${dto.qna_num }"><input type="button" value="취소"/></a>
+				<input type="button" name="updateBtn" id="updateBtn" value="수정"/>
+				<input type="button" name="cancelBtn" id="cancelBtn" value="취소"/></a>
 			</form>
-			<div id="inputContent"></div>
 		</div>
 	</div>
 	<a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>

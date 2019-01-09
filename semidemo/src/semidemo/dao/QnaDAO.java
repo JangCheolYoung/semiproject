@@ -133,6 +133,7 @@ public class QnaDAO {
 			if (rs.next()) {
 				dto = new QnaDTO();
 				dto.setQna_num(rs.getInt("qna_num"));
+				System.out.println("qnaViewMethod "+ dto.getQna_num());
 				dto.setNickname(rs.getString("nickname"));
 				dto.setTitle(rs.getString("title"));
 				dto.setWrite_date(rs.getDate("write_date"));

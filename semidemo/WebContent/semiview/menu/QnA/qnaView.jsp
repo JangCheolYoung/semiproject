@@ -176,12 +176,9 @@ table, tr, th, td {
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
 			function() {
-			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
-		
-		
-		$('#qnaListBtn').on('click', function(){
-						
+			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));
 		});
+		
 	});
 </script>
 </head>

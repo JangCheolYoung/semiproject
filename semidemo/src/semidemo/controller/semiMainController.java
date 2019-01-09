@@ -103,7 +103,8 @@ public class semiMainController extends HttpServlet{
 		}else if(action.equals("/qnaUpdate.do")) {
 			QnAUpdateAction qnaUpdate = new QnAUpdateAction();
 			qnaUpdate.execute(req, resp);
-			resp.sendRedirect("question.do?pageNum="+req.getParameter("pageNum"));
+			
+			resp.sendRedirect("question.do");
 		}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		

@@ -224,7 +224,8 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<form action="qnaUpdate.do" id="qnaWrite" method="post" enctype="multipart/form-data">
+			<form action="qnaUpdate.do" id="qnaUpdate" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="qna_num" value="${dto.qna_num}"/> 
 				<div>
 					<select name="category" id="category">
 						<option>분류</option>
@@ -242,8 +243,8 @@ table, tr, th, td {
 					<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
 				</div>
 				<input type="file" id="image" name="image" value="첨부파일"/>
-				<input type="submit" name="submit" value="등록"/>
-				<a href="qnaView.do?여기 수정해야합니다"><input type="button" value="취소"/></a>
+				<input type="submit" name="submit" value="수정"/>
+				<a href="qnaView.do?qna_num=${dto.qna_num }"><input type="button" value="취소"/></a>
 			</form>
 			<div id="inputContent"></div>
 		</div>

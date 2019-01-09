@@ -236,7 +236,7 @@ table, tr, th, td {
 				<c:forEach items="${requestScope.list}" var="dto">
 					<tr>
 						<td>${dto.qna_num}</td>
-						<td><a href="qnaView.do?qna_num=${dto.qna_num}">${dto.title}</td>
+						<td><a href="qnaView.do?qna_num=${dto.qna_num}&pageNum=${pdto.currentPage}">${dto.title}</td>
 						<td>${dto.nickname}</td>
 						<td>${dto.write_date}</td>
 						<td>${dto.readcount}</td>

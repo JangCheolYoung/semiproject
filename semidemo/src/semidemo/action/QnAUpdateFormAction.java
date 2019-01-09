@@ -13,7 +13,7 @@ public class QnAUpdateFormAction {
 		int qna_num = Integer.parseInt(req.getParameter("qna_num"));
 		
 		QnaDAO dao = QnaDAO.getInstance();
-		QnaDTO dto = dao.sendDtoMethod(qna_num);
+		QnaDTO dto = dao.qnaViewMethod(qna_num);
 		
 		req.setAttribute("dto", dto);
 	}

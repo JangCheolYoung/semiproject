@@ -22,7 +22,7 @@ public class QnAWriteAction {
 		System.out.println("path:"+path);
 		String saveDirectory = path+"/temp";*/
 		
-		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\semidemo\\semiview\\images\\qna";
+		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\semidemo\\semiview\\images\\qna";
 		File file = new File(saveDirectory);
 
 		// 파일이 없으면 생성해야 하므로. file.exists()에 not(=!)을 붙인다.

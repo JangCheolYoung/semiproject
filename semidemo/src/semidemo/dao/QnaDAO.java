@@ -217,7 +217,7 @@ public class QnaDAO {
 
 	
 	// update.jsp에 보내줄 데이터를 dto로 반환해주는 메소드. 
-	public QnaDTO sendDtoMethod(int qna_num) {
+	/*public QnaDTO sendDtoMethod(int qna_num) {
 		QnaDTO dto = null;
 		
 		
@@ -259,4 +259,64 @@ public class QnaDAO {
 		}
 		return dto;
 	}
+	*/
+	
+	public void qnaUpdateMethod(QnaDTO dto) {
+		
+		try {
+			conn=init();
+			System.out.println("디비연결!!");
+			String sql = "update qna set title=?, content=?, image=? where qna_num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getImage());
+			pstmt.setInt(4, dto.getQna_num());
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}// end qnaUpdateMethod()//////////////////////////
+	
+	//다운로드 파일명 리턴
+		public String fileMethod(int num) {
+			String fileName = null;
+			
+			try {
+				conn = init();
+				String sql = "select image from qna where qna_num = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next())
+					fileName = rs.getString("image");
+				
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					exit();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			return fileName;
+		}//end fileMethod()
+	
 }// end class/////////////////////////////////////////

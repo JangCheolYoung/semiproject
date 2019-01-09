@@ -220,7 +220,7 @@ table, tr, th, td {
 				<option value="info">육아정보</option>
 				<option value="etc">기타</option>
 			</select>
-			<a href="qnaWriteform.do" ><img id="writeBtn" src="../semiview/images/write_off.png"/></a>
+			<a href="qnaWriteForm.do" ><img id="writeBtn" src="../semiview/images/write_off.png"/></a>
 			
 			<table>
 			<thead>

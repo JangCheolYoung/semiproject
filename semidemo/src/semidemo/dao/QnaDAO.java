@@ -215,4 +215,48 @@ public class QnaDAO {
 		return cnt;
 	}// end rowTotalCount()
 
+	
+	// update.jsp에 보내줄 데이터를 dto로 반환해주는 메소드. 
+	public QnaDTO sendDtoMethod(int qna_num) {
+		QnaDTO dto = null;
+		
+		
+		try {
+			conn=init();
+			String sql = "select * from qna where qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new QnaDTO();
+				dto.setQna_num(rs.getInt("qna_num"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setWrite_date(rs.getDate("write_date"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setRef(rs.getInt("ref"));
+				dto.setRe_step(rs.getInt("re_step"));
+				dto.setRe_level(rs.getInt("re_level"));
+				dto.setContent(rs.getString("content"));
+				dto.setImage(rs.getString("image"));
+				
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return dto;
+	}
 }// end class/////////////////////////////////////////

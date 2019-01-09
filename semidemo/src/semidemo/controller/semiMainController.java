@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semidemo.action.QnAListAction;
+import semidemo.action.QnAUpdateAction;
+import semidemo.action.QnAUpdateFormAction;
 import semidemo.action.QnAViewAction;
 import semidemo.action.QnAWriteAction;
 
@@ -85,15 +87,24 @@ public class semiMainController extends HttpServlet{
 			
 			path = "/semiview/menu/QnA/qnaView.jsp";
 			
-		}else if(action.equals("/qnaWriteform.do")) {
+		}else if(action.equals("/qnaWriteForm.do")) {
 			path = "/semiview/menu/QnA/qnaWrite.jsp";
+			
 		}else if(action.equals("/qnaWrite.do")) {
 			QnAWriteAction qnaWrite = new QnAWriteAction();
 			qnaWrite.execute(req, resp);
 			resp.sendRedirect("question.do");
 			
+		}else if(action.equals("/qnaUpdateForm.do")) {
+			QnAUpdateFormAction qnaUpdateForm = new QnAUpdateFormAction();
+			 qnaUpdateForm.execute(req, resp);
+			path = "/semiview/menu/QnA/qnaUpdate.jsp";
+			
+		}else if(action.equals("/qnaUpdate.do")) {
+			QnAUpdateAction qnaUpdate = new QnAUpdateAction();
+			qnaUpdate.execute(req, resp);
+			resp.sendRedirect("question.do?pageNum="+req.getParameter("pageNum"));
 		}
-		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		if(path!="") { //기본값이 아닐때, path가 설정되어 있을때, sendRedirect방식을 사용할때, forward방식을 사용하지 않을때

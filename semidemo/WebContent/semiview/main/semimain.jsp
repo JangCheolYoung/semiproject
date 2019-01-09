@@ -50,13 +50,25 @@
 			width : 200px;
 			height: 200px;
 		}
+		#recipeBtn{
+			width : 200px;
+			height: 200px;
+		}
 		
 		.category .category-top #momTalkBtn{
 			width : 200px;
 			height: 200px;
 		}
+		#momTalkBtn{
+			width : 200px;
+			height: 200px;
+		}
 		
 		.category .category-top #handOutBtn{
+			width : 200px;
+			height: 200px;
+		}
+		#handOutBtn{
 			width : 200px;
 			height: 200px;
 		}
@@ -71,8 +83,15 @@
 			width : 200px;
 			height: 200px;
 		}
-		
+		#infoBtn{
+			width : 200px;
+			height: 200px;
+		}
 		.category .category-bottom #questionBtn{
+			width : 200px;
+			height: 200px;
+		}
+		#questionBtn{
 			width : 200px;
 			height: 200px;
 		}
@@ -176,15 +195,11 @@
 					<input type="image" id="loginBtn" src="../semiview/images/loginBtn_off.png"/>
 					<img alt="메인이미지" src="../semiview/images/mammaLogo.png" class="mainImage"/>
 				<div class = "category">
-					<div class = "category-top">
 						<input type="image" id="recipeBtn" src="../semiview/images/recipe_off.png"/>
 						<input type="image" id="momTalkBtn" src="../semiview/images/momTalk_off.png"/>
 						<input type="image" id="handOutBtn" src="../semiview/images/handOut_off.png"/>
-					</div>
-					<div class = "category-bottom">
 						<input type="image" id="infoBtn" src="../semiview/images/info_off.png"/>
 						<input type="image" id="questionBtn" src="../semiview/images/question_off.png"/>
-					</div>
 				</div>
 			</div>
 		</form>

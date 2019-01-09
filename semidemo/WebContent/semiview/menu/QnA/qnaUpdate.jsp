@@ -167,6 +167,23 @@ table, tr, th, td {
 }
 
 
+#qna_title{
+	width: 200px;
+	height: 40px;
+	border-radius: 5px;
+}
+#qna_content{
+	width: 700px;
+	height: 200px;
+	border-radius: 5px;
+
+}
+
+#category{
+	width: 100px;
+	height: 40px;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -177,12 +194,9 @@ table, tr, th, td {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
-		
-		
-		$('#qnaListBtn').on('click', function(){
-						
-		});
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -210,16 +224,27 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			글쓴이 : ${dto.nickname}<br/>
-			조회수 : ${dto.readcount}<br/>
-			제목 : ${dto.title}<br/>
-			내용 : ${dto.content}<br/>
-			첨부파일 : <img src="../semiview/images/qna/${dto.image}"/> 
-			
-			<a href="question.do"><input type="button" id="qnaListBtn" name="qnaListBtn" value="목록으로"/></a>
-			<input type="button" id="answerBtn" name="answerBtn" value="답변"/><!-- 관리자권한 -->
-			<a href="qnaUpdateForm.do?qna_num=${dto.qna_num}"><input type="button" id="updateBtn" name="updateBtn" value="수정"/></a><!-- 작성자권한/ 관리자권한 -->
-			<input type="button" id="deleteBtn" name="deleteBtn" value="삭제"/><!-- 작성자권한/ 관리자권한. -->
+			<form action="qnaUpdate.do" id="qnaWrite" method="post" enctype="multipart/form-data">
+				<div>
+					<select name="category" id="category">
+						<option>분류</option>
+						<option value="recipe">레시피</option>
+						<option value="momtalk">맘톡</option>
+						<option value="handout">무료나눔</option>
+						<option value="info">육아정보</option>
+						<option value="etc">기타</option>
+					</select>
+				</div>
+				<div>
+					<input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요." value="${dto.title}"/>
+				</div>
+				<div>
+					<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
+				</div>
+				<input type="file" id="image" name="image" value="첨부파일"/>
+				<input type="submit" name="submit" value="등록"/>
+				<a href="qnaView.do?여기 수정해야합니다"><input type="button" value="취소"/></a>
+			</form>
 			<div id="inputContent"></div>
 		</div>
 	</div>

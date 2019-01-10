@@ -225,6 +225,14 @@ table, tr, th, td {
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
 			<form action="qnaWrite.do" id="qnaWrite" method="post" enctype="multipart/form-data">
+			<c:if test = "${!empty param.qna_num }">
+				<input type = "hidden" name = "qna_num" value = "${param.qna_num }" />
+				<input type = "hidden" name = "ref" value = "${param.ref}" /> 
+		 		<input type = "hidden" name = "re_step" value = "${param.re_step}" />
+		 		<input type = "hidden" name = "re_level" value = "${param.re_level}" />
+		 		<input type = "hidden" name = "pageNum" value = "${param.pageNum}" />
+			</c:if>
+			
 				<div>
 					<select name="category" id="category">
 						<option>분류</option>

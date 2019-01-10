@@ -89,14 +89,14 @@ public class semiMainController extends HttpServlet{
 			qnaView.execute(req, resp);
 			
 			path = "/semiview/menu/QnA/qnaView.jsp";
-			
+				
 		}else if(action.equals("/qnaWriteForm.do")) {
 			path = "/semiview/menu/QnA/qnaWrite.jsp";
 			
 		}else if(action.equals("/qnaWrite.do")) {
 			QnAWriteAction qnaWrite = new QnAWriteAction();
-			qnaWrite.execute(req, resp);
-			resp.sendRedirect("question.do");
+			MultipartRequest multi = qnaWrite.execute(req, resp);
+			resp.sendRedirect("question.do?pageNum="+multi.getParameter("pageNum"));
 			
 		}else if(action.equals("/qnaUpdateForm.do")) {
 			QnAUpdateFormAction qnaUpdateForm = new QnAUpdateFormAction();

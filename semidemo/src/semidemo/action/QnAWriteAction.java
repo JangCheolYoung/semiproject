@@ -22,7 +22,7 @@ public class QnAWriteAction {
 		System.out.println("path:"+path);
 		String saveDirectory = path+"/temp";*/
 		
-		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\semidemo\\semiview\\images\\qna";
+		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\semidemo\\semiview\\images\\qna";
 		File file = new File(saveDirectory);
 
 		// 파일이 없으면 생성해야 하므로. file.exists()에 not(=!)을 붙인다.
@@ -45,7 +45,27 @@ public class QnAWriteAction {
 		dto.setContent(multi.getParameter("qna_content"));
 		dto.setImage(multi.getFilesystemName("image")); // 첨부파일을 가져올때는 getFilesystemName()을 사용.
 
-	
+//		if(multi.getParameter("re_step").equals("0")) {
+//			dto.setTitle("[답변]"+multi.getParameter("qna_title"));
+//		}
+		
+		if(multi.getParameter("re_level") != null) {
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			//파라미터값에서 넘어오는 값을 그대로 넘김
+			map.put("ref", Integer.parseInt(multi.getParameter("ref")));
+			map.put("re_step", Integer.parseInt(multi.getParameter("re_step")));
+			//re_step값 1증가하는 처리를 함 ->FILO을 위한 과정
+			dao.reStepMethod(map); 
+			
+			//답변글의 경우 ref는 그대로 / re_step, re_level는 +1해서 처리
+			dto.setRef(Integer.parseInt(multi.getParameter("ref")));
+			dto.setRe_step(Integer.parseInt(multi.getParameter("re_step"))+1);
+			dto.setRe_level(Integer.parseInt(multi.getParameter("re_level"))+1);
+			
+			System.out.println(dto.getRe_step());
+			System.out.println(dto.getRe_level());
+		}
+		
 
 		dao.insertMethod(dto);
 		return multi;

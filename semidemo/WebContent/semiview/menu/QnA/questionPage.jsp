@@ -236,7 +236,15 @@ table, tr, th, td {
 				<c:forEach items="${requestScope.list}" var="dto">
 					<tr>
 						<td>${dto.qna_num}</td>
-						<td><a href="qnaView.do?qna_num=${dto.qna_num}&pageNum=${pdto.currentPage}">${dto.title}</td>
+						<td>
+							<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서-->
+							<c:if test = "${dto.re_level !=0 }">
+								<img src="../semiview/images/level.gif" width = "${10*dto.re_level }">
+								<img src="../semiview/images/re.gif"/>
+							</c:if>
+							<!-- num값 뿐만아니라 현재페이지 값도 받아야함 -->
+							<a href = "qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">${dto.title }</a>
+						</td>
 						<td>${dto.nickname}</td>
 						<td>${dto.write_date}</td>
 						<td>${dto.readcount}</td>

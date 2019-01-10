@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import semidemo.action.QnADeleteAction;
 import semidemo.action.QnAListAction;
 import semidemo.action.QnAUpdateAction;
 import semidemo.action.QnAUpdateFormAction;
@@ -102,10 +105,16 @@ public class semiMainController extends HttpServlet{
 			
 		}else if(action.equals("/qnaUpdate.do")) {
 			QnAUpdateAction qnaUpdate = new QnAUpdateAction();
-			qnaUpdate.execute(req, resp);
+			MultipartRequest multi=qnaUpdate.execute(req, resp);
 			
+			resp.sendRedirect("question.do?pageNum="+multi.getParameter("pageNum"));
+		}else if(action.equals("/qnaDelete.do")) {
+			QnADeleteAction qnaDelete = new QnADeleteAction();
+			qnaDelete.execute(req, resp);
 			resp.sendRedirect("question.do");
 		}
+		
+		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		if(path!="") { //기본값이 아닐때, path가 설정되어 있을때, sendRedirect방식을 사용할때, forward방식을 사용하지 않을때

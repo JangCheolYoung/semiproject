@@ -236,6 +236,9 @@ table, tr, th, td {
 					</select>
 				</div>
 				<div>
+				<c:if test="${!empty param.qna_num }">
+					<span>[답변]</span>
+				</c:if>
 					<input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요."/>
 				</div>
 				<div>

@@ -185,7 +185,8 @@ table, tr, th, td {
       });
       
       $('#answerBtn').on('click', function(){
-                  
+         $('form').attr('action', 'qnaWriteForm.do');
+         $('form').submit();
       });
       
       $('#updateBtn').on('click', function(){

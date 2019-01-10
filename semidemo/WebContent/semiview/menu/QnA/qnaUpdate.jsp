@@ -197,7 +197,8 @@ table, tr, th, td {
 	
 		
 		$('#updateBtn').on('click',function(){
-			$('form').attr('action', 'qnaUpdate.do');
+			$('form').attr('action', 'qnaUpdate.do?pageNum='+${param.pageNum});
+			$('form').attr('enctype', 'multipart/form-data');
 			$('form').submit();
 		});
 		$('#cancelBtn').on('click',function(){
@@ -236,9 +237,9 @@ table, tr, th, td {
 		</div>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<form name='updateForm' id="qnaUpdate" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="qna_num" value="${dto.qna_num}"/> 
-				<input type="hidden" name="pageNum" value="${param.pageNum}" /> 
+			<form name="updateForm" id="qnaUpdate" method="post" >
+				<input type="hidden" id="qna_num" name="qna_num" value="${dto.qna_num}"/> 
+				<input type="hidden" id="pageNum" name="pageNum" value="${param.pageNum}" /> 
 				<div>
 					<select name="category" id="category">
 						<option>분류</option>

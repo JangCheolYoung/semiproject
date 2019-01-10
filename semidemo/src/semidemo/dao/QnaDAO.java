@@ -120,20 +120,20 @@ public class QnaDAO {
 	}// end insertMethod()//////////////////////////////////////
 
 	// 상세 페이지 정보를 가져오는 메소드.
-	public QnaDTO qnaViewMethod(int num) {
+	public QnaDTO qnaViewMethod(int qna_num) {
 		QnaDTO dto = null;
 
 		try {
 			conn = init();
 			String sql = "select * from qna where qna_num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, qna_num);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				dto = new QnaDTO();
 				dto.setQna_num(rs.getInt("qna_num"));
-				System.out.println("qnaViewMethod "+ dto.getQna_num());
+				//System.out.println("qnaViewMethod "+ dto.getQna_num());
 				dto.setNickname(rs.getString("nickname"));
 				dto.setTitle(rs.getString("title"));
 				dto.setWrite_date(rs.getDate("write_date"));
@@ -266,7 +266,6 @@ public class QnaDAO {
 		
 		try {
 			conn=init();
-			System.out.println("디비연결!!");
 			String sql = "update qna set title=?, content=?, image=? where qna_num=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getTitle());
@@ -292,14 +291,14 @@ public class QnaDAO {
 	}// end qnaUpdateMethod()//////////////////////////
 	
 	//다운로드 파일명 리턴
-		public String fileMethod(int num) {
+		public String fileMethod(int qna_num) {
 			String fileName = null;
 			
 			try {
 				conn = init();
 				String sql = "select image from qna where qna_num = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, num);
+				pstmt.setInt(1, qna_num);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next())
@@ -319,5 +318,31 @@ public class QnaDAO {
 			
 			return fileName;
 		}//end fileMethod()
+		
+		// qna레코드 삭제해주는 메소드.
+		public void qnaDeleteMethod(int qna_num) {
+			try {
+				conn=init();
+				String sql = "delete qna where ref=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, qna_num);
+				pstmt.executeUpdate();
+			} catch (ClassNotFoundException e) { 
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				try {
+					exit();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
 	
 }// end class/////////////////////////////////////////

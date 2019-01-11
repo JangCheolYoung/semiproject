@@ -7,20 +7,20 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;	
 
 import com.oreilly.servlet.MultipartRequest;
 
-import semidemo.action.QnADeleteAction;
-import semidemo.action.QnAListAction;
-import semidemo.action.QnAUpdateAction;
-import semidemo.action.QnAUpdateFormAction;
-import semidemo.action.QnAViewAction;
-import semidemo.action.QnAWriteAction;
 import semidemo.loginAction.IdDupChkAction;
 import semidemo.loginAction.LoginAction;
 import semidemo.loginAction.LogoutAction;
 import semidemo.loginAction.SignAction;
+import semidemo.qnaAction.QnADeleteAction;
+import semidemo.qnaAction.QnAListAction;
+import semidemo.qnaAction.QnAUpdateAction;
+import semidemo.qnaAction.QnAUpdateFormAction;
+import semidemo.qnaAction.QnAViewAction;
+import semidemo.qnaAction.QnAWriteAction;
 
 //시작하는 곳 (메인 페이지)
 @WebServlet("/mammaMain/*")

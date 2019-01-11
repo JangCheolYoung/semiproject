@@ -1,4 +1,4 @@
-package semidemo.action;
+package semidemo.qnaAction;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

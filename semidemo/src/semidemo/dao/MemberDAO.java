@@ -140,6 +140,25 @@ public class MemberDAO {
 		}
 		return x;
 	}
+	//닉네임 중복검사
+	public boolean nicknameDupChk(String nickname) {
+		boolean x=false;
+		
+		try {
+			conn=init();
+			String sql = "SELECT nickname FROM member WHERE nickname=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				x=true;//해당아이디 존재
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return x;
+	}
 	
 	/*//아이디 중복검사
 	public int idDupChk(String id) {

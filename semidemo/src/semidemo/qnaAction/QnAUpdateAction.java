@@ -1,4 +1,4 @@
-package semidemo.action;
+package semidemo.qnaAction;
 
 import java.io.File;
 import java.io.IOException;

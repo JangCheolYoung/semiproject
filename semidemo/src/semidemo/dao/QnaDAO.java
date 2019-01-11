@@ -63,7 +63,7 @@ public class QnaDAO {
 					+"from (select rownum rm, a.* "
 					+"from (select * "
 					+"from qna "
-					+"order by ref desc, re_step)a)b "
+					+"order by ref desc, qna_num)a)b "
 					+"where rm>=? and rm<=?";
 			
 			

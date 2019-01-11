@@ -17,6 +17,10 @@ import semidemo.action.QnAUpdateAction;
 import semidemo.action.QnAUpdateFormAction;
 import semidemo.action.QnAViewAction;
 import semidemo.action.QnAWriteAction;
+import semidemo.loginAction.IdDupChkAction;
+import semidemo.loginAction.LoginAction;
+import semidemo.loginAction.LogoutAction;
+import semidemo.loginAction.SignAction;
 
 //시작하는 곳 (메인 페이지)
 @WebServlet("/mammaMain/*")
@@ -33,6 +37,10 @@ public class semiMainController extends HttpServlet{
 	}//end doPost()/////////////////////////////////////////
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		//한글깨짐안되도록 설정
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html;charset=utf-8");
 		//uri 가져오기
 		String uri = req.getRequestURI();
 		
@@ -44,23 +52,50 @@ public class semiMainController extends HttpServlet{
 		//forward 경로지정할 변수
 		String path = "";
 		
-		if(action.equals("/*")) {
+		if(action.equals("/*") || action.equals("/main.do")) {
 			//메인 페이지로 이동 (페이지지정 및 이동)
 			path = "/semiview/main/semimain.jsp";
 			
-		}else if(action.equals("/login.do")) {
-			//로그인 페이지로 이동
+		} else if(action.equals("/login.do")) {
+			// 로그인 페이지로 이동
 			path = "/semiview/login/login.jsp";
 			
-		}else if(action.equals("/signup.do")) {
-			//회원가입 페이지로 이동
+		}
+		else if(action.equals("/logout.do")) {
+			// 로그아웃 누르면 메인 페이지로 이동
+			LogoutAction logout = new LogoutAction();
+			logout.execute(req, resp);
+			
+			resp.sendRedirect("main.do");
+		}else if (action.equals("/loginPro.do")) {
+			
+			LoginAction login = new LoginAction();
+			login.execute(req, resp);
+			
+		} else if (action.equals("/signup.do")) {
+			// 회원가입 페이지로 이동
+			
 			path = "/semiview/login/signup.jsp";
 			
-		}else if(action.equals("/find.do")) {
-			//아이디,비번찾기 페이지로 이동
+		} else if (action.equals("/signUpWrite.do")) {
+			// 파라미터 값을 넘겨주는 과정
+
+			SignAction join = new SignAction();
+			join.execute(req, resp);
+
+			resp.sendRedirect("login.do");
+
+		}else if (action.equals("/idDuplication.do")) {
+			// 아이디 중복 파라미터 값을 넘겨주는 과정
+			System.out.println("중복검사액션점두");
+			IdDupChkAction idDup = new IdDupChkAction();
+			idDup.execute(req, resp);
+				
+		} else if (action.equals("/find.do")) {
+			// 아이디,비번찾기 페이지로 이동
 			path = "/semiview/login/find.jsp";
-			
-		}else if(action.equals("/recipe.do")) {
+
+		} else if(action.equals("/recipe.do")) {
 			//레시피 페이지로 이동
 			path = "/semiview/menu/recipe/RecipePage.jsp";
 			

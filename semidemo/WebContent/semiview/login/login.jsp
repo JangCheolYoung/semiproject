@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 페이지</title>
+<link rel="stylesheet" type="text/css" href="../semiview/login/css/login.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -12,7 +13,7 @@
 
 	});
 </script>
-<style>
+<!-- <style>
 form, button {
 	border: 0;
 	margin: 0;
@@ -65,7 +66,7 @@ p, h1 {
 	font-family: nanumgothic, dotum;
 }
 
-#loginimg {
+#login_img {
 	width: 200px;
 	height: 150px;
 }
@@ -139,10 +140,10 @@ p, h1 {
 a {
 	text-decoration: none;
 }
-</style>
+</style> -->
 </head>
 <body>
-	<img id="top_bar" alt="" src="../semiview/images/top_bar.jpg">
+	<!-- <img id="top_bar" alt="" src="../semiview/images/top_bar.jpg">
 	<div class="go_main">
 		<a href="*"><img id="logo" alt="home"
 			src="../semiview/images/logo.png"></a>
@@ -154,19 +155,37 @@ a {
 			</h1>
 			<p>아이디와 비밀번호를 입력하세요</p>
 
-			<label>ID <span class="small">이름 입력</span>
-			</label> <input type="text" name="name" id="name" /> <label>Password
-				<span class="small">패스워드 입력</span>
-			</label> <input type="text" name="password" id="password" />
+			<label>아이디<span class="small"></span>
+			</label> <input type="text" name="name" id="name"/> <label>비밀번호
+				<span class="small"></span>
+			</label> <input type="password" name="password" id="password" />
 			<button type="submit">로그인</button>
-			<br />
-			<div class="idsave">
-				아이디저장<input type="checkbox" id="idrem" name="idrem" value="idsave">
-				<br />
-
-
-
+			<br /> -->
+	<img id="top_bar" alt="" src="../semiview/images/top_bar.jpg" />
+	<div class="go_main">
+		<a href="*">
+			<img id="logo" alt="home" src="../semiview/images/logo.png" />
+		</a>
+	</div>
+	<h1 style="padding-top: 20px; text-align: center;">
+		<img id="login_img" src="../semiview/images/login.png" />
+	</h1>
+	<div id="login">
+		<form action="loginPro.do" name="form" id="form" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" id="id" name="id" placeholder="아이디" maxlength="20" />
 			</div>
+			<div id="loginId"> </div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" />
+			</div>
+			<div id="loginPassword"> </div>
+			<div class="form-group">
+				<div class="idsave">
+					<input type="checkbox" id="idrem" name="idrem" value="idsave" >아이디저장
+				</div>
+			</div>
+			<button type="submit" id="loginBtn">로그인</button>
 			<div></div>
 			<div class="spacer">
 				<div class="spacer_left">
@@ -179,6 +198,6 @@ a {
 
 		</form>
 	</div>
-
+		
 </body>
 </html>

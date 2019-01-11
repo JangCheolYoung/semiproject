@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import semidemo.dto.MemberDTO;
+
 public class MemberDAO {
 	private Connection conn;
 	private Statement stmt;
@@ -45,8 +47,128 @@ public class MemberDAO {
 		if (conn != null)
 			conn.close();
 	}// end exit()
-	
+
 	// ------------------------------------------------------------------------------
+
+	// 회원가입 시 DB에 정보 삽입
+	public void insertMember(MemberDTO dto) {
+		try {
+			
+			conn = init();
+
+			String sql = "insert into member values(member_num_seq.nextval,?,?,?,?,?,?,?,0,?)";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, dto.getNickname());
+			pstmt.setString(2, dto.getId());
+			pstmt.setString(3, dto.getPassword());
+			pstmt.setString(4, dto.getEmail());
+			pstmt.setString(5, dto.getGender());
+			pstmt.setString(6, dto.getPass_ques());
+			pstmt.setString(7, dto.getPass_answ());
+			/* pstmt.setInt(8, dto.getCnt()); */
+			pstmt.setString(8, dto.getGrade());
+
+			pstmt.executeUpdate();
+			conn.commit();
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}// end insertMethod()
+
+//로그인 시 DB의 아이디, 패스워드와 같은지 확인 후 같을 경우 로그인 완료 
+	public int loginCheck(String id, String password) {
+		try {
+			conn=init();
+			String sql = "SELECT password FROM member WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				
+				if (rs.getString(1).equals(password)||rs.getString(1)==password) {
+					return 1;// 로그인 성공
+				} else {
+					return 0;// 비밀번호 불일치
+				}
+			}
+			return -1;// 아이디가 없음
+			
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -2; // 데이터베이스 오류
+
+	}//end loginCheck()//////////////////////
 	
+	//아이디 중복검사
+	public boolean IdDupChk(String id) {
+		boolean x=false;
+		
+		try {
+			conn=init();
+			String sql = "SELECT id FROM member WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+	            x=true;//해당아이디 존재
+	        
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return x;
+	}
 	
-}//end class
+	/*//아이디 중복검사
+	public int idDupChk(String id) {
+		int cnt = 0;
+
+		try {
+			conn=init();
+			String sql = "SELECT count(*) FROM member WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+	            cnt = rs.getInt(1);
+	         }
+
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}*/
+
+}// end class

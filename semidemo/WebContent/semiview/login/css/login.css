@@ -5,16 +5,18 @@ form {
 	margin-top: 0em;
 	width: 400px;
 	height: 470px;
+	text-align: center;
 	margin-left: auto;
-	margin-right: auto;	
+	margin-right: auto;
 	text-align: center;
 }
-#signUp {
+
+#login {
 	text-align: center;
 }
+
 div {
 	display: block;
-	text-align: center;
 }
 
 input {
@@ -22,36 +24,12 @@ input {
 	border-radius: 5px;
 }
 
-#id, #password, #password2, #nickname, #pass_ques, #pass_answ {
-	width: 100%;
-}
-#email{
-	width: 55%;
-}
-#email2{
-	width: 30%;
+#id, #password {
+	
+	width: 110%;
 }
 
-#gender {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-right: 170px;
-}
-
-#male, #female {
-	width: 100px;
-	height: 30px;
-	border: 1px solid gray;
-	background-color: white;
-	cursor: pointer;
-}
-
-#male {
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-#signBtn {
+#loginBtn {
 	margin-top: 10px;
 	width: 402px;
 	background-color: #ff5675;
@@ -60,10 +38,9 @@ input {
 	color: white;
 	font-size: 15px;
 	cursor: pointer;
-	text-align: center;
 }
 
-#sign_img {
+#login_img {
 	width: 250px;
 }
 
@@ -88,15 +65,3 @@ input {
 h1 {
 	margin-top: 60px;
 }
-
-
-
-
-
-
-
-
-
-
-
-

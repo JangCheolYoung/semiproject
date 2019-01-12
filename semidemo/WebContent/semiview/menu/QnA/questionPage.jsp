@@ -239,7 +239,7 @@ table, tr, th, td {
 						<td>
 							<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서-->
 							<c:if test = "${dto.re_level !=0 }">
-								<img src="../semiview/images/level.gif" width = "${10*dto.re_level }">
+								<img src="../semiview/images/level.gif" width = "10">
 								<img src="../semiview/images/re.gif"/>
 							</c:if>
 							<!-- num값 뿐만아니라 현재페이지 값도 받아야함 -->

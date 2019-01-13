@@ -5,85 +5,69 @@
 <head>
 <meta charset="UTF-8">
 <title>semimain</title>
+<link rel="stylesheet" type="text/css" href="main/reset.css" />
+<style type="text/css">
+.wrap {
+	margin-left: auto;
+	margin-top: 100px;
+	width: 1400px;
+}
 
-   <link rel="stylesheet" type="text/css" href="main/reset.css"  />
-   <style type="text/css">
-      .wrap{
-         margin-left : auto;
-         margin-top : 100px;
-         width : 1400px;
-      }
-      
-      .wrap #loginBtn{
-         width : 150px;
-         height : 75px;
-         position: absolute;
-         left : 85%;
-      }
-      .wrap #logoutBtn{
-         width : 150px;
-         height : 75px;
-         position: absolute;
-         left : 85%;
-      }
-      
-      .wrap .mainImage{
-         margin-top : 35px;
-         margin-bottom : 35px;
-         padding-left : 200px;
-         width : 1000px;
-         height: 300px;
-      }
-      
-      /*------------------------------------------------------------------*/
-      .category{
-         width : 1400px;
-         height: 420px;
-      }
-      
-      .category .category-top{
-         width : 800px;
-         height: 200px;
-         margin-left : 350px;
-      }
-      
-      .category .category-top #recipeBtn{
-         width : 200px;
-         height: 200px;
-         padding-right : 70px;
-      }
-      
-      .category .category-top #momTalkBtn{
-         width : 200px;
-         height: 200px;
-         padding-right : 70px;
-      }
-      
-      .category .category-top #handOutBtn{
-         width : 200px;
-         height: 200px;
-      }
-      
-      /*--------------------------------*/
-      .category .category-bottom{
-         width : 800px;
-         height: 200px;
-         margin-left : 350px;
-      }
-      
-      .category .category-bottom #infoBtn{
-         width : 200px;
-         height: 200px;
-         margin-left : 135px;
-         padding-right : 70px;
-      }
-      
-      .category .category-bottom #questionBtn{
-         width : 200px;
-         height: 200px;
-      }
-      
-   </style>
+.wrap #loginBtn {
+	width: 150px;
+	height: 75px;
+	position: absolute;
+	left: 85%;
+}
+
+.wrap #logoutBtn {
+	width: 150px;
+	height: 75px;
+	position: absolute;
+	left: 85%;
+}
+
+.wrap .mainImage {
+	margin: 35px auto;
+	margin-bottom: 35px;
+	width: 1000px;
+}
+
+.category {
+	width: 1400px;
+	height: 420px;
+}
+
+.category #recipeBtn {
+	width: 200px;
+	height: 200px;
+	margin-right: 70px;
+}
+
+.category #momTalkBtn {
+	width: 200px;
+	height: 200px;
+	margin-right: 70px;
+}
+
+.category #handOutBtn {
+	width: 200px;
+	height: 200px;
+	margin-right: 70px;
+}
+
+.category #infoBtn {
+	width: 200px;
+	height: 200px;
+	margin-right: 70px;
+}
+
+.category #questionBtn {
+	width: 200px;
+	height: 200px;
+}
+</style>
+   
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script type="text/javascript">
@@ -214,14 +198,11 @@
          <input type="image" id="logoutBtn" src="../semiview/images/logoutBtn_off.png" hidden=""/>
          <img alt="메인이미지" src="../semiview/images/mammaLogo.png" class="mainImage"/>
          <div class = "category">
-            <div class = "category-top">
                <input type="image" id="recipeBtn" src="../semiview/images/recipe_off.png"/>
                <input type="image" id="momTalkBtn" src="../semiview/images/momTalk_off.png"/>
                <input type="image" id="handOutBtn" src="../semiview/images/handOut_off.png"/>
-            
                <input type="image" id="infoBtn" src="../semiview/images/info_off.png"/>
                <input type="image" id="questionBtn" src="../semiview/images/question_off.png"/>
-            </div>
          </div>
       </form>
    </div>

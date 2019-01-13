@@ -14,6 +14,13 @@ public class QnaDTO {
 	private String content; //내용
 	private String image; //첨부파일
 	private Date write_date; //작성시간
+	private String qna_category;
+	public String getQna_category() {
+		return qna_category;
+	}
+	public void setQna_category(String qna_category) {
+		this.qna_category = qna_category;
+	}
 	public int getQna_num() {
 		return qna_num;
 	}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,6 @@
 }
 
 #topbannerDiv {
-	
 	width: 1000px;
 	height: 150px;
 }
@@ -24,8 +23,6 @@
 	width: 1000px;
 	height: 50px;
 }
-
-
 
 #topbannerDiv img {
 	position: relative;
@@ -150,41 +147,91 @@
 }
 
 /*----영철스 타임------------------------------------------------------------*/
-
-#content{
+#content {
 	width: 100%;
 	height: 700px;
-	background-color: aqua;
+	background-color: white;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-table {
-   border: 1px solid black;
+#contentIn{
+	margin: auto;
 }
 
-table, tr, th, td {
-   border: 1px solid black;
-   border-collapse: collapse;
+#table_div #table {
+	width: 800px;
+	border-collapse: collapse;
 }
 
+tr, th, td {
+	border: 2px solid gray;
+	height: 20px;
+}
 
+.qna_logo #logo {
+	width: 250px;
+	height: 120px;
+	display: block;
+	margin-bottom: 30px;
+}
+
+.qna_board {
+	position: relative;
+	width: 800px;
+	height: 420px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.qna_board #top #category {
+	position: absolute;
+	margin-top: 50px;
+}
+
+.qna_board #top #writeBtn {
+	margin-left: 700px;
+	width: 100px;
+}
+
+#page {
+	text-align: center;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#loginBtn').hover(
+	$(document).ready(
 			function() {
-			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
-			function() {
-			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
-		
-		$('#writeBtn').hover(
-				function() {
-				$(this).attr("src",$(this).attr("src").replace("write_off.png","write_on.png"));},
-				function() {
-				$(this).attr("src",$(this).attr("src").replace("write_on.png","write_off.png"));});
-		
-	});
+				$('#loginBtn').hover(
+						function() {
+							$(this).attr(
+									"src",
+									$(this).attr("src").replace("off.png",
+											"on.png"));
+						},
+						function() {
+							$(this).attr(
+									"src",
+									$(this).attr("src").replace("on.png",
+											"off.png"));
+						});
+
+				$('#writeBtn').hover(
+						function() {
+							$(this).attr(
+									"src",
+									$(this).attr("src").replace(
+											"write_off.png", "write_on.png"));
+						},
+						function() {
+							$(this).attr(
+									"src",
+									$(this).attr("src").replace("write_on.png",
+											"write_off.png"));
+						});
+
+			});
 </script>
 </head>
 <body>
@@ -211,73 +258,90 @@ table, tr, th, td {
 			</ul>
 		</div>
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<img alt="Q&A 로고입니다." src="../semiview/images/QnALogo.png"/>
-			<select name="category">
-				<option value="all">전체</option>
-				<option value="recipe">레시피</option>
-				<option value="momtalk">맘톡</option>
-				<option value="handout">무료나눔</option>
-				<option value="info">육아정보</option>
-				<option value="etc">기타</option>
-			</select>
-			<a href="qnaWriteForm.do" ><img id="writeBtn" src="../semiview/images/write_off.png"/></a>
+			<div id="contentIn">
+			<div class="qna_logo">
+				<img alt="Q&A 로고입니다." src="../semiview/images/QnALogo1.png" id=logo>
+			</div>
+			<div class="qna_board">
+				<div id="top">
+					<select name="category" id="category">
+						<option value="all">전체</option>
+						<option value="recipe">레시피</option>
+						<option value="momtalk">맘톡</option>
+						<option value="handout">무료나눔</option>
+						<option value="info">육아정보</option>
+						<option value="etc">기타</option>
+					</select> <a href="qnaWriteForm.do"><img id="writeBtn"
+						src="../semiview/images/write_off.png" /></a>
+				</div>
+
+				<div id="table_div">
+					<table id="table">
+
+						<thead>
+							<tr>
+								<th>seq_num</th>
+								<th>분류</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일시</th>
+								<th>조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${requestScope.list}" var="dto">
+								<tr>
+									<td>${dto.qna_num}</td>
+									<td>${dto.qna_category}</td>
+									<td>
+										<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> <c:if
+											test="${dto.re_level !=0 }">
+											<img src="../semiview/images/level.gif" width="10">
+											<img src="../semiview/images/re.gif" />
+										</c:if> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 --> <a
+										href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">${dto.title }</a>
+									</td>
+									<td>${dto.nickname}</td>
+									<td>${dto.write_date}</td>
+									<td>${dto.readcount}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<%-- qna_board qna게시판 끝나는 부분.--%>
+
+
 			
-			<table>
-			<thead>
-				<tr>
-					<th>num</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일시</th>
-					<th>조회수</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${requestScope.list}" var="dto">
-					<tr>
-						<td>${dto.qna_num}</td>
-						<td>
-							<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서-->
-							<c:if test = "${dto.re_level !=0 }">
-								<img src="../semiview/images/level.gif" width = "10">
-								<img src="../semiview/images/re.gif"/>
-							</c:if>
-							<!-- num값 뿐만아니라 현재페이지 값도 받아야함 -->
-							<a href = "qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">${dto.title }</a>
-						</td>
-						<td>${dto.nickname}</td>
-						<td>${dto.write_date}</td>
-						<td>${dto.readcount}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-			</table>
-			
-			
-			<c:if test="${requestScope.pdto.startPage > 1 }">
-				<span><a href="question.do?pageNum=${pdto.startPage - pdto.blockShowPage}"/>이전</span>
-			</c:if>
-			
-			
-			<!-- 페이지 이동하는 부분 -->
-			<!-- startPage부터 endPage까지 i가 1씩 증가한다~. 
+				<div id="page">
+					<c:if test="${requestScope.pdto.startPage > 1 }">
+						<span><a
+							href="question.do?pageNum=${pdto.startPage - pdto.blockShowPage}" />이전</span>
+					</c:if>
+					<!-- 페이지 이동하는 부분 -->
+					<!-- startPage부터 endPage까지 i가 1씩 증가한다~. 
 				startPage = 1일때 endPage = 5이고 i는 1부터 5까지.
 				startPage = 6일때 endPage = 10이고 i는 6부터 10까지.
-			-->
-			<c:forEach begin="${requestScope.pdto.startPage }" end = "${requestScope.pdto.endPage }" var = "i" >
-				<span><a href="question.do?pageNum=${i}">${i}</a></span>
-			</c:forEach>
+				-->
+					<c:forEach begin="${requestScope.pdto.startPage }"
+						end="${requestScope.pdto.endPage }" var="i">
+						<span><a href="question.do?pageNum=${i}">${i}</a></span>
+					</c:forEach>
+
+					<c:if
+						test="${requestScope.pdto.endPage < requestScope.pdto.totalPage }">
+						<span><a
+							href="question.do?pageNum=${pdto.startPage + pdto.blockShowPage}" />다음</span>
+					</c:if>
+				</div>
 			
-			<c:if test="${requestScope.pdto.endPage < requestScope.pdto.totalPage }">
-				<span><a href="question.do?pageNum=${pdto.startPage + pdto.blockShowPage}"/>다음</span>
-			</c:if>
-			
-			
-			
-			<div id="inputContent"></div>
+			<%-- page 끝나는 부분. --%>
+		</div>
 		</div>
 	</div>
-	<a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>
+	<a href="login.do"><img id="loginBtn"
+		src="../semiview/images/loginBtn_off.png" /></a>
 
 </body>
 </html>

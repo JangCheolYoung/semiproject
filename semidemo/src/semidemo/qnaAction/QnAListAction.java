@@ -25,7 +25,6 @@ public class QnAListAction {
 		int currentPage = Integer.parseInt(pageNum); // QnaPageDTO에서 int값으로 사용하므로 String값으로 받은 파라미터값을 int로 바꾸어줌
 
 		QnaDAO dao = QnaDAO.getInstance();
-		//List<QnaDTO> list = dao.listMethod();
 
 		int cnt = dao.qnaRowTotalCount(); // 2019-01-08 19:30 현재 12개
 
@@ -37,7 +36,8 @@ public class QnAListAction {
 			// 리퀘스트 영역에 저장
 			req.setAttribute("pdto", pdto);
 			//req.setAttribute("list", list);
-			req.setAttribute("list", dao.listMethod(pdto));
+			List<QnaDTO> list = dao.listMethod(pdto);
+			req.setAttribute("list", list);
 		}
 
 	}// end execute()////////////////////////////////////////

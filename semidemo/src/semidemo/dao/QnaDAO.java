@@ -59,17 +59,12 @@ public class QnaDAO {
 
 		try {
 			conn = init();
-			String sql = "select b.* "
-					+"from (select rownum rm, a.* "
-					+"from (select * "
-					+"from qna "
-					+"order by ref desc, qna_num)a)b "
-					+"where rm>=? and rm<=?";
-			
-			
+			String sql = "select b.* " + "from (select rownum rm, a.* " + "from (select * " + "from qna "
+					+ "order by ref desc, qna_num)a)b " + "where rm>=? and rm<=?";
+
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, pdto.getStartRow()); //시작레코드값
-			pstmt.setInt(2, pdto.getEndRow()); //끝레코드값
+			pstmt.setInt(1, pdto.getStartRow()); // 시작레코드값
+			pstmt.setInt(2, pdto.getEndRow()); // 끝레코드값
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				QnaDTO dto = new QnaDTO();
@@ -81,6 +76,7 @@ public class QnaDAO {
 				dto.setRef(rs.getInt("ref"));
 				dto.setRe_step(rs.getInt("re_step"));
 				dto.setRe_level(rs.getInt("re_level"));
+				dto.setQna_category(rs.getString("qna_category"));
 				list.add(dto);
 			}
 
@@ -107,9 +103,9 @@ public class QnaDAO {
 		try {
 			conn = init();
 
-			if(dto.getRe_level() > 0) {
-				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image)"
-						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, ?, ?, ?, ?, ?)";
+			if (dto.getRe_level() > 0) {
+				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image,qna_category)"
+						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, ?, ?, ?, ?, ?,?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getTitle());
 				pstmt.setInt(2, dto.getRef());
@@ -117,15 +113,16 @@ public class QnaDAO {
 				pstmt.setInt(4, dto.getRe_level());
 				pstmt.setString(5, dto.getContent());
 				pstmt.setString(6, dto.getImage());
-				
-			}
-			else {
-				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image)"
-						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, board_num_seq.nextval, 0, 0, ?, ?)";
+				pstmt.setString(7, dto.getQna_category());
+
+			} else {
+				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image, qna_category)"
+						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, board_num_seq.nextval, 0, 0, ?, ?,?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, dto.getTitle());
 				pstmt.setString(2, dto.getContent());
 				pstmt.setString(3, dto.getImage());
+				pstmt.setString(4, dto.getQna_category());
 			}
 			// executeUpdate()는 마지막에 해주는 작업으로 밑으로 뺀다.
 			pstmt.executeUpdate();
@@ -157,7 +154,7 @@ public class QnaDAO {
 			if (rs.next()) {
 				dto = new QnaDTO();
 				dto.setQna_num(rs.getInt("qna_num"));
-				//System.out.println("qnaViewMethod "+ dto.getQna_num());
+				// System.out.println("qnaViewMethod "+ dto.getQna_num());
 				dto.setNickname(rs.getString("nickname"));
 				dto.setTitle(rs.getString("title"));
 				dto.setWrite_date(rs.getDate("write_date"));
@@ -167,6 +164,7 @@ public class QnaDAO {
 				dto.setRe_level(rs.getInt("re_level"));
 				dto.setContent(rs.getString("content"));
 				dto.setImage(rs.getString("image"));
+				dto.setQna_category(rs.getString("qna_category"));
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -240,58 +238,13 @@ public class QnaDAO {
 		return cnt;
 	}// end rowTotalCount()
 
-	
-	// update.jsp에 보내줄 데이터를 dto로 반환해주는 메소드. 
-	/*public QnaDTO sendDtoMethod(int qna_num) {
-		QnaDTO dto = null;
-		
-		
-		try {
-			conn=init();
-			String sql = "select * from qna where qna_num=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, qna_num);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				dto = new QnaDTO();
-				dto.setQna_num(rs.getInt("qna_num"));
-				dto.setNickname(rs.getString("nickname"));
-				dto.setTitle(rs.getString("title"));
-				dto.setWrite_date(rs.getDate("write_date"));
-				dto.setReadcount(rs.getInt("readcount"));
-				dto.setRef(rs.getInt("ref"));
-				dto.setRe_step(rs.getInt("re_step"));
-				dto.setRe_level(rs.getInt("re_level"));
-				dto.setContent(rs.getString("content"));
-				dto.setImage(rs.getString("image"));
-				
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				exit();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		return dto;
-	}
-	*/
-	
+	// 게시글 수정해주는 메소드
 	public void qnaUpdateMethod(QnaDTO dto) {
-		
+
 		try {
-			conn=init();
+			conn = init();
 			String sql = "update qna set title=?, content=?, image=? where qna_num=?";
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getTitle());
 			pstmt.setString(2, dto.getContent());
 			pstmt.setString(3, dto.getImage());
@@ -303,98 +256,95 @@ public class QnaDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				exit();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 	}// end qnaUpdateMethod()//////////////////////////
-	
-	//다운로드 파일명 리턴
-		public String fileMethod(int qna_num) {
-			String fileName = null;
-			
+
+	// 파일명 리턴
+	public String fileMethod(int qna_num) {
+		String fileName = null;
+
+		try {
+			conn = init();
+			String sql = "select image from qna where qna_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next())
+				fileName = rs.getString("image");
+
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
 			try {
-				conn = init();
-				String sql = "select image from qna where qna_num = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, qna_num);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next())
-					fileName = rs.getString("image");
-				
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				try {
-					exit();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-			return fileName;
-		}//end fileMethod()
-		
-		// qna레코드 삭제해주는 메소드.
-		public void qnaDeleteMethod(int qna_num) {
-			try {
-				conn=init();
-				String sql = "delete qna where ref=?";
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, qna_num);
-				pstmt.executeUpdate();
-			} catch (ClassNotFoundException e) { 
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				exit();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally {
-				try {
-					exit();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
 			}
-			
-		}//end qnaDeleteMethod()//////////////////////////////////
-		
-		// 답변글 작성시 re_step값 증가를 위한 함수
-		// FILO 구조를 위해서 사용  (후입선출, 가장 나중에 들어온 값(최근값)이 가장 먼저 출력되는 형태)
-		public void reStepMethod(HashMap<String, Integer> map) {		
+		}
+
+		return fileName;
+	}// end fileMethod()
+
+	// qna레코드 삭제해주는 메소드.
+	public void qnaDeleteMethod(int qna_num) {
+		try {
+			conn = init();
+			String sql = "delete qna where ref=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
 			try {
-				conn = init();
-				System.out.println("reStepMethod 메소드!!");
-				String sql = "update qna set re_step = re_step+1 where ref = ? and re_step>?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, map.get("ref"));
-				pstmt.setInt(2, map.get("re_step"));
-				pstmt.executeUpdate();
-			} catch (ClassNotFoundException | SQLException e) {
+				exit();
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally {
-				try {
-					exit();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
-			
-		}//end reStepMethod()
-		
-		
-		
-	
+
+		}
+
+	}// end qnaDeleteMethod()//////////////////////////////////
+
+	// 답변글 작성시 re_step값 증가를 위한 함수
+	// FILO 구조를 위해서 사용 (후입선출, 가장 나중에 들어온 값(최근값)이 가장 먼저 출력되는 형태)
+	public void reStepMethod(HashMap<String, Integer> map) {
+		try {
+			conn = init();
+			System.out.println("reStepMethod 메소드!!");
+			String sql = "update qna set re_step = re_step+1 where ref = ? and re_step>?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, map.get("ref"));
+			pstmt.setInt(2, map.get("re_step"));
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}// end reStepMethod()
+
 }// end class/////////////////////////////////////////

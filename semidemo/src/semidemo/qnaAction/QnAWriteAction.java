@@ -44,6 +44,7 @@ public class QnAWriteAction {
 		dto.setTitle(multi.getParameter("qna_title"));// multi에서 parameter값을 가져옴.
 		dto.setContent(multi.getParameter("qna_content"));
 		dto.setImage(multi.getFilesystemName("image")); // 첨부파일을 가져올때는 getFilesystemName()을 사용.
+		dto.setQna_category(multi.getParameter("qna_category"));
 
 //		if(multi.getParameter("re_step").equals("0")) {
 //			dto.setTitle("[답변]"+multi.getParameter("qna_title"));

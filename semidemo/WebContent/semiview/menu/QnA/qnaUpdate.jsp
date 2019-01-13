@@ -241,20 +241,13 @@ table, tr, th, td {
 				<input type="hidden" id="qna_num" name="qna_num" value="${dto.qna_num}"/> 
 				<input type="hidden" id="pageNum" name="pageNum" value="${param.pageNum}" /> 
 				<div>
-					<select name="category" id="category">
-						<option>분류</option>
-						<option value="recipe">레시피</option>
-						<option value="momtalk">맘톡</option>
-						<option value="handout">무료나눔</option>
-						<option value="info">육아정보</option>
-						<option value="etc">기타</option>
-					</select>
+					분류 : ${dto.qna_category}
 				</div>
 				<div>
-					<input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요." value="${dto.title}"/>
+					제목 : <input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요." value="${dto.title}"/>
 				</div>
 				<div>
-					<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
+					내용 : <textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
 				</div>
 				<input type="file" id="image" name="image" value="첨부파일"/>
 				<input type="button" name="updateBtn" id="updateBtn" value="수정"/>

@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../semiview/login/css/signup.css" />
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+<script type="text/javascript" src="../semiview/login/jquery.js"></script>
 <script type="text/javascript">
       var regId = /^[a-zA-Z]{1}[a-zA-Z0-9_]{4,12}$/;
       var regPassword = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&*_]{8,16}$/;
@@ -34,33 +34,9 @@ $(document).ready(function(){
                 $('#idCheck').text('첫글자는 영문자, 전체 조합은 영문자, 숫자 5~15 글자이어야 합니다.');
                 $('#idCheck').css('color', 'red');
              }else if (regId.test($(this).val()) == true) {
-               // ajax 실행!
-               {
             	   var id = $('#id').val();
-            		  $.ajax({
-            			type:'POST',
-            			dataType:'text',
-            			url:'IdCheckServlet',
-            			data:{id:id},
-            			success:function(res){
-            				 result = res;
-            				 
-            				if(result=='success'){
-            					idChk=true;
-				               console.log(idChk);
-            					$('#idCheck').text('사용 가능한 아이디 입니다');
-            					$('#idCheck').css('color', 'blue');
-            				}else if(result=='fail'){
-            					idChk=false;
-				               console.log(idChk);
-            					$('#idCheck').text('이미 사용중인 아이디입니다.');
-            					$('#idCheck').css('color', 'red');
-            				} 
-            					
-            			}
-            		}); 
-            		
-               }//ajax
+               // ajax 실행!
+             	idcheck(id);
                
             }//else if 
             
@@ -112,32 +88,10 @@ $(document).ready(function(){
               $('#nicknameCheck').css('color', 'red');
            }else if (regNickname.test($(this).val()) == true) {
              // ajax 실행!
-             {
           	   var nickname = $('#nickname').val();
-          		  $.ajax({
-          			type:'POST',
-          			dataType:'text',
-          			url:'NicknameCheckServlet',
-          			data:{nickname:nickname},
-          			success:function(res){
-          				 result = res;
-          				 
-          				if(result=='success'){
-          					nicknameChk=true;
-				               console.log(nicknameChk);
-          					$('#nicknameCheck').text('사용 가능한 닉네임 입니다.');
-          					$('#nicknameCheck').css('color', 'blue');
-          				}else if(result=='fail'){
-          					nicknameChk=false;
-				               console.log(nicknameChk);
-          					$('#nicknameCheck').text('이미 사용중인 닉네임입니다.');
-          					$('#nicknameCheck').css('color', 'red');
-          				} 
-          					
-          			}
-          		}); 
-          		
-             }//ajax
+             
+             nicknameCheck(nickname);
+           
              
           }//else if 
           
@@ -308,9 +262,10 @@ $(document).ready(function(){
             <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" />
          </div>
          <div id="nicknameCheck"> </div>
+         
+         
          <div class="form-group">
-            <input type="text" name="email" id="email" placeholder="이메일" />@
-            <input type="text" name="email2" id="email2" placeholder="이메일주소" />
+            <input type="text" name="email" id="email" placeholder="이메일" />@<input type="text" name="email2" id="email2" placeholder="이메일주소" />
          </div>
          <div id="emailCheck"> </div> 
          <div id="email2Check"> </div>

@@ -230,6 +230,7 @@ table, tr, th, td {
          alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
          글쓴이 : ${dto.nickname}<br/>
          조회수 : ${dto.readcount}<br/>
+         분류 : ${dto.qna_category}<br/>
          제목 : ${dto.title}<br/>
          내용 : ${dto.content}<br/>
          첨부파일 : <img src="../semiview/images/qna/${dto.image}"/> 
@@ -241,6 +242,7 @@ table, tr, th, td {
             <input type="hidden" name="re_step" value="${dto.re_step}" />
             <input type="hidden" name="re_level" value="${dto.re_level}" />
             <input type="hidden" name="pageNum" value="${param.pageNum}" /> 
+            <input type="hidden" name="qna_category" value="${dto.qna_category}" /> 
          
             <input type="button" id="qnaListBtn" name="qnaListBtn" value="목록으로"/>
             <input type="button" id="answerBtn" name="answerBtn" value="답변"/><!-- 관리자권한 -->

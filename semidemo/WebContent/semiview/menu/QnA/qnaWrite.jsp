@@ -179,7 +179,7 @@ table, tr, th, td {
 
 }
 
-#category{
+#qna_category{
 	width: 100px;
 	height: 40px;
 }
@@ -194,6 +194,8 @@ table, tr, th, td {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
+		
+		)
 	});
 	
 	
@@ -231,20 +233,25 @@ table, tr, th, td {
 		 		<input type = "hidden" name = "re_step" value = "${param.re_step}" />
 		 		<input type = "hidden" name = "re_level" value = "${param.re_level}" />
 		 		<input type = "hidden" name = "pageNum" value = "${param.pageNum}" />
-			</c:if>
+		 		<input type = "hidden" name = "qna_category" value="${param.qna_category}"/>
+		 	</c:if>
 			
 				<div>
-					<select name="category" id="category">
+				<c:if test= "${empty param.qna_num }">
+					<select name="qna_category" id="qna_category">
 						<option>분류</option>
-						<option value="recipe">레시피</option>
-						<option value="momtalk">맘톡</option>
-						<option value="handout">무료나눔</option>
-						<option value="info">육아정보</option>
-						<option value="etc">기타</option>
+						<option value="레시피">레시피</option>
+						<option value="맘톡">맘톡</option>
+						<option value="무료나눔">무료나눔</option>
+						<option value="육아정보">육아정보</option>
+						<option value="기타">기타</option>
 					</select>
+				</c:if>
+				
 				</div>
 				<div>
 				<c:if test="${!empty param.qna_num }">
+					<span>분류 : ${param.qna_category} </span><br/>
 					<span>[답변]</span>
 				</c:if>
 					<input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요."/>

@@ -155,7 +155,7 @@
 	margin-left: auto;
 }
 
-#contentIn{
+#contentIn {
 	margin: auto;
 }
 
@@ -189,14 +189,36 @@ tr, th, td {
 	margin-top: 50px;
 }
 
-.qna_board #top #writeBtn {
+.writeBtn {
 	margin-left: 700px;
-	width: 100px;
 }
 
 #page {
 	text-align: center;
 }
+
+
+
+
+
+.writeImgLabel{
+	display: inline-block;
+	width : 40px;
+	height : 40px;
+	background-image: url(images/write_off.png);
+	background-size: 40px;
+}
+
+#writeBtn{
+	margin-left: 700px;
+   width : 100px;
+   height: 100px;
+   padding: 0;
+}
+
+
+
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -217,7 +239,7 @@ tr, th, td {
 											"off.png"));
 						});
 
-				$('#writeBtn').hover(
+				$('#writeImg').hover(
 						function() {
 							$(this).attr(
 									"src",
@@ -230,6 +252,27 @@ tr, th, td {
 									$(this).attr("src").replace("write_on.png",
 											"write_off.png"));
 						});
+
+				/////////////////////////////////////////////////////////////////
+				// writeBtn 이미지 눌렀을때 이벤트.
+				$('#writeBtn').on('click', function() {
+					var session_id = $('#session_id').val();
+					if(session_id == ''){
+						alert("로그인 해쥬세여,");
+						$('#frm').attr('action', 'login.do');
+						$('#frm').submit();
+						
+					}else if (session_id != null){
+						
+					alert(session_id);
+					
+					$('#frm').attr('action', 'qnaWriteForm.do');
+					$('#frm').submit();
+					
+					}
+
+					
+				});
 
 			});
 </script>
@@ -258,86 +301,107 @@ tr, th, td {
 			</ul>
 		</div>
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<div id="contentIn">
-			<div class="qna_logo">
-				<img alt="Q&A 로고입니다." src="../semiview/images/QnALogo1.png" id=logo>
-			</div>
-			<div class="qna_board">
-				<div id="top">
-					<select name="category" id="category">
-						<option value="all">전체</option>
-						<option value="recipe">레시피</option>
-						<option value="momtalk">맘톡</option>
-						<option value="handout">무료나눔</option>
-						<option value="info">육아정보</option>
-						<option value="etc">기타</option>
-					</select> <a href="qnaWriteForm.do"><img id="writeBtn"
-						src="../semiview/images/write_off.png" /></a>
-				</div>
-
-				<div id="table_div">
-					<table id="table">
-
-						<thead>
-							<tr>
-								<th>seq_num</th>
-								<th>분류</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일시</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${requestScope.list}" var="dto">
-								<tr>
-									<td>${dto.qna_num}</td>
-									<td>${dto.qna_category}</td>
-									<td>
-										<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> <c:if
-											test="${dto.re_level !=0 }">
-											<img src="../semiview/images/level.gif" width="10">
-											<img src="../semiview/images/re.gif" />
-										</c:if> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 --> <a
-										href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">${dto.title }</a>
-									</td>
-									<td>${dto.nickname}</td>
-									<td>${dto.write_date}</td>
-									<td>${dto.readcount}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<%-- qna_board qna게시판 끝나는 부분.--%>
-
-
+			<form id="frm" name="frm">
 			
-				<div id="page">
-					<c:if test="${requestScope.pdto.startPage > 1 }">
-						<span><a
-							href="question.do?pageNum=${pdto.startPage - pdto.blockShowPage}" />이전</span>
-					</c:if>
-					<!-- 페이지 이동하는 부분 -->
-					<!-- startPage부터 endPage까지 i가 1씩 증가한다~. 
+
+				<div id="contentIn">
+					<div class="qna_logo">
+						<img alt="Q&A 로고입니다." src="../semiview/images/QnALogo1.png"
+							id=logo>
+					</div>
+					<div class="qna_board">
+						<div id="top">
+							<select name="category" id="category">
+								<option value="all">전체</option>
+								<option value="recipe">레시피</option>
+								<option value="momtalk">맘톡</option>
+								<option value="handout">무료나눔</option>
+								<option value="info">육아정보</option>
+								<option value="etc">기타</option>
+							</select>
+
+
+							<input type="hidden" id="session_id"  value="${sessionScope.logOk}"/>
+							
+							
+							<div>
+								<label class="writeImgLabel" for="writeBtn"></label>
+								<input type="button" id="writeBtn" name="writeBtn" value="글쓰기"/> 
+									
+									
+							</div>
+									
+									
+									
+<!-- <a href="qnaWriteForm.do" class="writeBtn">ddd</a> 
+<img id="writeImg" src="../semiview/images/write_off.png" class="writeBtn" /> -->
+
+						</div>
+
+						<div id="table_div">
+							<table id="table">
+
+								<thead>
+									<tr>
+										<th>seq_num</th>
+										<th>분류</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>작성일시</th>
+										<th>조회수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${requestScope.list}" var="dto">
+										<tr>
+											<td>${dto.qna_num}</td>
+											<td>${dto.qna_category}</td>
+											<td>
+												<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> <c:if
+													test="${dto.re_level !=0 }">
+													<img src="../semiview/images/level.gif" width="10">
+													<img src="../semiview/images/re.gif" />
+												</c:if> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 --> <a
+												href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">${dto.title }</a>
+											</td>
+											<td>${dto.nickname}</td>
+											<td>${dto.write_date}</td>
+											<td>${dto.readcount}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<%-- qna_board qna게시판 끝나는 부분.--%>
+
+
+
+					<div id="page">
+						<c:if test="${requestScope.pdto.startPage > 1 }">
+							<span><a
+								href="question.do?pageNum=${pdto.startPage - pdto.blockShowPage}" />이전</span>
+						</c:if>
+						<!-- 페이지 이동하는 부분 -->
+						<!-- startPage부터 endPage까지 i가 1씩 증가한다~. 
 				startPage = 1일때 endPage = 5이고 i는 1부터 5까지.
 				startPage = 6일때 endPage = 10이고 i는 6부터 10까지.
 				-->
-					<c:forEach begin="${requestScope.pdto.startPage }"
-						end="${requestScope.pdto.endPage }" var="i">
-						<span><a href="question.do?pageNum=${i}">${i}</a></span>
-					</c:forEach>
+						<c:forEach begin="${requestScope.pdto.startPage }"
+							end="${requestScope.pdto.endPage }" var="i">
+							<span><a href="question.do?pageNum=${i}">${i}</a></span>
+						</c:forEach>
 
-					<c:if
-						test="${requestScope.pdto.endPage < requestScope.pdto.totalPage }">
-						<span><a
-							href="question.do?pageNum=${pdto.startPage + pdto.blockShowPage}" />다음</span>
-					</c:if>
+						<c:if
+							test="${requestScope.pdto.endPage < requestScope.pdto.totalPage }">
+							<span><a
+								href="question.do?pageNum=${pdto.startPage + pdto.blockShowPage}" />다음</span>
+						</c:if>
+					</div>
+
+					<%-- page 끝나는 부분. --%>
 				</div>
-			
-			<%-- page 끝나는 부분. --%>
-		</div>
+			</form>
 		</div>
 	</div>
 	<a href="login.do"><img id="loginBtn"

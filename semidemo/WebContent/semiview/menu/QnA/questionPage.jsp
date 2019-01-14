@@ -259,7 +259,7 @@ tr, th, td {
 					
 					alert('${sessionScope.logOk}')
 					
-					var session_id = $('#session_id').val();
+					//var session_id = $('#session_id').val();
 					if(session_id == ''){
 						alert("로그인 해쥬세여,");
 						$('#frm').attr('action', 'login.do');

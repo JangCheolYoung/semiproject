@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import semidemo.dao.MemberDAO;
 import semidemo.dao.Momtalk_postDAO;
 import semidemo.dto.Momtalk_postDTO;
 
@@ -67,7 +68,10 @@ public class MomTalkPostWriteAction{
 		dto.setPicture3(multi.getFilesystemName("file3")); //첨부파일3
 		//dto.setWrite_time(new Date()); //현재날짜,시간 -> 글입력시간
 		//dto.setLike_cnt(0); //좋아요
-		//dto.setGender("woman"); //성별
+		
+		
+		
+		//dto.setGender(); //성별
 		
 		dao.insertMethod(dto);
 		

@@ -669,7 +669,7 @@
 					<div class = "right">
 						<!-- 리퀘스트 영역에서 로그인한 회원의 닉네임 값을 받아옴 -->
 						<%-- <span><c:out /></span> --%>
-						<div class = "username"><span>영철이</span></div>
+						<div class = "username"><span>혜린맘</span></div>
 						<div class = "tfbox"><textarea rows="8" cols="75" id="tf" name="tf" placeholder="우리 아기를 자랑해주세요."></textarea></div>
 						<div class = "buttonbox">
 							<div class = "filebox1">
@@ -789,7 +789,7 @@
 													<div class = "commTextBox">
 														<!-- 리퀘스트 영역에서 로그인한 회원의 닉네임 값을 받아옴 -->
 														<%-- <div class = "commusername"><span><c:out /></span></div> --%>
-														<div class = "commusername"><span id="commusername${dto.momtalk_post_num}">처령이</span></div>
+														<div class = "commusername"><span id="commusername${dto.momtalk_post_num}">혜린맘</span></div>
 														<%-- <div class = "commtfbox"><textarea rows="5" cols="60" id="tf" name="tf" placeholder="댓글을 달아주세요." id="commtfbox${dto.momtalk_post_num}"></textarea></div> --%>
 														<div class = "commtfbox"><textarea rows="5" cols="60" name="tf" placeholder="댓글을 달아주세요." id="commtfbox${dto.momtalk_post_num}"></textarea></div>
 														<div class = "commsubmitbox">

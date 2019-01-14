@@ -52,6 +52,44 @@ public class MemberDAO {
 
 	// ------------------------------------------------------------------------------
 
+	public MemberDTO getMemberList_From_id(String id){
+		MemberDTO dto=null;
+				
+				
+		try {
+			conn=init();
+			String sql = "select * from member where id=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto= new MemberDTO();
+//				dto.setEmail(rs.getString("email"));
+				dto.setGender(rs.getString("gender"));
+//				dto.setId(rs.getString("id"));
+//				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setNickname(rs.getString("nickname"));
+//				dto.setPass_answ(rs.getString("pass_answ"));
+//				dto.setPass_ques(rs.getString("pass_ques"));
+//				dto.setPassword(rs.getString("password"));
+				
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return dto;
+	}
+	
+	
+	
 	// 회원가입 시 DB에 정보 삽입
 	public void insertMember(MemberDTO dto) {
 		try {

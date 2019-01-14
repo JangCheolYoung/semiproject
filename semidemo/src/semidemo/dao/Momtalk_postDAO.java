@@ -71,7 +71,7 @@ public class Momtalk_postDAO {
 			pstmt.setString(6, dto.getPicture3());
 			/*pstmt.setInt(7, dto.getLike_cnt());*/
 			pstmt.setInt(7, 0);
-			pstmt.setString(8, "woman");
+			pstmt.setString(8, dto.getGender());
 			
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {

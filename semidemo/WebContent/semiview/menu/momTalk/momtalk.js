@@ -113,7 +113,7 @@ function viewMessage(res){
 		var input = $('<input type = "hidden" name = "momtalk_comm_num" value="'+res[index].momtalk_comm_num+'" />');
 		$(div).append(input);
 		
-		var image = $('<img class = "commImage" src="../semiview/images/momtalk/commImage.png" style = "width: 45px; height: 45px; size: 45px; padding-top:10px;"/>');
+		var image = $('<img class = "commImage" src="../semiview/images/commImage.png" style = "width: 45px; height: 45px; size: 45px; padding-top:10px;"/>');
 		$(div).append(image);
 		var span1 = $('<span>&nbsp;&nbsp;'+res[index].nickname+'&nbsp;&nbsp;</span>');
 		$(div).append(span1);
@@ -127,13 +127,13 @@ function viewMessage(res){
 		$(div).append(tfDiv);
 			var tf = $('<textarea rows="4" cols="45" id="commtf" name="commtf" placeholder="수정사항을 입력해주세요." ></textarea>');
 			$(tfDiv).append(tf);
-			var inputModi = $('<input type="image" value="수정하기" src="../semiview/images/momtalk/checked.png" class = "inputModi" style = "width: 30px; height: 30px; size: 30px; padding-left:20px;"/>');
+			var inputModi = $('<input type="image" value="수정하기" src="../semiview/images/checked.png" class = "inputModi" style = "width: 30px; height: 30px; size: 30px; padding-left:20px;"/>');
 			$(tfDiv).append(inputModi);
 		
 		
-		var inputupdate = $('<input type="image" src="../semiview/images/momtalk/commmodi.png" class = "commModi" style = "width: 30px; height: 30px; size: 30px; padding-right:20px; float : right;"/>');
+		var inputupdate = $('<input type="image" src="../semiview/images/commmodi.png" class = "commModi" style = "width: 30px; height: 30px; size: 30px; padding-right:20px; float : right;"/>');
 		$(div).append(inputupdate);
-		var inputdelete = $('<input type="image" src="../semiview/images/momtalk/commdelete.png" class = "commDel" style = "width: 30px; height: 30px; size: 30px; padding-right:10px; float : right;"/>');
+		var inputdelete = $('<input type="image" src="../semiview/images/commdelete.png" class = "commDel" style = "width: 30px; height: 30px; size: 30px; padding-right:10px; float : right;"/>');
 		$(div).append(inputdelete);
 	}
 	

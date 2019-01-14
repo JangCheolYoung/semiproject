@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import semidemo.handOutAction.DeleteAction;
+import semidemo.handOutAction.ListAction;
+import semidemo.handOutAction.UpdateFormAction;
+import semidemo.handOutAction.UpdateProAction;
+import semidemo.handOutAction.ViewAction;
+import semidemo.handOutAction.WriteAction;
 import semidemo.loginAction.IdDupChkAction;
 import semidemo.loginAction.LoginAction;
 import semidemo.loginAction.LogoutAction;
@@ -144,13 +150,56 @@ public class semiMainController extends HttpServlet{
 		}
 		
 ////////////////////////////////////////////////////////////////////////////////////////////////
-		else if(action.equals("/handOut.do")) {
-			//무료나눔 페이지로 이동
+		else if (action.equals("/handOut.do")) {
+			//상품 리스트 페이지
+			ListAction list = new ListAction();
+			list.execute(req, resp);
 			path = "/semiview/menu/handOut/handOutPage.jsp";
+			
+		} else if (action.equals("/handOutWrite.do")) {
+			// 글쓰기 페이지로 이동
+			path = "/semiview/menu/handOut/handOutWrite.jsp";
 
+		} else if (action.equals("/handOutWriteForm.do")) {
+			// 무료나눔 글 쓰고 나서 list 로 돌아가기
+			WriteAction write = new WriteAction();
+			MultipartRequest multi = write.excute(req, resp);
+
+			/* 특정 페이지에서 답변쓰고 난 후 상품 페이지로 돌아오기. */
+			resp.sendRedirect("handOut.do");
 			
 
-		}
+		} else if (action.equals("/handOutView.do")) {
+			//상세 페이지로 이동.
+			//상세 페이지 이동시 DB에 있는 내용 테이블에 불러와서 보여준다.
+			ViewAction view = new ViewAction();
+			view.execute(req, resp);
+						
+			path = "/semiview/menu/handOut/handOutView.jsp";
+
+		} else if (action.equals("/handOutUpdateWrite.do")) {
+			//수정페이지로 이동
+			//수정페이지 이동시 DB 내용 가지고 와서 수정페이지에 띄워준다.
+			UpdateFormAction updateForm = new UpdateFormAction();
+			updateForm.execute(req, resp);
+			path = "/semiview/menu/handOut/handOutUpdate.jsp";
+
+		} else if (action.equals("/handOutUpdatePro.do")) {
+			//수정페이지에서 수정하기.
+			UpdateProAction updatePro = new UpdateProAction();
+			MultipartRequest multi = updatePro.excute(req, resp);
+			//수정 후에 상품리스트로 돌아가기.
+			resp.sendRedirect("handOut.do?pageNum="+multi.getParameter("pageNum"));
+		
+		} else if (action.equals("/handOutDelete.do")) {
+			DeleteAction delete = new DeleteAction();
+			
+			delete.execute(req, resp);
+			
+			//현재 페이지값을 넘겨주면서, 상품 리스트로 이동.
+			resp.sendRedirect("handOut.do?pageNum="+req.getParameter("pageNum"));
+		
+		} 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 		else if(action.equals("/info.do")) {
 			//육아정보 페이지로 이동

@@ -24,7 +24,7 @@ public class LoginAction {
 		MemberDAO dao= MemberDAO.getInstance();
 		
 		int check = dao.loginCheck(id, password);//cnt값 받아와서 cnt값이 몇개인지 출력해볼수 있다.
-		
+		dto = dao.getMemberList_From_id(id);
 		HttpSession session = req.getSession();
 		PrintWriter out=resp.getWriter();
 		resp.setContentType("text/html; charset=UTF-8");
@@ -32,6 +32,13 @@ public class LoginAction {
 		if(check==1) {
 			System.out.println("로그인 성공!");
 			session.setAttribute("logOk", id); //세션 스코프에다가 logok라는 이름으로 회원의 아이디 값을 저장시킨다.
+			
+			session.setAttribute("id", id);
+			session.setAttribute("nickname", dto.getNickname());
+			session.setAttribute("email", dto.getEmail());
+			session.setAttribute("gender", dto.getGender());
+			
+			
 			session.setMaxInactiveInterval(30*60);//로그인 해놓고 아무 활동도 안하면 30분 뒤에 로그아웃이 되는 거.
 			
 			RequestDispatcher dis = req.getRequestDispatcher("/semiview/main/semimain.jsp");

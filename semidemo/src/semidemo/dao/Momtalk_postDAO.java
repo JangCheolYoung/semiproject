@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.websocket.Session;
+
 import semidemo.dto.Momtalk_commDTO;
 import semidemo.dto.Momtalk_postDTO;
 
@@ -57,21 +59,16 @@ public class Momtalk_postDAO {
 	public void insertMethod(Momtalk_postDTO dto) {
 		try {
 			conn = init();
-			String sql = "insert into momtalk_post(momtalk_post_num, nickname, write_time, content, grade, picture1, picture2, picture3, like_cnt, gender) " 
-					+ "values(momtalk_post_num_seq.nextval, ?, sysdate, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into momtalk_post(momtalk_post_num, nickname, write_time, content, picture1, picture2, picture3, gender) " 
+					+ "values(momtalk_post_num_seq.nextval, ?, sysdate, ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
-			/*pstmt.setString(1, dto.getNickname());*/
-			pstmt.setString(1, "영철이");
+			pstmt.setString(1, dto.getNickname());
 			pstmt.setString(2, dto.getContent());
-			/*pstmt.setString(3, dto.getGrade());*/
-			pstmt.setString(3, "새싹");
-			pstmt.setString(4, dto.getPicture1());
-			pstmt.setString(5, dto.getPicture2());
-			pstmt.setString(6, dto.getPicture3());
-			/*pstmt.setInt(7, dto.getLike_cnt());*/
-			pstmt.setInt(7, 0);
-			pstmt.setString(8, dto.getGender());
+			pstmt.setString(3, dto.getPicture1());
+			pstmt.setString(4, dto.getPicture2());
+			pstmt.setString(5, dto.getPicture3());
+			pstmt.setString(6, dto.getGender());
 			
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -107,12 +104,10 @@ public class Momtalk_postDAO {
 				dto.setMomtalk_post_num(rs.getInt("momtalk_post_num"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setContent(rs.getString("content"));
-				dto.setGrade(rs.getString("grade"));
 				dto.setWrite_time(rs.getDate("write_time"));
 				dto.setPicture1(rs.getString("picture1"));
 				dto.setPicture2(rs.getString("picture2"));
 				dto.setPicture3(rs.getString("picture3"));
-				dto.setLike_cnt(rs.getInt("like_cnt"));
 				dto.setGender(rs.getString("gender"));
 				
 				aList.add(dto);
@@ -196,7 +191,7 @@ public class Momtalk_postDAO {
 	public void commInputMethod(Momtalk_commDTO dto) {
 		try {
 			conn = init();
-			String sql = "insert into momtalk_comm values(?,momtalk_comm_num_seq.nextval, ?, sysdate,?, '새싹2')";
+			String sql = "insert into momtalk_comm values(?,momtalk_comm_num_seq.nextval, ?, sysdate,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getMomtalk_post_num());
 			pstmt.setString(2, dto.getContent());

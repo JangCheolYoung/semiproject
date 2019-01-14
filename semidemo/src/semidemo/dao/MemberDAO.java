@@ -65,11 +65,11 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				dto= new MemberDTO();
-//				dto.setEmail(rs.getString("email"));
-				dto.setGender(rs.getString("gender"));
-//				dto.setId(rs.getString("id"));
-//				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setId(rs.getString("id"));
 				dto.setNickname(rs.getString("nickname"));
+				dto.setEmail(rs.getString("email"));
+				dto.setGender(rs.getString("gender"));
+//				dto.setMem_num(rs.getInt("mem_num"));
 //				dto.setPass_answ(rs.getString("pass_answ"));
 //				dto.setPass_ques(rs.getString("pass_ques"));
 //				dto.setPassword(rs.getString("password"));

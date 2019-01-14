@@ -11,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -56,22 +59,14 @@ public class MomTalkPostWriteAction{
 		Momtalk_postDAO dao = Momtalk_postDAO.getInstance();
 		Momtalk_postDTO dto = new Momtalk_postDTO();
 		
-		//Date now = new Date();
-		//SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss a"); //-> 나타낼때
-		
 		//파라미터값을 받음
-		//dto.setNickname(multi.getParameter("")); //닉네임
-		//dto.setGrade(grade); //회원등급
+		System.out.println(multi.getParameter("gender"));
+		dto.setNickname(multi.getParameter("nickname")); //닉네임
+		dto.setGender(multi.getParameter("gender"));
 		dto.setContent(multi.getParameter("tf")); //입력한 내용
 		dto.setPicture1(multi.getFilesystemName("file1")); //첨부파일1
 		dto.setPicture2(multi.getFilesystemName("file2")); //첨부파일2
 		dto.setPicture3(multi.getFilesystemName("file3")); //첨부파일3
-		//dto.setWrite_time(new Date()); //현재날짜,시간 -> 글입력시간
-		//dto.setLike_cnt(0); //좋아요
-		
-		
-		
-		//dto.setGender(); //성별
 		
 		dao.insertMethod(dto);
 		

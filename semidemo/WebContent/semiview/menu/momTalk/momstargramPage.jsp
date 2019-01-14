@@ -652,24 +652,29 @@
 			<!-- ----------------------------작성하는 부분--------------------------------- -->
 		<div class = "inputDiv">
 			<form name="frm" method="post" enctype="multipart/form-data" action="write.do">
+				<input type="hidden" name="nickname" id="nickname" value="${sessionScope.nickname}"/>
+				<input type="hidden" name="gender" id="gender" value="${sessionScope.gender}"/>
+				
+				
+				<input type="hidden" id="session_id"  value="${sessionScope.logOk}"/>
+			
 				<fieldset class="inputText">
 					<legend><img id="momTalk_top" src="../semiview/images/momtalk/momstargram.png" /></legend>
 					<div class = "left">
-						<c:set value="man" var="man"/>
-						<c:set value="woman" var="woman"/>
-						<!-- 세션영역에서 받아온 값중 성별값에 따라 다른 이미지를 보여줌 -->
-						<%-- <c:if test="">
 						
-						</c:if> --%>
-						<%-- <c:otherwise>
-						
-						</c:otherwise> --%>
-						<img id="profile" src="../semiview/images/momtalk/papa.png" />
+						<c:if test="${sessionScope.gender eq 'man'}"><img id="profile" src="../semiview/images/momtalk/papa.png" /></c:if>
+						<c:if test="${sessionScope.gender eq 'woman'}"><img id="profile" src="../semiview/images/momtalk/mama.png" /></c:if>
+						<!--  비회원일경우의 맘스타그램 게시물 작성 성별 이미지를 넣어주면 됨. -->
+						<c:if test="${empty sessionScope.id}"><img id="profile" src="../semiview/images/momtalk/mama.png" /></c:if>
 					</div>
 					<div class = "right">
 						<!-- 리퀘스트 영역에서 로그인한 회원의 닉네임 값을 받아옴 -->
 						<%-- <span><c:out /></span> --%>
-						<div class = "username"><span>혜린맘</span></div>
+						<div class = "username">
+						<span>
+						<p>${sessionScope.nickname}</p>
+						<c:if test="${empty sessionScope.id}">비회원</c:if>
+						</span></div>
 						<div class = "tfbox"><textarea rows="8" cols="75" id="tf" name="tf" placeholder="우리 아기를 자랑해주세요."></textarea></div>
 						<div class = "buttonbox">
 							<div class = "filebox1">
@@ -713,7 +718,7 @@
 										<c:set value="woman" var="woman"/>
 										<!-- 리퀘스트영역에서 받아온 값중 성별값에 따라 다른 이미지를 보여줌 -->
 										<c:if test="${dto.gender eq woman}"><img id="resultImg" src="../semiview/images/momtalk/result_mama.png" /></c:if>
-										<c:if test="${dto.gender eq man}"><img id="resultImg" src="../semiview/images/momtalk/result_mama.png" /></c:if>
+										<c:if test="${dto.gender eq man}"><img id="resultImg" src="../semiview/images/momtalk/result_papa.png" /></c:if>
 									</div>
 									
 									<!-- 리퀘스트 영역에서 테이블에 저장된 닉네임 값과 작성시간을 받아옴 -->

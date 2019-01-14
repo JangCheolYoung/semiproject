@@ -251,7 +251,7 @@ table, tr, th, td {
 				</div>
 				<input type="file" id="image" name="image" value="첨부파일"/>
 				<input type="button" name="updateBtn" id="updateBtn" value="수정"/>
-				<input type="button" name="cancelBtn" id="cancelBtn" value="취소"/></a>
+				<input type="button" name="cancelBtn" id="cancelBtn" value="취소"/>
 			</form>
 		</div>
 	</div>

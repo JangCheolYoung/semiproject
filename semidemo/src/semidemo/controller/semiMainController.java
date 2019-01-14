@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;	
+import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -15,6 +15,9 @@ import semidemo.loginAction.IdDupChkAction;
 import semidemo.loginAction.LoginAction;
 import semidemo.loginAction.LogoutAction;
 import semidemo.loginAction.SignAction;
+import semidemo.momTalkAction.MomTalkPostDeleteAction;
+import semidemo.momTalkAction.MomTalkPostViewAction;
+import semidemo.momTalkAction.MomTalkPostWriteAction;
 import semidemo.qnaAction.QnADeleteAction;
 import semidemo.qnaAction.QnAListAction;
 import semidemo.qnaAction.QnAUpdateAction;
@@ -56,7 +59,9 @@ public class semiMainController extends HttpServlet{
 			//메인 페이지로 이동 (페이지지정 및 이동)
 			path = "/semiview/main/semimain.jsp";
 			
-		} else if(action.equals("/login.do")) {
+		} 
+////////////////////////////////////////////////////////////////////////////////////////////////
+		else if(action.equals("/login.do")) {
 			// 로그인 페이지로 이동
 			path = "/semiview/login/login.jsp";
 			
@@ -95,25 +100,66 @@ public class semiMainController extends HttpServlet{
 			// 아이디,비번찾기 페이지로 이동
 			path = "/semiview/login/find.jsp";
 
-		} else if(action.equals("/recipe.do")) {
+		} 
+////////////////////////////////////////////////////////////////////////////////////////////////
+		else if(action.equals("/recipe.do")) {
 			//레시피 페이지로 이동
+			
 			path = "/semiview/menu/recipe/RecipePage.jsp";
 			
-		}else if(action.equals("/momTalk.do")) {
+		}	
+		
+////////////////////////////////////////////////////////////////////////////////////////////////
+		else if(action.equals("/momTalk.do")) {
 			//맘톡 페이지로 이동
-			path = "/semiview/menu/momTalk/momTalkPage.jsp";
 			
-		}else if(action.equals("/handOut.do")) {
+			//가존에 입력되어 있던 값들을 삭제하고 다시 불러와야함
+			//1. 기존에 입력되어 있던 값 가져오기
+			MomTalkPostViewAction postView = new MomTalkPostViewAction();
+			postView.execute(req, resp); //aList라는 이름으로 리퀘스트 영역에 모든 값을 받아옴
+			
+			//맘톡 메인 페이지 경로 지정
+			path = "/semiview/menu/momTalk/momstargramPage.jsp"; 
+			
+		}else if(action.equals("/write.do")) {
+			//맘톡 페이지에서 글을 입력했을때
+			
+			//새롭게 입력된 값을 넘겨줌
+			MomTalkPostWriteAction postWrite = new MomTalkPostWriteAction();
+			postWrite.execute(req, resp); //글이 저장됨
+			
+			//다시 전체 리스트를 보여주는 맘톡의 메인페이지로 이동
+			resp.sendRedirect("momTalk.do");
+			
+		}else if(action.equals("/delete.do")) {
+			//맘톡 페이지에서 글을 삭제했을때
+			
+			//해당하는 게시물의 num값을 넘겨주어 해당하는 게시물 전체를 삭제한다.
+			MomTalkPostDeleteAction postDelete = new MomTalkPostDeleteAction();
+			postDelete.execute(req, resp);
+			
+			//다시 전체 리스트를 보여주는 맘톡의 메인페이지로 이동
+			resp.sendRedirect("momTalk.do");
+			
+		}
+		
+////////////////////////////////////////////////////////////////////////////////////////////////
+		else if(action.equals("/handOut.do")) {
 			//무료나눔 페이지로 이동
 			path = "/semiview/menu/handOut/handOutPage.jsp";
+
 			
-		}else if(action.equals("/info.do")) {
+
+		}
+////////////////////////////////////////////////////////////////////////////////////////////////
+		else if(action.equals("/info.do")) {
 			//육아정보 페이지로 이동
 			path = "/semiview/menu/information/informationPage.jsp";
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
-			
-		}else if(action.equals("/question.do")) {
+		}
+////////////////////////////////////////////////////////////////////////////////////////////////			
+		
+		else if(action.equals("/question.do")) {
 			//Q&A 페이지로 이동
 			QnAListAction qnaList = new QnAListAction();
 			qnaList.execute(req, resp);
@@ -149,9 +195,7 @@ public class semiMainController extends HttpServlet{
 			resp.sendRedirect("question.do");
 		}
 		
-		
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+////////////////////////////////////////////////////////////////////////////////////////////////		
 		if(path!="") { //기본값이 아닐때, path가 설정되어 있을때, sendRedirect방식을 사용할때, forward방식을 사용하지 않을때
 			RequestDispatcher dis = req.getRequestDispatcher(path);
 			dis.forward(req, resp);

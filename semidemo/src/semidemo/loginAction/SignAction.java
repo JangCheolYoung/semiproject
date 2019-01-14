@@ -19,8 +19,6 @@ public class SignAction {
 		dto.setGender(req.getParameter("gender"));
 		dto.setPass_ques(req.getParameter("pass_ques"));
 		dto.setPass_answ(req.getParameter("pass_answ"));
-		/*dto.setCnt(Integer.parseInt(req.getParameter("cnt")));*/
-		dto.setGrade(req.getParameter("grade"));
 		
 		dao.insertMember(dto);
 		

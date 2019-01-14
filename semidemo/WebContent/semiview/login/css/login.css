@@ -26,12 +26,12 @@ input {
 
 #id, #password {
 	
-	width: 110%;
+	width: 40px;
 }
 
 #loginBtn {
 	margin-top: 10px;
-	width: 402px;
+	width: 100%;
 	background-color: #ff5675;
 	padding: 0px;
 	border: 1px solid #ff2d5e;
@@ -65,3 +65,21 @@ input {
 h1 {
 	margin-top: 60px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,10 +1,12 @@
 package semidemo.dto;
 
 public class RecipeDTO {
-	private String growth_level; //개월수
-	private String recipe_title; //레시피제목
-	private String main_picture; //메인사진
-	private String content; //내용 
+	private String growth_level;
+	private String recipe_title;
+	private String main_picture;
+	private String ingredient;
+	private String r_order;
+	private String tip;
 	
 	public RecipeDTO() {
 		// TODO Auto-generated constructor stub
@@ -34,13 +36,29 @@ public class RecipeDTO {
 		this.main_picture = main_picture;
 	}
 
-	public String getContent() {
-		return content;
+	public String getIngredient() {
+		return ingredient;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setIngredient(String ingredient) {
+		this.ingredient = ingredient;
 	}
 
-		
-}//end class
+	public String getR_order() {
+		return r_order;
+	}
+
+	public void setR_order(String r_order) {
+		this.r_order = r_order;
+	}
+
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
+
+	
+}

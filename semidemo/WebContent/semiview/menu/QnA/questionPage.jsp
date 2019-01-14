@@ -256,6 +256,9 @@ tr, th, td {
 				/////////////////////////////////////////////////////////////////
 				// writeBtn 이미지 눌렀을때 이벤트.
 				$('#writeBtn').on('click', function() {
+					
+					alert('${sessionScope.logOk}')
+					
 					var session_id = $('#session_id').val();
 					if(session_id == ''){
 						alert("로그인 해쥬세여,");

@@ -10,8 +10,6 @@ public class MemberDTO {
 	private String gender; //성별
 	private String pass_ques; //비밀번호찾기질문
 	private String pass_answ; //비밀번호찾기대답
-	private String grade; //등급
-	private int cnt; //맘톡 게시물 수 카운트
 
 	public MemberDTO() {
 		
@@ -87,21 +85,4 @@ public class MemberDTO {
 		this.pass_answ = pass_answ;
 	}
 
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
-	public int getCnt() {
-		return cnt;
-	}
-
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
-
-	
 }

@@ -10,157 +10,63 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		 // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+	    var id = getCookie("id");
+	    $("input[name='id']").val(id); 
+	     
+	    if($("input[name='id']").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+	        $("#idSaveCheck").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+	    }
+	     
+	    $("#idSaveCheck").change(function(){ // 체크박스에 변화가 있다면,
+	        if($("#idSaveCheck").is(":checked")){ // ID 저장하기 체크했을 때,
+	            var id = $("input[name='id']").val();
+	            setCookie("id", id, 7); // 7일 동안 쿠키 보관
+	        }else{ // ID 저장하기 체크 해제 시,
+	            deleteCookie("id");
+	        }
+	    });
+	     
+	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+	    $("input[name='id']").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+	        if($("#idSaveCheck").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+	            var id = $("input[name='id']").val();
+	            setCookie("id", id, 7); // 7일 동안 쿠키 보관
+	        }
+	    });
 	});
+	 
+	function setCookie(cookieName, value, exdays){
+	    var exdate = new Date();
+	    exdate.setDate(exdate.getDate() + exdays);
+	    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+	    document.cookie = cookieName + "=" + cookieValue;
+	}
+	 
+	function deleteCookie(cookieName){
+	    var expireDate = new Date();
+	    expireDate.setDate(expireDate.getDate() - 1);
+	    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+	}
+	 
+	function getCookie(cookieName) {
+	    cookieName = cookieName + '=';
+	    var cookieData = document.cookie;
+	    var start = cookieData.indexOf(cookieName);
+	    var cookieValue = '';
+	    if(start != -1){
+	        start += cookieName.length;
+	        var end = cookieData.indexOf(';', start);
+	        if(end == -1)end = cookieData.length;
+	        cookieValue = cookieData.substring(start, end);
+	    }
+	    return unescape(cookieValue);
+	}
 </script>
-<!-- <style>
-form, button {
-	border: 0;
-	margin: 0;
-	padding: 0;
-}
 
-p, h1 {
-	text-align: center;
-}
-
-#top_bar {
-	position: absolute;
-	width: 100%;
-	height: 80px;
-	margin: auto;
-	width: 100%;
-}
-
-#logo {
-	position: relative;
-	height: 80px;
-	text-align: center;
-}
-
-.go_main {
-	text-align: center;
-}
-
-.spacer {
-	clear: both;
-	height: 1px;
-}
-
-.myform {
-	margin-left: auto;
-	margin-right: auto;
-	width: 400px;
-	padding: 14px;
-}
-
-#stylized {
-	border-top: solid 20px #FA5882;
-	border-bottom: solid 20px #FA5882;
-	background: #ebf4fb;
-}
-
-#stylized h1 {
-	font-weight: bold;
-	margin-bottom: 8px;
-	font-family: nanumgothic, dotum;
-}
-
-#login_img {
-	width: 200px;
-	height: 150px;
-}
-
-#stylized label {
-	display: block;
-	font-weight: bold;
-	text-align: right;
-	width: 140px;
-	float: left;
-	font-family: tahoma;
-}
-
-#stylized .small {
-	color: #666666;
-	display: block;
-	font-size: 11px;
-	font-weight: normal;
-	text-align: right;
-	width: 140px;
-	font-family: dotum;
-	letter-spacing: -1px;
-}
-
-#stylized input {
-	float: left;
-	font-size: 12px;
-	padding: 4px 2px;
-	border: solid 1px #aacfe4;
-	width: 200px;
-	margin: 2px 0 20px 10px;
-}
-
-#stylized button {
-	clear: both;
-	margin-left: 150px;
-	width: 125px;
-	height: 31px;
-	text-align: center;
-	line-height: 31px;
-	font-size: 11px;
-	font-weight: bold;
-	font-family: tahoma;
-}
-
-#stylized #idrem {
-	width: 15px;
-	margin: 1px;
-}
-
-.idsave {
-	margin-top: 5px;
-	margin-left: 150px;
-	font-size: 13px;
-}
-
-.spacer {
-	height: 10px;
-	text-decoration: none;
-	display: block;
-}
-
-.spacer .spacer_left {
-	float: left;
-}
-
-.spacer .spacer_right {
-	float: right;
-}
-
-a {
-	text-decoration: none;
-}
-</style> -->
 </head>
 <body>
-	<!-- <img id="top_bar" alt="" src="../semiview/images/top_bar.jpg">
-	<div class="go_main">
-		<a href="*"><img id="logo" alt="home"
-			src="../semiview/images/logo.png"></a>
-	</div>
-	<div id="stylized" class="myform">
-		<form id="form" name="form" method="post">
-			<h1>
-				<img id="loginimg" alt="" src="../semiview/images/login.png">
-			</h1>
-			<p>아이디와 비밀번호를 입력하세요</p>
-
-			<label>아이디<span class="small"></span>
-			</label> <input type="text" name="name" id="name"/> <label>비밀번호
-				<span class="small"></span>
-			</label> <input type="password" name="password" id="password" />
-			<button type="submit">로그인</button>
-			<br /> -->
+	
 	<img id="top_bar" alt="" src="../semiview/images/top_bar.jpg" />
 	<div class="go_main">
 		<a href="*">
@@ -171,28 +77,28 @@ a {
 		<img id="login_img" src="../semiview/images/login.png" />
 	</h1>
 	<div id="login">
-		<form action="loginPro.do" name="form" id="form" method="post">
+		<form action="loginPro.do" name="form" id="form" method="post" style="width:550px;">
 			<div class="form-group">
-				<input type="text" class="form-control" id="id" name="id" placeholder="아이디" maxlength="20" />
+				<input type="text" class="form-control" id="id" name="id" placeholder="아이디" maxlength="20" style="width:295px;"/>
+				<input type="checkbox" id="idSaveCheck" name="idSaveCheck" value="idSaveCheck" checked=""
+				style="position:relative; top:15px;" />아이디저장
 			</div>
-			<div id="loginId"> </div>
 			<div class="form-group">
-				<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" />
+				<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" style="width:400px;"/>
 			</div>
-			<div id="loginPassword"> </div>
-			<div class="form-group">
-				<div class="idsave">
-					<input type="checkbox" id="idrem" name="idrem" value="idsave" >아이디저장
-				</div>
-			</div>
-			<button type="submit" id="loginBtn">로그인</button>
+			
+			<button type="submit" id="loginBtn" style="border-radius:5px; height:35px; font-size:20px;">로그인</button>
 			<div></div>
 			<div class="spacer">
-				<div class="spacer_left">
-					<a href="signup.do" class="link1">회원가입</a>
+				<div class="spacer_left"
+				style="width: 170px; background-color:#FFcccc; margin: 5px; padding:8px; 
+				border-radius: 5px; position:relative; left:68px; float:left;">
+					<a href="signup.do" class="link1" style="text-decoration: none; color: white; font-size:18px">회원가입</a>
 				</div>
-				<div class="spacer_right">
-					<a href="find.do" class="link2">아이디/비밀번호찾기</a>
+				<div class="spacer_right"
+				style="width: 193px; background-color:#FFcccc; margin: 5px; padding:8px; 
+				border-radius: 5px; position:relative; left:68px; float:left;">
+					<a href="find.do" class="link2" style="text-decoration: none; color: white; font-size:18px">아이디/비밀번호찾기</a>
 				</div>
 			</div>
 

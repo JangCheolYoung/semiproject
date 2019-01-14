@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import semidemo.dto.RecipeDTO;
 
 public class RecipeDAO {
 	private Connection conn;
@@ -14,7 +18,7 @@ public class RecipeDAO {
 	private ResultSet rs;
 
 	// 싱글톤 객체 생성-------------------------------------------------------------------
-	private RecipeDAO() {
+	public RecipeDAO() {
 
 	}
 
@@ -45,9 +49,73 @@ public class RecipeDAO {
 		if (conn != null)
 			conn.close();
 	}// end exit()
-	
+
 	// ------------------------------------------------------------------------------
-	
-	
-	
-}//end class
+
+	public List<RecipeDTO> level_img(String r_lv) {
+		List<RecipeDTO> aList = new ArrayList<RecipeDTO>();
+
+		try {
+			conn = init();
+			String sql = "select * from recipe where growth_level like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + r_lv + "%");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RecipeDTO dto = new RecipeDTO();
+				dto.setGrowth_level(rs.getString("growth_level"));
+				dto.setRecipe_title(rs.getString("recipe_title"));
+				dto.setMain_picture(rs.getString("main_picture"));
+				dto.setIngredient(rs.getString("ingredient"));
+				dto.setR_order(rs.getString("r_order"));
+				dto.setTip(rs.getString("tip"));
+				aList.add(dto);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return aList;
+	}
+
+	public List<RecipeDTO> search(String data) {
+		List<RecipeDTO> list = new ArrayList<RecipeDTO>();
+
+		try {
+			conn = init();
+			String sql = "select * from recipe where (recipe_title||ingredient||tip) like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + data + "%");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				RecipeDTO dto = new RecipeDTO();
+				dto.setGrowth_level(rs.getString("growth_level"));
+				dto.setRecipe_title(rs.getString("recipe_title"));
+				dto.setMain_picture(rs.getString("main_picture"));
+				dto.setIngredient(rs.getString("ingredient"));
+				dto.setR_order(rs.getString("r_order"));
+				dto.setTip(rs.getString("tip"));
+				list.add(dto);
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+}// end class

@@ -11,6 +11,8 @@ public class Momtalk_postDTO {
 	private String picture1; //첨부파일1
 	private String picture2; //첨부파일2
 	private String picture3; //첨부파일3
+	private int like_cnt; //좋아요
+	private String gender; //성별
 	
 	public Momtalk_postDTO() {
 		// TODO Auto-generated constructor stub
@@ -97,5 +99,31 @@ public class Momtalk_postDTO {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+
+
+
+	public int getLike_cnt() {
+		return like_cnt;
+	}
+
+
+
+	public void setLike_cnt(int like_cnt) {
+		this.like_cnt = like_cnt;
+	}
+
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
 
 }

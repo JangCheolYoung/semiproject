@@ -145,7 +145,7 @@
          //레시피
          $('#recipeBtn').on('click', function(){
             $('form').attr('action', 'recipe.do');
-             $('form').submit();
+            $('form').submit();
          });
          //맘톡
          $('#momTalkBtn').on('click', function(){

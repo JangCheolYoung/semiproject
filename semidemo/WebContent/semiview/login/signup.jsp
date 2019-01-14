@@ -8,230 +8,24 @@
 <link rel="stylesheet" type="text/css" href="../semiview/login/css/signup.css" />
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="../semiview/login/jquery.js"></script>
+
+<script type="text/javascript" src="../semiview/login/DupliAndValid.js"></script>
+
 <script type="text/javascript">
-      var regId = /^[a-zA-Z]{1}[a-zA-Z0-9_]{4,12}$/;
-      var regPassword = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&*_]{8,16}$/;
-      var regNickname= /^[a-zA-Zㄱ-ㅎ가-힣0-9]{2,12}$/;
-      var regEmail= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*$/i;
-      var regEmail2= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-      var regFind_pass_ques;
-      var regFind_pass_answ = /^[a-zA-Zㄱ-ㅎ가-힣]{1,100}$/;
-      
-        var inval_Arr=new Array(5).fill(false);
-       
-	var result;
-	var idChk;
-	var nicknameChk;
 $(document).ready(function(){
-   
-     $("#id").blur(function() {
-    	 	if($(this).val()==""){
-                $('#idCheck').text('');
-    	 		
-    	 	}else if(regId.test($(this).val()) != true){
-               console.log(regId.test($(this).val()));
-                $('#idCheck').text('첫글자는 영문자, 전체 조합은 영문자, 숫자 5~15 글자이어야 합니다.');
-                $('#idCheck').css('color', 'red');
-             }else if (regId.test($(this).val()) == true) {
-            	   var id = $('#id').val();
-               // ajax 실행!
-             	idcheck(id);
-               
-            }//else if 
-            
-            
-     });//blur function////////////////////
-     $("#password").blur(function() {
-         if($(this).val()==""){
-             $('#passwordCheck').text('');
-         }else if (regPassword.test($(this).val())) {
-            console.log(regPassword.test($(this).val()));
-            $("#passwordCheck").text('');
-         } else {
-            $('#passwordCheck').text('패스워드는 영문자, 숫자, 특수문자 포함 8~16글자이어야 합니다..');
-            $('#passwordCheck').css('color', 'red');
-               }
-      });
-      $("#password2").blur(function() {
-         if($(this).val()==""){
-             $('#password2Check').text('');
-         }else if ($("#password").val()==$("#password2").val()) {
-            $("#password2Check").text('');
-         } else {
-            $('#password2Check').text('패스워드가 다릅니다.');
-            $('#password2Check').css('color', 'red');
-         }
-      });
-        
-      $("#nickname").blur(function() {
-         if($(this).val()==""){
-            $('#nicknameCheck').text('');
-         }else if (regNickname.test($(this).val())) {
-            console.log(regNickname.test($(this).val()));
-            $("#nicknameCheck").text('');
-         } else {
-            $('#nicknameCheck').text('닉네임은 특수문자 제외 2~12 글자이어야 합니다.');
-            $('#nicknameCheck').css('color', 'red');
-         }
-        });
-      
-      
-      
-      $("#nickname").blur(function() {
-  	 	if($(this).val()==""){
-              $('#nicknameCheck').text('');
-  	 		
-  	 	}else if(regNickname.test($(this).val()) != true){
-             console.log(regNickname.test($(this).val()));
-              $('#nicknameCheck').text('닉네임은 특수문자 제외 2~12 글자이어야 합니다.');
-              $('#nicknameCheck').css('color', 'red');
-           }else if (regNickname.test($(this).val()) == true) {
-             // ajax 실행!
-          	   var nickname = $('#nickname').val();
-             
-             nicknameCheck(nickname);
-           
-             
-          }//else if 
-          
-          
-   });//blur function////////////////////
-   
-   
-   
-   
-   
-   
-      
-      
-      $("#email").blur(function() {
-         if($(this).val()==""){
-            $('#emailCheck').text('');
-         }else if (regEmail.test($(this).val())) {
-             console.log(regEmail.test($(this).val()));
-            $("#emailCheck").text('');
-         } else {
-             console.log(regEmail.test($(this).val()));
-            $('#emailCheck').text('이메일 양식을 지켜주세요.');
-            $('#emailCheck').css('color', 'red');
-         }
-        });
-      $("#email2").blur(function() {
-         if($(this).val()==""){
-            $('#email2Check').text('');
-         }else if (regEmail2.test($(this).val())) {
-            console.log(regEmail2.test($(this).val()));
-            $("#email2Check").text('');
-         } else {
-            $('#email2Check').text('이메일주소 양식을 지켜주세요.');
-            $('#email2Check').css('color', 'red');
-         }
-        });
-      $("#pass_answ").blur(function() {
-         if($(this).val()==""){
-            $('#pass_answCheck').text('');
-         }else if (regFind_pass_answ.test($(this).val())) {
-            console.log(regFind_pass_answ.test($(this).val()));
-            $("#pass_answCheck").text('');
-         } else {
-            $('#pass_answCheck').text('패스워드 찾기 질문에 대한 답변을 작성해주세요.');
-            $('#pass_answCheck').css('color', 'red');
-         }
-      });
-
-     
-   
-     
-     $('#signBtn').on('click', function(){
-      //아이디
-          if(regId.test($('#id').val())){
-            inval_Arr[0]=true;
-            console.log(inval_Arr[0]);
-         }else{
-            inval_Arr[0]=false;
-            console.log(inval_Arr[0]);
-            alert('아이디를 확인하세요');
-            return false;
-         } 
-      	
-      		if(idChk==false){
-            inval_Arr[0]=false;
-            console.log(inval_Arr[0]);
-            alert('아이디를 확인하세요');
-            return false;
-      		}
-         
-         
-         //비밀번호
-         if(regPassword.test($('#password').val())&&($('#password').val()==($('#password2').val()))){
-            inval_Arr[1]=true;
-            console.log(inval_Arr[1]);
-         }else{
-            inval_Arr[1]=false;   
-            console.log(inval_Arr[1]);
-            alert('비밀번호를 확인하세요');
-            return false;
-         }
-        // 닉네임 정규식
-        if (regNickname.test($('#nickname').val())) {
-           inval_Arr[2] = true;   
-            console.log(inval_Arr[2]);
-        } else {
-           inval_Arr[2] = false;
-            console.log(inval_Arr[2]);
-            alert('닉네임을 확인하세요');
-           return false;
-        }
-       
-         // 이메일1 정규식
-          if(regEmail.test($('#email').val())){
-           inval_Arr[3] = true;
-            console.log(inval_Arr[3]);
-        }else{
-           inval_Arr[3]=false;
-            console.log(inval_Arr[3]);
-            alert('이메일을 확인하세요');
-           return false;
-        }
-       // 이메일2 정규식
-          if(regEmail.test($('#email').val())){
-           inval_Arr[4] = true;
-            console.log(inval_Arr[4]);
-        }else{
-           inval_Arr[4]=false;
-            console.log(inval_Arr[4]);
-            alert('이메일주소를 확인하세요');
-           return false;
-        }   
-       
-        var validAll = true;
-        for(var i = 0; i < inval_Arr.length; i++){
-           
-           if(inval_Arr[i] == false){
-              validAll = false;
-              console.log(validAll);
-           }
-        }
-        
-        if(validAll == true){ // 유효성 모두 통과
-        	alert('회원가입이 성공적으로 완료되었습니다!');
-	        $('#frm').attr('action', 'signUpWrite.do');
-	        $('#frm').submit();
-        } else{
-        	alert('회원가입 안됐어요!');
-        	return false ;
-        } 
-        
-     });
-     
-     
+	$('#male').on('click',function(){
+		$(this).css({'backgroundColor':'gray'});
+		$('#female').css({'backgroundColor':'white'});
+		$('#gender').val($(this).val());
+	});
+	
+	$('#female').on('click',function(){
+		$(this).css({'backgroundColor':'gray'});
+		$('#male').css({'backgroundColor':'white'});
+	});
+	
 });
-///////////////////////중복검사
-
-
 </script>
-<!-- <script type="text/javascript" src="../semiview/login/jquery.js"></script> -->
 
 </head>
 <body>
@@ -262,28 +56,26 @@ $(document).ready(function(){
             <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임" />
          </div>
          <div id="nicknameCheck"> </div>
-         
-         
          <div class="form-group">
-            <input type="text" name="email" id="email" placeholder="이메일" />@<input type="text" name="email2" id="email2" placeholder="이메일주소" />
+            <input type="text" name="email" id="email" placeholder="이메일" style="width:200px;"/>@
+            <input type="text" name="email2" id="email2" placeholder="이메일주소" style="width:167px;"/>
          </div>
          <div id="emailCheck"> </div> 
          <div id="email2Check"> </div>
-         <div class="form-control" id="gender">
-            <div class="btn-group" data-toggle="buttons">
-               <label class="btn btn-primary active">
-                  <input type="radio" id="male" name="gender" autocomplete="off" value="남자" checked />남자
+         <div class="form-control" class="genderclass" style="height:40px;">
+         	   <label class="btn btn-primary">
+               		<input type="button" id="male" name="gender" value="남자" checked/>
                </label>
-               <label class="btn btn-primary">   
-                  <input type="radio" id="female" name="gender" autocomplete="off" value="여자" checked />여자
-               </label>
-            </div>
+               <label class="btn btn-primary">
+                  <input type="button" id="female" name="gender" value="여자" />
+                </label>
+               		<input type="hidden" id="gender" name="gender" value=""/>
          </div>
          <div class="form-control" >
-            <SELECT name="pass_ques">
-               <OPTION value="1">아버지의 성함은?</OPTION>
-               <OPTION value="2">어머니의 성함은?</OPTION>
-               <OPTION value="3">첫키스 장소는?</OPTION>
+            <SELECT name="pass_ques" id="selectPassword" style="width:390px; border-radius:10px; height:30px;">
+               <OPTION value="1">첫째 아이의 태명은 무엇입니까?</OPTION>
+               <OPTION value="2">아이의 이름은 무엇입니까?</OPTION>
+               <OPTION value="3">아이가 가장 좋아하는 음식은 무엇입니까?</OPTION>
             </SELECT>
          </div>
          <div id="pass_quesCheck"> </div>

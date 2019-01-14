@@ -1,4 +1,4 @@
-package semidemo.controller;
+package semidemo.loginAction;
 
 import java.io.IOException;
 

@@ -86,9 +86,9 @@
 			<div class="form-group">
 				<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" style="width:400px;"/>
 			</div>
-			
-			<button type="submit" id="loginBtn" style="border-radius:5px; height:35px; font-size:20px;">로그인</button>
-			<div></div>
+			<div>
+				<button type="submit" id="loginBtn" style="border-radius:5px; width:406px; height:35px; font-size:20px;">로그인</button>
+			</div>
 			<div class="spacer">
 				<div class="spacer_left"
 				style="width: 170px; background-color:#FFcccc; margin: 5px; padding:8px; 

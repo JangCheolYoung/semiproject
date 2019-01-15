@@ -149,41 +149,155 @@
 	text-decoration: none;
 }
 
-/*----영철스 타임------------------------------------------------------------*/
+/*----영철스 놉 혜린스 타임------------------------------------------------------------*/
 
 #content{
 	width: 100%;
 	height: 700px;
-	background-color: aqua;
+	/* background-color: yellow; */
+	margin-right: auto;
+	margin-left: auto;
 }
 
-table {
-   border: 1px solid black;
+#content #inputContent{
+	width: 90%;
+	height: 700px;
+	/* background-color: pink; */
+	margin:auto;
+	margin-top:30px;
 }
 
-table, tr, th, td {
-   border: 1px solid black;
-   border-collapse: collapse;
+#content #inputContent .qna_logoBox{
+	width: 100%;
+	height: 130px;
+	/* background-color: red; */
+	border-bottom: 3px solid #ccc; 
+	margin:auto;
 }
 
+#content #inputContent .qna_logoBox img{
+	width: 250px;
+	height: 130px;
+	size : 250px 130px;
+	float: left;
+}
 
-#qna_title{
+#content #inputContent .qna_categoryBox{
+	width: 100%;
+	height: 61px;
+	margin-top: 20px;
+	/* background-color: aqua; */
+	border-bottom: 1px solid #ccc; 
+}
+
+#content #inputContent .qna_categoryBox #qna_category{
 	width: 200px;
 	height: 40px;
+	margin-top: 10px;
 	border-radius: 5px;
 }
-#qna_content{
+
+#content #inputContent .qna_categoryBox span{
+	width: 200px;
+	height: 61px;
+	margin-top: 10px;
+	display: table-cell;
+	vertical-align: center;
+	line-height: 61px;
+	/* background-color: yellow; */
+}
+
+#content #inputContent .qna_titleBox{
+	width: 100%;
+	height: 71px;
+	/* background-color: green; */
+	border-bottom: 1px solid #ccc; 
+}
+
+#content #inputContent .qna_titleBox #qna_title{
+	width: 300px;
+	height: 40px;
+	margin-top: 10px;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+#content #inputContent .qna_contentBox{
+	width: 100%;
+	height: 251px;
+	/* background-color: yellow; */
+	border-bottom: 3px solid #ccc; 
+}
+
+#content #inputContent .qna_contentBox #qna_content{
 	width: 700px;
 	height: 200px;
+	margin-top: 10px;
 	border-radius: 5px;
-
 }
 
-#qna_category{
-	width: 100px;
+#content #inputContent .qna_buttonBox{
+	width: 100%;
+	height: 50px;
+	/* background-color: orange; */
+	margin-top : 10px;
+}
+
+#content #inputContent .qna_buttonBox .qna_imageButtonBox{
+	width: 50px;
+	height: 50px;
+	/* background-color: yellow; */
+	display: inline-block;
+	padding-left: 80%;
+	padding-right: 10px;
+}
+
+#content #inputContent .qna_buttonBox .qna_imageButtonBox #imagelabel{
+	display: inline-block;
+	width: 40px;
 	height: 40px;
+	padding-left:5px;
+	background-image: url("../semiview/images/qna/qna_folder.png");
+	backgroundsize : 40px;
+	background-repeat: no-repeat;
 }
 
+#content #inputContent .qna_buttonBox .qna_submitButtonBox{
+	width: 50px;
+	height: 50px;
+	/* background-color: green; */
+	display: inline-block;
+	padding-right: 5px;
+}
+
+#content #inputContent .qna_buttonBox .qna_submitButtonBox #submitlabel{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	padding-left:5px;
+	background-image: url("../semiview/images/qna/qna_submit.png");
+	background-size : 40px;
+	background-repeat: no-repeat;
+}
+
+.qna_imageButtonBox #image, .qna_submitButtonBox #submit{
+	position: absolute;
+   	width : 1px;
+   	height: 1px;
+   	padding: 0;
+   	margin: -1px;
+   	overflow: hidden;
+   	clip : rect(0,0,0,0);
+   	border : 0;
+}
+
+#content #inputContent .qna_buttonBox a #cancel{
+	width: 40px;
+	height: 40px;
+	margin-top : 5px;
+}
+
+/*----------------------------------------------------------------------------*/
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -193,78 +307,119 @@ table, tr, th, td {
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
 			function() {
-			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));});
+			$(this).attr("src",$(this).attr("src").replace("on.png","off.png"));}
+			
+		);
 		
-		)
+		$('#submit').on('click', function(){
+			
+			var category = $('#qna_category').val();
+			var title = $('#qna_title').val();
+			var content = $('#qna_content').val();
+			
+			if(category == '분류'){
+				alert("분류를 선택하세요.");
+				return false;
+			}
+			if(title == ''){
+				alert("제목을 입력하세요.")
+				return false;
+			}
+			if(content == ''){
+				alert("내용을 입력하세요.")
+				return false;
+			}
+			alert('${sessionScope.nickname}');
+			
+		});
 	});
 	
 	
 </script>
 </head>
+
 <body>
 	<div class="layer" id="wrap">
-		<div id="topbannerDiv">
-			<img id="momsRecipe" src="../semiview/images/mammaLogo.png" />
-
-		</div>
-		<div class="menubar">
-			<ul>
-				<li><a href="*">홈</a></li>
-				<li><a href="recipe.do" id="current">레시피</a>
-					<ul>
-						<li><a href="#">초기이유식(4~6개월)</a></li>
-						<li><a href="#">중기이유식(7~9개월)</a></li>
-						<li><a href="#">후기이유식(10~12개월)</a></li>
-						<li><a href="#">완료기이유식(12개월이후)</a></li>
-					</ul></li>
-				<li><a href="momTalk.do">커뮤니티</a></li>
-				</li>
-				<li><a href="handOut.do">무료나눔</a></li>
-				<li><a href="info.do">육아정보</a></li>
-				<li><a href="question.do">고객센터</a></li>
-			</ul>
-		</div>
+		<header>
+			<jsp:include page="../topmenu.jsp" />
+  		 </header>
+		
+		
+		
+		<!--------------------------------- 글쓰기 입력부분 -------------------------------------------->
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<form action="qnaWrite.do" id="qnaWrite" method="post" enctype="multipart/form-data">
-			<c:if test = "${!empty param.qna_num }">
-				<input type = "hidden" name = "qna_num" value = "${param.qna_num }" />
-				<input type = "hidden" name = "ref" value = "${param.ref}" /> 
-		 		<input type = "hidden" name = "re_step" value = "${param.re_step}" />
-		 		<input type = "hidden" name = "re_level" value = "${param.re_level}" />
-		 		<input type = "hidden" name = "pageNum" value = "${param.pageNum}" />
-		 		<input type = "hidden" name = "qna_category" value="${param.qna_category}"/>
-		 	</c:if>
 			
-				<div>
-				<c:if test= "${empty param.qna_num }">
-					<select name="qna_category" id="qna_category">
-						<option>분류</option>
-						<option value="레시피">레시피</option>
-						<option value="맘톡">맘톡</option>
-						<option value="무료나눔">무료나눔</option>
-						<option value="육아정보">육아정보</option>
-						<option value="기타">기타</option>
-					</select>
-				</c:if>
+			<div id="inputContent">
+				<form action="qnaWrite.do" id="qnaWrite" method="post" enctype="multipart/form-data">
+				<c:if test = "${!empty param.qna_num }">
+					<input type = "hidden" name = "qna_num" value = "${param.qna_num }" />
+					<input type = "hidden" name = "ref" value = "${param.ref}" /> 
+			 		<input type = "hidden" name = "re_step" value = "${param.re_step}" />
+			 		<input type = "hidden" name = "re_level" value = "${param.re_level}" />
+			 		<input type = "hidden" name = "pageNum" value = "${param.pageNum}" />
+			 		<input type = "hidden" name = "qna_category" value="${param.qna_category}"/>
+			 	</c:if>
+			 		<input type = "hidden" name = "nickname" value="${sessionScope.nickname}"/>
 				
-				</div>
-				<div>
-				<c:if test="${!empty param.qna_num }">
-					<span>분류 : ${param.qna_category} </span><br/>
-					<span>[답변]</span>
-				</c:if>
-					<input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요."/>
-				</div>
-				<div>
-					<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요."></textarea>
-				</div>
-				<input type="file" id="image" name="image" value="첨부파일"/>
-				<input type="submit" name="submit" value="등록"/>
-				<a href="question.do"><input type="button" value="취소"/></a>
-			</form>
-			<div id="inputContent"></div>
+					<div class="qna_logoBox">
+					<c:if test="${empty param.qna_num }">
+						<img alt="Q&A 글쓰기 로고입니다." src="../semiview/images/qna/qnaWrite_logo.png" id=logo>
+					</c:if>
+					<c:if test="${!empty param.qna_num }">
+						<img alt="Q&A 답변 로고입니다." src="../semiview/images/qna/qnaRe_logo.png" id=logo>
+					</c:if>
+					</div>
+					
+					<div class="qna_categoryBox">
+						<c:if test= "${empty param.qna_num }">
+							<select name="qna_category" id="qna_category">
+								<option>분류</option>
+								<option value="레시피">레시피</option>
+								<option value="맘톡">맘톡</option>
+								<option value="무료나눔">무료나눔</option>
+								<option value="육아정보">육아정보</option>
+								<option value="기타">기타</option>
+							</select>
+						</c:if>
+						<c:if test="${!empty param.qna_num }">
+							<span>분류 : ${param.qna_category} </span><br/>
+						</c:if>
+					</div>
+					
+					<div class="qna_titleBox">
+					<c:if test="${!empty param.qna_num }">
+						<span>[답변]&nbsp;&nbsp;</span>
+					</c:if>
+						<input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요."/>
+					</div>
+					
+					<div class="qna_contentBox">
+						<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요."></textarea>
+					</div>
+					
+					<div class="qna_buttonBox"><!-- div 추가했습니다. -->
+					
+						<div class="qna_imageButtonBox">
+							<label for = "image" id = "imagelabel"></label>
+							<input type="file" id="image" name="image" value="첨부파일"/><!-- 아이디값 추가했습니다. -->
+						</div>
+						
+						<div class="qna_submitButtonBox">
+							<label for = "submit" id = "submitlabel"></label>
+							<input type="submit" id="submit" name="submit" value="등록"/><!-- 아이디값 추가했습니다. -->
+						</div>
+						
+						<a href="question.do"><img id="cancel" src="../semiview/images/qna/qna_cancel.png"/></a><!-- 아이디값 추가했습니다. -->
+						
+					</div>
+					
+				</form>
+			</div>
+			
 		</div>
+		<!--------------------------------- 글쓰기 입력부분 -------------------------------------------->
+		
 	</div>
 	<a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>
 

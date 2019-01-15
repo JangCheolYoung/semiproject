@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-	%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -163,11 +162,14 @@
 	z-index: 3;
 	top: 300px;
 	width: 150px;
+	height: 211px;
 	text-decoration: none;
+	border-radius: 7px;
 }
 
 #bannerin ul:nth-child(1) {
 	list-style-type: none;
+	height: 100%;
 	text-align: center;
 }
 
@@ -180,49 +182,102 @@
 #bannerin ul li a {
 	text-decoration: none;
 	font-size: 13px;
-	
-}
-#bannerin ul li a:link{
-	color:black;
-}
-#bannerin ul li a:visited {
-	color:black;
 }
 
-#bannerin ul li a:hover ,#bannerin ul li:hover a{
-	color:red;
+#bannerin ul li a:link {
+	color: black;
+}
+
+#bannerin ul li a:visited {
+	color: black;
+}
+
+#bannerin ul li a:hover, #bannerin ul li:hover a {
+	color: red;
 }
 /*배너 맨위  ---------------------------------- */
-div #bottombtn {height:30px; width:93px; display:block; position:absolute;} 
-
-div .demoSpan2{ height:25px;}
-
-div .demoSpan2:before{content:''; height:10px; width:10px; display:block; border:5px solid #333; border-left-width:0; border-bottom-width:0; transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);-ms-transform:rotate(-45deg); position:absolute; top:-20px; left:63px;padding:4px;}
-
-div #topbtn {height:0px; width:0px; display:block; position:absolute;} 
-
-div .demoSpan1{overflow:hidden; height:25px;}
-
-div .demoSpan1:before{content:''; height:20px; width:20px; display:block; border:5px solid #333; border-right-width:0; border-top-width:0; transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);-ms-transform:rotate(-45deg); position:absolute; bottom:7px; right:7px;}
-
-
-div #topbtn:link{
-	color:black;
+div #bottombtn {
+	height: 30px;
+	width: 93px;
+	display: block;
+	position: absolute;
 }
-div #topbtn:visited{
-	color:black;
+
+div .demoSpan2 {
+	height: 25px;
 }
+
+div .demoSpan2:before {
+	content: '';
+	height: 10px;
+	width: 10px;
+	display: block;
+	border: 5px solid #ffffff;
+	border-left-width: 0;
+	border-bottom-width: 0;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	position: absolute;
+	top: -20px;
+	left: 63px;
+	padding: 4px;
+}
+
+div #topbtn {
+	height: 0px;
+	width: 0px;
+	display: block;
+	position: absolute;
+}
+
+div .demoSpan1 {
+	overflow: hidden;
+	height: 25px;
+}
+
+div .demoSpan1:before {
+	content: '';
+	height: 20px;
+	width: 20px;
+	display: block;
+	border: 5px solid #ffffff;
+	border-right-width: 0;
+	border-top-width: 0;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	position: absolute;
+	bottom: 7px;
+	right: 7px;
+}
+
+div #topbtn:link {
+	color: black;
+}
+
+div #topbtn:visited {
+	color: black;
+}
+
 div #topbtn:hover {
-	color:red;
+	color: red;
 }
-div #bottombtn:link{
-	color:black;
+
+div #bottombtn:link {
+	color: black;
 }
-div #bottombtn:visited{
-	color:black;
+
+div #bottombtn:visited {
+	color: black;
 }
+
 div #bottombtn:hover {
-	color:red;
+	color: red;
 }
 
 div dt {
@@ -231,54 +286,50 @@ div dt {
 	background-color: #FF5675;
 }
 
-#text01{
-	border-width:2px;
-	border-color:#ffafaf;
-	border-style:solid;
+#text01 {
+	border-width: 2px;
+	border-color: #ffafaf;
 	border-right: none;
 	border-left: none;
 }
 
-#text02{
-	border-width:2px;
-	border-color:#ffafaf;
-	border-style:solid;
-	border-top:none;
-	border-right: none;
-	border-left: none;
-}
-#text03{
-	border-width:2px;
-	border-color:#ffafaf;
-	border-style:solid;
-	border-top:none;
-	border-right: none;
-	border-left: none;
-}
-#text04{
-	border-width:2px;
-	border-color:#ffafaf;
-	border-style:solid;
-	border-top:none;
+#text02 {
+	border-width: 2px;
+	border-color: #ffafaf;
+	border-style: solid;
+	border-top: none;
 	border-right: none;
 	border-left: none;
 }
 
+#text03 {
+	border-width: 2px;
+	border-color: #ffafaf;
+	border-style: solid;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
 
-.Masssage{
+#text04 {
+	border-width: 2px;
+	border-color: #ffafaf;
+	border-style: solid;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+}
+
+.Masssage {
 	width: -webkit-fill-available;
 	height: auto;
 }
-
-
-
-
 
 /*-------------------------------------------------------------------------*/
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="../semiview/menu/information/js/jquery-ui.js"></script>
+<script src="../semiview/menu/information/js/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -296,13 +347,13 @@ div dt {
 											"off.png"));
 						});
 
-				$("a[href^='#']").click(function(event){
+				$("a[href^='#']").click(function(event) {
 					event.preventDefault();
 					var target = $(this.hash);
 					$("html, body").scrollTop(target.offset().top);
-				
+
 				});
-				$("#bottombtn").click(function(event){
+				$("#bottombtn").click(function(event) {
 					event.preventDefault();
 					var target = $(this.hash);
 					$("html, body").scrollTop($(document).height());
@@ -314,95 +365,97 @@ div dt {
 <body>
 	<a id="top"></a>
 	<div class="layer" id="wrap">
+		<%-- 
+		<header>
+			<jsp:include page="../topmenu.jsp" />
+  		 </header> --%>
 
+
+<header>
+<jsp:include page="../topmenu.jsp" />
+</header>
 		
-		<div id="topbannerDiv">
-			<img id="momsRecipe" src="../semiview/images/mammaLogo.png" />
-		</div>
-
-		<div class="menubar">
-			<ul>
-				<li><a href="*">홈</a></li>
-				<li><a href="recipe.do" id="current">레시피</a>
-					<ul>
-						<li><a href="#">초기이유식(4~6개월)</a></li>
-						<li><a href="#">중기이유식(7~9개월)</a></li>
-						<li><a href="#">후기이유식(10~12개월)</a></li>
-						<li><a href="#">완료기이유식(12개월이후)</a></li>
-					</ul></li>
-				<li><a href="momTalk.do">커뮤니티</a></li>
-
-				<li><a href="handOut.do">무료나눔</a></li>
-				<li><a href="info.do">육아정보</a>
-					<ul>
-						<li><a href="#infm1">신생아에 대한 정보</a></li>
-						<li><a href="#infm2">신체적특징</a></li>
-						<li><a href="#infm3">아이건강</a></li>
-						<li><a href="#infm4">베이비 마사지</a></li>
-						<li><a href="#infm5">알레르기 유발식품</a></li>
-					</ul></li>
-				<li><a href="question.do">고객센터</a> <map></map></li>
-			</ul>
-		</div>
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
 			<div id="inputContent">
-			  <div id="banner" >
-			<dt>빠른이동</dt>
-			<div style="background-color:white;">
-				<div style="text-align: center;background-color:#ffafaf; height:30px;">
-					<!-- <a id="topbtn" style="text-decoration: none;"  href="#top">맨위로</a> -->
+				<div id="banner">
+					<div style="background-color: white;">
+						<div
+							style="text-align: center; background-color: #ffafaf; height: 30px;">
+						</div>
+						<a id="topbtn" class="demoSpan2" href="#top"></a>
+						<div id="bannerin">
+							<ul>
+								<li style="height: 30px;"><a href="#infm1">신생아에 대한 정보</a></li>
+								<li style="height: 30px;"><a href="#infm2">신체적특징</a></li>
+								<li style="height: 30px;"><a href="#infm3">아이건강</a></li>
+								<li style="height: 30px;"><a href="#infm4">베이비 마사지</a></li>
+								<li style="height: 31px;"><a href="#infm5">알레르기 유발식품</a></li>
+							</ul>
+						</div>
+						<a id="bottombtn" class="demoSpan1" href="#bottom"></a>
+						<div
+							style="text-align: center; background-color: #ffafaf; height: 30px;">
+							<!-- <a id="bottombtn" style="text-decoration: none;"  href="#bottom">맨아래로</a> -->
+						</div>
+					</div>
 				</div>
-				<a id="topbtn" class="demoSpan2" href="#top"></a>
-				<div id="bannerin">
-					<ul>
-						<li><a href="#infm1">신생아에 대한 정보</a></li>
-						<li><a href="#infm2">신체적특징</a></li>
-						<li><a href="#infm3">아이건강</a></li>
-						<li><a href="#infm4">베이비 마사지</a></li>
-						<li><a href="#infm5">알레르기 유발식품</a></li>
-					</ul>
+				<div id="text01">
+					<img id="infm1" src="../semiview/images/information/text01.jpg" />
+
 				</div>
-				<a id="bottombtn" class="demoSpan1"href="#bottom"></a>
-				<div style="text-align: center;background-color:#ffafaf;height:30px;">
-					<!-- <a id="bottombtn" style="text-decoration: none;"  href="#bottom">맨아래로</a> -->
+				<div id="text02">
+					<img id="infm2" src="../semiview/images/information/text02.jpg" />
+
 				</div>
-			</div>
-		</div>
-			  <div id="text01">
-			  <img id="infm1" src="../semiview/images/information/text01.jpg"/>
-			
-			  </div>
-			  <div id="text02">
-			  	<img id="infm2" src="../semiview/images/information/text02.jpg"/>
-				
-			  </div>
-			  <div id="text03">
-			    <img id="infm3" width="995px;" src="../semiview/images/information/text03(0).jpg"/>
-			     <img id="infm3" width="995px;" src="../semiview/images/information/text03(1).jpg"/>
-			      <img id="infm3" width="995px;" src="../semiview/images/information/text03(2).jpg"/>
-				
-			  </div>
-			  <div id="text04">
-				<h1 id="infm4" style="margin-top:0px; margin-left:20px;font-weight:500">4.베이비 마사지</h1>
-				<h3><img src="../semiview/images/information/star.jpg"/>손,발 마사지</h3>
-				<img class="Masssage" src="../semiview/images/information/handfootMassage1.png"
-					width=700px height=700px/> <!-- <img class="Masssage"
+				<div id="text03">
+					<img id="infm3" width="995px;"
+						src="../semiview/images/information/text03(0).jpg" /> <img
+						id="infm3" width="995px;"
+						src="../semiview/images/information/text03(1).jpg" /> <img
+						id="infm3" width="995px;"
+						src="../semiview/images/information/text03(2).jpg" />
+
+				</div>
+				<div id="text04">
+					<h1 id="infm4"
+						style="margin-top: 0px; margin-left: 20px; font-weight: 500">4.베이비
+						마사지</h1>
+					<h3>
+						<img src="../semiview/images/information/star.jpg" />손,발 마사지
+					</h3>
+					<img class="Masssage"
+						src="../semiview/images/information/handfootMassage1.png"
+						width=700px height=700px />
+					<!-- <img class="Masssage"
 					src="../semiview/images/information/handfootMassage2.png" width=700px
 					height=700px /> -->
-				<h3><img src="../semiview/images/information/star.jpg"/>팔,다리 마사지</h3>
-				<img class="Masssage" src="../semiview/images/information/paldariMassage.png" />
-				<h3><img src="../semiview/images/information/star.jpg"/>배 마사지</h3>
-				<img class="Masssage" src="../semiview/images/information/baeMassage.png" />
-				<h3><img src="../semiview/images/information/star.jpg"/>등 마사지</h3>
-				<img class="Masssage" src="../semiview/images/information/deongMassage.png" />
-				<h3><img src="../semiview/images/information/star.jpg"/>가슴 마사지</h3>
-				<img class="Masssage" src="../semiview/images/information/chestMassage.jpg" />
-			  </div>	
-			  <div id="text05">
-			    <img id="infm5" width="995px;" src="../semiview/images/information/text05(0).jpg"/>
-			     <img width="995px;" src="../semiview/images/information/text05(1).jpg"/>
-				
-			  </div>
+					<h3>
+						<img src="../semiview/images/information/star.jpg" />팔,다리 마사지
+					</h3>
+					<img class="Masssage"
+						src="../semiview/images/information/paldariMassage.png" />
+					<h3>
+						<img src="../semiview/images/information/star.jpg" />배 마사지
+					</h3>
+					<img class="Masssage"
+						src="../semiview/images/information/baeMassage.png" />
+					<h3>
+						<img src="../semiview/images/information/star.jpg" />등 마사지
+					</h3>
+					<img class="Masssage"
+						src="../semiview/images/information/deongMassage.png" />
+					<h3>
+						<img src="../semiview/images/information/star.jpg" />가슴 마사지
+					</h3>
+					<img class="Masssage"
+						src="../semiview/images/information/chestMassage.jpg" />
+				</div>
+				<div id="text05">
+					<img id="infm5" width="995px;"
+						src="../semiview/images/information/text05(0).jpg" /> <img
+						width="995px;" src="../semiview/images/information/text05(1).jpg" />
+
+				</div>
 			</div>
 		</div>
 	</div>
@@ -410,6 +463,6 @@ div dt {
 	<a id="bottom"></a>
 	<a href="login.do"><img id="loginBtn"
 		src="../semiview/images/loginBtn_off.png" /></a>
-	
+
 </body>
 </html>

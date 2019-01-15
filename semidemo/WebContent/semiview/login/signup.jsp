@@ -22,6 +22,7 @@ $(document).ready(function(){
 	$('#female').on('click',function(){
 		$(this).css({'backgroundColor':'gray'});
 		$('#male').css({'backgroundColor':'white'});
+		$('#gender').val($(this).val());
 	});
 	
 });

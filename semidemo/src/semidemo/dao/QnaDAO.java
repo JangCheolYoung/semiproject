@@ -103,26 +103,33 @@ public class QnaDAO {
 		try {
 			conn = init();
 
+			
+			// 답변글일때
 			if (dto.getRe_level() > 0) {
 				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image,qna_category)"
-						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, ?, ?, ?, ?, ?,?)";
+						+ " values(board_num_seq.nextval, ?, ?, sysdate,0, ?, ?, ?, ?, ?,?)";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, dto.getTitle());
-				pstmt.setInt(2, dto.getRef());
-				pstmt.setInt(3, dto.getRe_step());
-				pstmt.setInt(4, dto.getRe_level());
-				pstmt.setString(5, dto.getContent());
-				pstmt.setString(6, dto.getImage());
-				pstmt.setString(7, dto.getQna_category());
+				pstmt.setString(1, dto.getNickname());
+				pstmt.setString(2, dto.getTitle());
+				pstmt.setInt(3, dto.getRef());
+				pstmt.setInt(4, dto.getRe_step());
+				pstmt.setInt(5, dto.getRe_level());
+				pstmt.setString(6, dto.getContent());
+				pstmt.setString(7, dto.getImage());
+				pstmt.setString(8, dto.getQna_category());
 
-			} else {
+			} 
+			//  질문글일때
+			else {
 				String sql = "insert into qna(qna_num, nickname, title, write_date, readcount, ref, re_step, re_level, content, image, qna_category)"
-						+ " values(board_num_seq.nextval, '영철이', ?, sysdate,0, board_num_seq.nextval, 0, 0, ?, ?,?)";
+						+ " values(board_num_seq.nextval, ?, ?, sysdate,0, board_num_seq.nextval, 0, 0, ?, ?,?)";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, dto.getTitle());
-				pstmt.setString(2, dto.getContent());
-				pstmt.setString(3, dto.getImage());
-				pstmt.setString(4, dto.getQna_category());
+				
+				pstmt.setString(1, dto.getNickname());
+				pstmt.setString(2, dto.getTitle());
+				pstmt.setString(3, dto.getContent());
+				pstmt.setString(4, dto.getImage());
+				pstmt.setString(5, dto.getQna_category());
 			}
 			// executeUpdate()는 마지막에 해주는 작업으로 밑으로 뺀다.
 			pstmt.executeUpdate();

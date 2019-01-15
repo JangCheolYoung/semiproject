@@ -19,7 +19,7 @@ public class LogoutAction {
 		MemberDAO dao = MemberDAO.getInstance();
 		PrintWriter out=resp.getWriter();
 		resp.setContentType("text/html; charset=UTF-8");
-		String id=(String)session.getAttribute("logOk");
+		String id=(String)session.getAttribute("id");
 		
 		if(id!=null) {
 			System.out.println("로그아웃 알림!");

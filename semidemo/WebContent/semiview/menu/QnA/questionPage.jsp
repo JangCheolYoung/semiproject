@@ -146,79 +146,188 @@
 	text-decoration: none;
 }
 
-/*----영철스 타임------------------------------------------------------------*/
+/*----영철스 놉 혜린스 타임------------------------------------------------------------*/
 #content {
 	width: 100%;
 	height: 700px;
 	background-color: white;
 	margin-right: auto;
 	margin-left: auto;
+	/* background-color: yellow; */
 }
 
 #contentIn {
 	margin: auto;
+	/* background-color: pink; */
 }
 
-#table_div #table {
-	width: 800px;
+#contentIn .qna_logo {
+	margin: auto;
+	margin-top: 40px;
+	/* background-color: aqua; */
+}
+
+#contentIn .qna_logo #logo {
+	margin-left: 37%;
+	width: 255px;
+	height: 150px;
+	size: 230px 150px;
+}
+
+#contentIn .qna_board {
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	/* background-color: green; */
+}
+
+#contentIn .qna_board #top {
+	width: 100%;
+	height: 70px;
+	/* background-color: red; */
+}
+
+#contentIn .qna_board #top .top_category {
+	width: 120px;
+	height: 30px;
+	/* background-color: yellow; */
+	float: left;
+	padding-top: 20px;
+	/* display: table-cell;
+	vertical-align: center;
+	line-height: 30px; */
+}
+
+#contentIn .qna_board #top #category {
+	width: 120px;
+	height: 30px;
+	/* background-color: yellow; */
+	float: left;
+	/* display: table-cell;
+	vertical-align: center;
+	line-height: 30px; */
+}
+
+#contentIn .qna_board #top .top_search {
+	width: 300px;
+	height: 30px;
+	/* background-color: orange; */
+	float: left;
+	padding-top: 20px;
+	margin-left: 25px;
+}
+
+#contentIn .qna_board #top .top_search #searchlogo {
+	width: 25px;
+	height: 25px;
+	size: 25px;
+	float: left;
+	padding-right: 10px;
+}
+
+#contentIn .qna_board #top .top_search #search_category {
+	width: 95px;
+	height: 30px;
+	float: left;
+}
+
+#contentIn .qna_board #top .top_search #serach_text {
+	width: 150px;
+	height: 24px;
+	float: left;
+}
+
+#contentIn .qna_board #top a {
+	width: 100px;
+	height: 70px;
+	/* background-color: yellow; */
+	float: right;
+}
+
+#contentIn .qna_board #top a img {
+	width: 100px;
+	height: 70px;
+	size: 100px 70px;
+	/* background-color: yellow; */
+	float: right;
+}
+
+#contentIn .qna_board #table_div {
+	width: 100%;
+	/* height : 70px; */
+	/* background-color: yellow; */
+}
+
+#contentIn .qna_board #table_div #table {
+	width: 100%;
 	border-collapse: collapse;
-}
-
-tr, th, td {
-	border: 2px solid gray;
-	height: 20px;
-}
-
-.qna_logo #logo {
-	width: 250px;
-	height: 120px;
-	display: block;
-	margin-bottom: 30px;
-}
-
-.qna_board {
-	position: relative;
-	width: 800px;
-	height: 420px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.qna_board #top #category {
-	position: absolute;
-	margin-top: 50px;
-}
-
-.writeBtn {
-	margin-left: 700px;
-}
-
-#page {
 	text-align: center;
+	line-height: 2.0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	/* margin: 20px 10px; */
+}
+
+#contentIn .qna_board #table_div #table thead th {
+	width: 150px;
+	padding: 7px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: #ffccca;
+	/* margin: 20px 10px; */
+}
+
+#contentIn .qna_board #table_div #table tbody td {
+	width: 150px;
+	padding: 3px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+#contentIn .qna_board #table_div #table tbody td a {
+	text-decoration: none;
+	color: black;
+}
+
+#contentIn .qna_board #table_div #table tbody td a:hover {
+	color: #ff6699;
+}
+
+#contentIn #page {
+	width: 90%;
+	height: 30px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 70px;
+	text-align: center;
+	/* background-color: yellow; */
+}
+
+#contentIn #page a {
+	text-decoration: none;
+	color: black;
+}
+
+#contentIn #page a:hover {
+	color: #ff9999;
+}
+
+div#writeBtn {
+	width: 100px;
+	height: 70px;
+	float: right;
+	background-image: url("../semiview/images/qna/write_off.png"); 
+	background-size: 100px 70px;
+	/* background-color: yellow; */
 }
 
 
+tr td a #title{
 
-
-
-.writeImgLabel{
-	display: inline-block;
-	width : 40px;
-	height : 40px;
-	background-image: url(images/write_off.png);
-	background-size: 40px;
 }
 
-#writeBtn{
-	margin-left: 700px;
-   width : 100px;
-   height: 100px;
-   padding: 0;
-}
-
-
-
-
+/*--------------------------------------------------------------------------------*/
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -239,81 +348,64 @@ tr, th, td {
 											"off.png"));
 						});
 
-				$('#writeImg').hover(
+				$('#writeBtn').hover(
 						function() {
-							$(this).attr(
-									"src",
-									$(this).attr("src").replace(
-											"write_off.png", "write_on.png"));
+							$(this).css("background-image","url('../semiview/images/qna/write_on.png')");
 						},
 						function() {
-							$(this).attr(
-									"src",
-									$(this).attr("src").replace("write_on.png",
-											"write_off.png"));
+							$(this).css("background-image","url('../semiview/images/qna/write_off.png')");
 						});
 
 				/////////////////////////////////////////////////////////////////
 				// writeBtn 이미지 눌렀을때 이벤트.
 				$('#writeBtn').on('click', function() {
+
+					alert('글쓰기 눌렸다');
 					
-					alert('${sessionScope.logOk}')
-					
-					//var session_id = $('#session_id').val();
-					if(session_id == ''){
+					if('${sessionScope.id}' == ''){
 						alert("로그인 해쥬세여,");
 						$('#frm').attr('action', 'login.do');
 						$('#frm').submit();
-						
-					}else if (session_id != null){
-						
-					alert(session_id);
-					
-					$('#frm').attr('action', 'qnaWriteForm.do');
-					$('#frm').submit();
-					
+					}else{
+						alert('로그인된 아이디 : ${sessionScope.id}');
+						$('#frm').attr('action', 'qnaWriteForm.do');
+						$('#frm').submit();
 					}
 
-					
+				});
+				
+				
+				$('tr td a #title').on('click', function(){
+					if('${sessionScope.id}' == ''){
+						alert('로그인된 아이디 : ${sessionScope.id}');
+						alert("로그인 해쥬세여,");
+						$('#frm').attr('action', 'login.do');
+						$('#frm').submit();
+						return false;
+					}else{
+						alert('로그인된 아이디 : ${sessionScope.id}');
+					}
 				});
 
 			});
 </script>
 </head>
+
 <body>
 	<div class="layer" id="wrap">
-		<div id="topbannerDiv">
-			<img id="momsRecipe" src="../semiview/images/mammaLogo.png" />
+		<header>
+			<jsp:include page="../topmenu.jsp" />
+		</header>
 
-		</div>
-		<div class="menubar">
-			<ul>
-				<li><a href="*">홈</a></li>
-				<li><a href="recipe.do" id="current">레시피</a>
-					<ul>
-						<li><a href="#">초기이유식(4~6개월)</a></li>
-						<li><a href="#">중기이유식(7~9개월)</a></li>
-						<li><a href="#">후기이유식(10~12개월)</a></li>
-						<li><a href="#">완료기이유식(12개월이후)</a></li>
-					</ul></li>
-				<li><a href="momTalk.do">커뮤니티</a></li>
-				</li>
-				<li><a href="handOut.do">무료나눔</a></li>
-				<li><a href="info.do">육아정보</a></li>
-				<li><a href="question.do">고객센터</a></li>
-			</ul>
-		</div>
+
+		<!------------------------------------ QnA 부분 -------------------------------------->
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<form id="frm" name="frm">
-			
-
-				<div id="contentIn">
-					<div class="qna_logo">
-						<img alt="Q&A 로고입니다." src="../semiview/images/QnALogo1.png"
-							id=logo>
-					</div>
-					<div class="qna_board">
-						<div id="top">
+		<form id="frm">
+			<div id="contentIn">
+				<div class="qna_board">
+					<div id="top">
+						<div class="top_category">
+							<!-- 추가한 div요소입니다. -->
 							<select name="category" id="category">
 								<option value="all">전체</option>
 								<option value="recipe">레시피</option>
@@ -322,90 +414,94 @@ tr, th, td {
 								<option value="info">육아정보</option>
 								<option value="etc">기타</option>
 							</select>
-
-
-							<input type="hidden" id="session_id"  value="${sessionScope.logOk}"/>
-							
-							
-							<div>
-								<label class="writeImgLabel" for="writeBtn"></label>
-								<input type="button" id="writeBtn" name="writeBtn" value="글쓰기"/> 
-									
-									
-							</div>
-									
-									
-									
-<!-- <a href="qnaWriteForm.do" class="writeBtn">ddd</a> 
-<img id="writeImg" src="../semiview/images/write_off.png" class="writeBtn" /> -->
-
 						</div>
 
-						<div id="table_div">
-							<table id="table">
-
-								<thead>
-									<tr>
-										<th>seq_num</th>
-										<th>분류</th>
-										<th>제목</th>
-										<th>작성자</th>
-										<th>작성일시</th>
-										<th>조회수</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${requestScope.list}" var="dto">
-										<tr>
-											<td>${dto.qna_num}</td>
-											<td>${dto.qna_category}</td>
-											<td>
-												<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> <c:if
-													test="${dto.re_level !=0 }">
-													<img src="../semiview/images/level.gif" width="10">
-													<img src="../semiview/images/re.gif" />
-												</c:if> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 --> <a
-												href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">${dto.title }</a>
-											</td>
-											<td>${dto.nickname}</td>
-											<td>${dto.write_date}</td>
-											<td>${dto.readcount}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+						<!-- 추가한 div요소입니다. -->
+						<div class="top_search">
+							<img alt="검색 로고입니다." src="../semiview/images/qna/loupe.png"
+								id=searchlogo>
+							<div class="top_search_category">
+								<select name="search_category" id="search_category">
+									<option value="all">전체</option>
+									<option value="recipe">레시피</option>
+									<option value="momtalk">맘톡</option>
+									<option value="handout">무료나눔</option>
+									<option value="info">육아정보</option>
+									<option value="etc">기타</option>
+								</select> <input type="text" id="serach_text" />
+							</div>
+						</div>
+						<div id="writeBtn">
 						</div>
 					</div>
-					<%-- qna_board qna게시판 끝나는 부분.--%>
+
+					<div id="table_div">
+						<table id="table">
+
+							<thead>
+								<tr>
+									<th>seq_num</th>
+									<th>분류</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일시</th>
+									<th>조회수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${requestScope.list}" var="dto">
+									<tr>
+										<td>${dto.qna_num}</td>
+										<td>${dto.qna_category}</td>
+										<td>
+											<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> <c:if
+												test="${dto.re_level !=0 }">
+												<img src="../semiview/images/level.gif" width="10">
+												<img src="../semiview/images/re.gif" />
+											</c:if> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 --> 
+											<a href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}"><div id="title">${dto.title }</div></a>
+										</td>
+										<td>${dto.nickname}</td>
+										<td>${dto.write_date}</td>
+										<td>${dto.readcount}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+		</form>
+				<%-- qna_board qna게시판 끝나는 부분.--%>
 
 
 
-					<div id="page">
-						<c:if test="${requestScope.pdto.startPage > 1 }">
-							<span><a
-								href="question.do?pageNum=${pdto.startPage - pdto.blockShowPage}" />이전</span>
-						</c:if>
-						<!-- 페이지 이동하는 부분 -->
-						<!-- startPage부터 endPage까지 i가 1씩 증가한다~. 
+				<div id="page">
+					<c:if test="${requestScope.pdto.startPage > 1 }">
+						<span><a
+							href="question.do?pageNum=${pdto.startPage - pdto.blockShowPage}" />이전</span>
+					</c:if>
+					<!-- 페이지 이동하는 부분 -->
+					<!-- startPage부터 endPage까지 i가 1씩 증가한다~. 
 				startPage = 1일때 endPage = 5이고 i는 1부터 5까지.
 				startPage = 6일때 endPage = 10이고 i는 6부터 10까지.
 				-->
-						<c:forEach begin="${requestScope.pdto.startPage }"
-							end="${requestScope.pdto.endPage }" var="i">
-							<span><a href="question.do?pageNum=${i}">${i}</a></span>
-						</c:forEach>
+					<c:forEach begin="${requestScope.pdto.startPage }"
+						end="${requestScope.pdto.endPage }" var="i">
+						<span><a href="question.do?pageNum=${i}">${i}</a></span>
+					</c:forEach>
 
-						<c:if
-							test="${requestScope.pdto.endPage < requestScope.pdto.totalPage }">
-							<span><a
-								href="question.do?pageNum=${pdto.startPage + pdto.blockShowPage}" />다음</span>
-						</c:if>
-					</div>
-
-					<%-- page 끝나는 부분. --%>
+					<c:if
+						test="${requestScope.pdto.endPage < requestScope.pdto.totalPage }">
+						<span><a
+							href="question.do?pageNum=${pdto.startPage + pdto.blockShowPage}" />다음</span>
+					</c:if>
 				</div>
-			</form>
+
+				<%-- page 끝나는 부분. --%>
+
+			</div>
 		</div>
+
 	</div>
 	<a href="login.do"><img id="loginBtn"
 		src="../semiview/images/loginBtn_off.png" /></a>

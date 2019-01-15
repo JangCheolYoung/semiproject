@@ -41,6 +41,7 @@ public class QnAWriteAction {
 		QnaDAO dao = QnaDAO.getInstance();
 		QnaDTO dto = new QnaDTO();
 		
+		dto.setNickname(multi.getParameter("nickname"));
 		dto.setTitle(multi.getParameter("qna_title"));// multi에서 parameter값을 가져옴.
 		dto.setContent(multi.getParameter("qna_content"));
 		dto.setImage(multi.getFilesystemName("image")); // 첨부파일을 가져올때는 getFilesystemName()을 사용.

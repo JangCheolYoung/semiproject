@@ -170,7 +170,7 @@
          
          ////////////////////////////////////////////////////////////////////
          <%
-         String id = (String) session.getAttribute("logOk");
+         String id = (String) session.getAttribute("id");
          boolean login = id == null ? false : true;
          %>
          <%

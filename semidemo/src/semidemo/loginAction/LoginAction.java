@@ -31,7 +31,7 @@ public class LoginAction {
 		//페이지 이동되는 듯한 느낌 해결.. / 포커스
 		if(check==1) {
 			System.out.println("로그인 성공!");
-			session.setAttribute("logOk", id); //세션 스코프에다가 logok라는 이름으로 회원의 아이디 값을 저장시킨다.
+			//session.setAttribute("logOk", id); //세션 스코프에다가 logok라는 이름으로 회원의 아이디 값을 저장시킨다.
 			
 			session.setAttribute("id", id);
 			session.setAttribute("nickname", dto.getNickname());

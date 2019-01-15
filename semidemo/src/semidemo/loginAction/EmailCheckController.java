@@ -27,7 +27,7 @@ public class EmailCheckController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html;charset=utf-8");
 
-		String email = req.getParameter("email")+"@"+req.getParameter("email2");
+		String email = req.getParameter("email");
 		String res = null;
 		MemberDAO dao = MemberDAO.getInstance();
 		boolean chk = dao.emailDupChk(email);

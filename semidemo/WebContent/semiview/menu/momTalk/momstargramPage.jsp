@@ -446,6 +446,18 @@
 	padding-right: 25px;
 }
 
+
+
+
+
+input .submitBtn{
+background: url("../semiview/images/momtalk/uploads_off.png") no-repeat;
+border: none;
+width: 32px;
+height: 32px;
+cursor: pointer;
+}
+
 /*--------------------------------------------------------------------------------------*/
 </style>
 
@@ -611,7 +623,25 @@
 			captions : true //이미지 위애 텍스트 올리기 설정
 		}); 
 		
+		//게시글 등록 버튼을 누르면--------------------------------------------------------------
+		$('#submitBtn').on('click', function(){
+			
+			//동작사항 코딩 후
+			alert("혜린쿤! 바보 멍청이 똥개 ㅇ");
+			
+			//submit
+			$('form[name = "frm"]').submit();
+			
+		});
 		
+		
+		
+		//////////////////////////////////////////////////
+		// 비회원인데 게시글 등록 버튼 눌렀을 때 
+		$('.submitbox').on('click', function(){
+			alert('d');
+			return false;
+		});
 		
 	});
 		
@@ -626,25 +656,9 @@
 
 <body>
 	<div class="layer" id="wrap">
-		<div id="topbannerDiv">
-			<img id="momsRecipe" src="../semiview/images/mammaLogo.png" />
-		</div>
-		<div class="menubar">
-			<ul>
-				<li><a href="*">홈</a></li>
-				<li><a href="recipe.do" id="current">레시피</a>
-					<ul>
-						<li><a href="javascript:ttt(11);">초기이유식(4~6개월)</a></li>
-						<li><a href="#">중기이유식(7~9개월)</a></li>
-						<li><a href="#">후기이유식(10~12개월)</a></li>
-						<li><a href="#">완료기이유식(12개월이후)</a></li>
-					</ul></li>
-				<li><a href="momTalk.do">커뮤니티</a></li>
-				<li><a href="handOut.do">무료나눔</a></li>
-				<li><a href="info.do">육아정보</a></li>
-				<li><a href="question.do">고객센터</a></li>
-			</ul>
-		</div>
+		<header>
+			<jsp:include page="../topmenu.jsp" />
+  		 </header>
 		
 		
 		
@@ -689,10 +703,14 @@
 								<label for = "file3"></label>
 								<input type = "file" id = "file3" name = "file3"/>
 							</div>
+							
 							<div class = "submitbox">
-								<label for = "submitBtn"></label>
-								<input type = "submit" id = "submitBtn"/>
+								<!-- <label for = "submitBtn"></label>
+								<input type = "submit" id = "submitBtn"/> 
+								<input type = "image" id = "submitBtn" src = "../semiview/images/momtalk/uploads_off.png"/>-->
+								<input type = "button" id = "submitBtn"/>
 							</div>
+							
 						</div>
 					</div>
 				</fieldset>

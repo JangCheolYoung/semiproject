@@ -149,41 +149,166 @@
 	text-decoration: none;
 }
 
-/*----영철스 타임------------------------------------------------------------*/
+/*----영철스 놉 혜린스 타임------------------------------------------------------------*/
+
+/*----영철스 놉 혜린스 타임------------------------------------------------------------*/
 
 #content{
 	width: 100%;
 	height: 700px;
-	background-color: aqua;
+	/* background-color: yellow; */
+	margin-right: auto;
+	margin-left: auto;
 }
 
-table {
-   border: 1px solid black;
+#content #inputContent{
+	width: 90%;
+	height: 700px;
+	/* background-color: pink; */
+	margin:auto;
+	margin-top:30px;
 }
 
-table, tr, th, td {
-   border: 1px solid black;
-   border-collapse: collapse;
+#content #inputContent .qna_logoBox{
+	width: 100%;
+	height: 130px;
+	/* background-color: red; */
+	border-bottom: 3px solid #ccc; 
+	margin:auto;
 }
 
+#content #inputContent .qna_logoBox img{
+	width: 250px;
+	height: 130px;
+	size : 250px 130px;
+	float: left;
+}
 
-#qna_title{
+#content #inputContent .qna_categoryBox{
+	width: 100%;
+	height: 61px;
+	margin-top: 20px;
+	/* background-color: aqua; */
+	border-bottom: 1px solid #ccc; 
+}
+
+#content #inputContent .qna_categoryBox #qna_category{
 	width: 200px;
 	height: 40px;
+	margin-top: 10px;
 	border-radius: 5px;
 }
-#qna_content{
+
+#content #inputContent .qna_categoryBox span{
+	width: 200px;
+	height: 61px;
+	margin-top: 10px;
+	display: table-cell;
+	vertical-align: center;
+	line-height: 61px;
+	/* background-color: yellow; */
+}
+
+#content #inputContent .qna_titleBox{
+	width: 100%;
+	height: 71px;
+	/* background-color: green; */
+	border-bottom: 1px solid #ccc; 
+}
+
+#content #inputContent .qna_titleBox #qna_title{
+	width: 300px;
+	height: 40px;
+	margin-top: 10px;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+#content #inputContent .qna_contentBox{
+	width: 100%;
+	height: 251px;
+	/* background-color: yellow; */
+	border-bottom: 3px solid #ccc; 
+}
+
+#content #inputContent .qna_contentBox #qna_content{
 	width: 700px;
 	height: 200px;
+	margin-top: 10px;
 	border-radius: 5px;
-
 }
 
-#category{
-	width: 100px;
+#content #inputContent .qna_buttonBox{
+	width: 100%;
+	height: 50px;
+	/* background-color: orange; */
+	margin-top : 10px;
+}
+
+#content #inputContent .qna_buttonBox .qna_imageButtonBox{
+	width: 50px;
+	height: 50px;
+	/* background-color: yellow; */
+	display: inline-block;
+	padding-left: 80%;
+	padding-right: 10px;
+}
+
+#content #inputContent .qna_buttonBox .qna_imageButtonBox #imagelabel{
+	display: inline-block;
+	width: 40px;
 	height: 40px;
+	padding-left:5px;
+	background-image: url("../semiview/images/qna/qna_folder.png");
+	backgroundsize : 40px;
+	background-repeat: no-repeat;
 }
 
+#content #inputContent .qna_buttonBox .qna_updateBtnBox{
+	width: 50px;
+	height: 50px;
+	/* background-color: green; */
+	display: inline-block;
+	padding-right: 5px;
+}
+
+#content #inputContent .qna_buttonBox .qna_updateBtnBox #updateBtn{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	padding-left:5px;
+}
+
+
+#content #inputContent .qna_buttonBox .qna_cancelButtonBox{
+	width: 50px;
+	height: 50px;
+	/* background-color: green; */
+	display: inline-block;
+	padding-right: 5px;
+	float: right;
+}
+
+#content #inputContent .qna_buttonBox .qna_cancelButtonBox #cancel{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	padding-left:5px;
+}
+
+
+.qna_imageButtonBox #image{
+	position: absolute;
+   	width : 1px;
+   	height: 1px;
+   	padding: 0;
+   	margin: -1px;
+   	overflow: hidden;
+   	clip : rect(0,0,0,0);
+   	border : 0;
+}
+
+/*----------------------------------------------------------------------------*/
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -212,49 +337,64 @@ table, tr, th, td {
 	
 </script>
 </head>
+
 <body>
 	<div class="layer" id="wrap">
-		<div id="topbannerDiv">
-			<img id="momsRecipe" src="../semiview/images/mammaLogo.png" />
-
-		</div>
-		<div class="menubar">
-			<ul>
-				<li><a href="*">홈</a></li>
-				<li><a href="recipe.do" id="current">레시피</a>
-					<ul>
-						<li><a href="#">초기이유식(4~6개월)</a></li>
-						<li><a href="#">중기이유식(7~9개월)</a></li>
-						<li><a href="#">후기이유식(10~12개월)</a></li>
-						<li><a href="#">완료기이유식(12개월이후)</a></li>
-					</ul></li>
-				<li><a href="momTalk.do">커뮤니티</a></li>
-				</li>
-				<li><a href="handOut.do">무료나눔</a></li>
-				<li><a href="info.do">육아정보</a></li>
-				<li><a href="question.do">고객센터</a></li>
-			</ul>
-		</div>
+		<header>
+			<jsp:include page="../topmenu.jsp" />
+  		 </header>
+		
+		<!--------------------------------- 수정 부분 -------------------------------------------->
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<form name="updateForm" id="qnaUpdate" method="post" >
-				<input type="hidden" id="qna_num" name="qna_num" value="${dto.qna_num}"/> 
-				<input type="hidden" id="pageNum" name="pageNum" value="${param.pageNum}" /> 
-				<div>
-					분류 : ${dto.qna_category}
-				</div>
-				<div>
-					제목 : <input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요." value="${dto.title}"/>
-				</div>
-				<div>
-					내용 : <textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
-				</div>
-				<input type="file" id="image" name="image" value="첨부파일"/>
-				<input type="button" name="updateBtn" id="updateBtn" value="수정"/>
-				<input type="button" name="cancelBtn" id="cancelBtn" value="취소"/>
-			</form>
+			<div id="inputContent">
+				<form name="updateForm" id="qnaUpdate" method="post" >
+					<input type="hidden" id="qna_num" name="qna_num" value="${dto.qna_num}"/> 
+					<input type="hidden" id="pageNum" name="pageNum" value="${param.pageNum}" /> 
+					
+					<div class="qna_logoBox">
+						<img alt="Q&A 글쓰기 로고입니다." src="../semiview/images/qna/qnaModi_logo.png" id=logo>
+					</div>
+					
+					<div class="qna_categoryBox">
+						<span>분류 : ${dto.qna_category}</span>
+					</div>
+					
+					<div class="qna_titleBox">
+						<span>제목 : </span><input type="text" id="qna_title" name="qna_title" placeholder="제목을 입력하세요." value="${dto.title}"/>
+					</div>
+					
+					<div class="qna_contentBox">
+						<span>내용: </span><textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
+					</div>
+					
+					<div class="qna_buttonBox"><!-- div 추가했습니다. -->
+					
+						<div class="qna_imageButtonBox">
+							<label for = "image" id = "imagelabel"></label>
+							<input type="file" id="image" name="image" value="첨부파일"/><!-- 아이디값 추가했습니다. -->
+						</div>
+						
+						<div class="qna_updateBtnBox">
+							<input type="image" id="updateBtn" name="updateBtn" value="수정" src = "../semiview/images/qna/qna_modify.png"/><!-- 아이디값 추가했습니다. -->
+						</div>
+						
+						<div class="qna_cancelButtonBox">
+							<input type="image" id="cancel" name="cancel" value="취소" src = "../semiview/images/qna/qna_cancel.png"/><!-- 아이디값 추가했습니다. -->
+						</div>
+						
+					</div>
+					
+				<!-- <input type="file" id="image" name="image" value="첨부파일"/>
+					<input type="button" name="updateBtn" id="updateBtn" value="수정"/>
+					<input type="button" name="cancelBtn" id="cancelBtn" value="취소"/></a> -->
+					
+				</form>
+			</div>
 		</div>
+		
 	</div>
+	
 	<a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>
 
 </body>

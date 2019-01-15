@@ -359,15 +359,13 @@ tr td a #title{
 				/////////////////////////////////////////////////////////////////
 				// writeBtn 이미지 눌렀을때 이벤트.
 				$('#writeBtn').on('click', function() {
-
-					alert('글쓰기 눌렸다');
 					
 					if('${sessionScope.id}' == ''){
-						alert("로그인 해쥬세여,");
+						alert("로그인 후 이용해주세요.");
 						$('#frm').attr('action', 'login.do');
 						$('#frm').submit();
 					}else{
-						alert('로그인된 아이디 : ${sessionScope.id}');
+						//alert('로그인된 사용자 닉네임 : ${sessionScope.nickname}');
 						$('#frm').attr('action', 'qnaWriteForm.do');
 						$('#frm').submit();
 					}
@@ -375,15 +373,15 @@ tr td a #title{
 				});
 				
 				
+				// 제목 눌러서 상세페이지 넘어갈때. 이벤트
 				$('tr td a #title').on('click', function(){
 					if('${sessionScope.id}' == ''){
-						alert('로그인된 아이디 : ${sessionScope.id}');
-						alert("로그인 해쥬세여,");
+						alert("로그인 후 이용해주세요.");
 						$('#frm').attr('action', 'login.do');
 						$('#frm').submit();
 						return false;
 					}else{
-						alert('로그인된 아이디 : ${sessionScope.id}');
+						//alert('로그인된 닉네임 : ${sessionScope.nickname}');
 					}
 				});
 

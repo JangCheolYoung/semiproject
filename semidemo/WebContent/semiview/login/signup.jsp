@@ -16,13 +16,13 @@ $(document).ready(function(){
 	$('#male').on('click',function(){
 		$(this).css({'backgroundColor':'gray'});
 		$('#female').css({'backgroundColor':'white'});
-		$('#gender').val($(this).val());
+		$('#gender').val('man');
 	});
 	
 	$('#female').on('click',function(){
 		$(this).css({'backgroundColor':'gray'});
 		$('#male').css({'backgroundColor':'white'});
-		$('#gender').val($(this).val());
+		$('#gender').val('woman');
 	});
 	
 });

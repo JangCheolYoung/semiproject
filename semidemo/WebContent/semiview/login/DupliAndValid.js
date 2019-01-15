@@ -6,7 +6,7 @@
       var regFind_pass_ques;
       var regFind_pass_answ = /^[a-zA-Zㄱ-ㅎ가-힣]{1,100}$/;
       
-        var inval_Arr=new Array(5).fill(false);
+        var inval_Arr=new Array(7).fill(false);
        
 	var result;
 	var idChk;
@@ -264,6 +264,27 @@ $(document).ready(function(){
             alert('이메일주소를 확인하세요');
            return false;
         }   
+          
+     //성별 선택
+       if($('#gender').val()=='man' || $('#gender').val()=='woman'){
+          inval_Arr[5]=true;
+          console.log(inval_Arr[5]);
+      }else{
+         inval_Arr[5]=false;
+         console.log(inval_Arr[5]);
+         alert('성별을 선택해주세요.');
+         return false;
+      }
+     //패스워드 찾기 답
+       if($('#pass_answ').val() != ''){
+          inval_Arr[6]=true;
+          console.log(inval_Arr[6]);
+      }else{
+         inval_Arr[6]=false;
+         console.log(inval_Arr[6]);
+         alert('비밀번호 찾기에 대한 답변을 작성해주세요.');
+         return false;
+      } 
        
         var validAll = true;
         for(var i = 0; i < inval_Arr.length; i++){

@@ -383,10 +383,10 @@
       $('#updateBtn').on('click', function(){
     	  
     	 
-    	 var nickname = $('input').attr($(this).attr('name','nickname')).val();
-    	 alert("nickname = "+nickname);
+    	 var nickname = $('#nickname').val();
+    	 //alert("nickname = "+nickname);
     	 
-    	 if('${sessionScope.nickname}'==nickname){
+    	 if('${sessionScope.nickname}'==nickname || '${sessionScope.nickname}'== 'hr'){
 	       	 $('form').attr('action', 'qnaUpdateForm.do'); 
 	         $('form').submit();
     	 }
@@ -399,8 +399,17 @@
       });//////////////////////////////////////////////////////////////////////////////
       
       $('#deleteBtn').on('click', function(){
-         $('form').attr('action', 'qnaDelete.do'); 
-          $('form').submit();
+    	 var nickname = $('#nickname').val();
+     	 //alert("nickname = "+nickname);
+     	 
+     	 if('${sessionScope.nickname}'==nickname || '${sessionScope.nickname}'== 'hr'){
+	         $('form').attr('action', 'qnaDelete.do'); 
+ 	         $('form').submit();
+     	 }
+     	 else{
+     		 alert('권한이 없습니다.');
+     		 return false;
+     	 }
                   
       });
    });
@@ -459,7 +468,7 @@
          
          <form name="frm" method="post">
             <input type="hidden" name="qna_num" value="${dto.qna_num}" />
-            <input type="hidden" name="nickname" value="${dto.nickname}" />
+            <input type="hidden" name="nickname" id="nickname" value="${dto.nickname}" />
             <input type="hidden" name="ref" value="${dto.ref}" /> 
             <input type="hidden" name="re_step" value="${dto.re_step}" />
             <input type="hidden" name="re_level" value="${dto.re_level}" />

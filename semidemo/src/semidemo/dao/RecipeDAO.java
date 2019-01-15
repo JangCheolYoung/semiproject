@@ -57,9 +57,9 @@ public class RecipeDAO {
 
 		try {
 			conn = init();
-			String sql = "select * from recipe where growth_level like ?";
+			String sql = "select * from recipe where growth_level = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + r_lv + "%");
+			pstmt.setString(1, r_lv);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				RecipeDTO dto = new RecipeDTO();
@@ -81,10 +81,10 @@ public class RecipeDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
 		return aList;
 	}
+
 
 	public List<RecipeDTO> search(String data) {
 		List<RecipeDTO> list = new ArrayList<RecipeDTO>();

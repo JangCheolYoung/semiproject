@@ -386,7 +386,7 @@
     	 var nickname = $('#nickname').val();
     	 //alert("nickname = "+nickname);
     	 
-    	 if('${sessionScope.nickname}'==nickname || '${sessionScope.nickname}'== 'hr'){
+    	 if('${sessionScope.nickname}'==nickname || '${sessionScope.id}'== 'hr'){
 	       	 $('form').attr('action', 'qnaUpdateForm.do'); 
 	         $('form').submit();
     	 }
@@ -402,7 +402,8 @@
     	 var nickname = $('#nickname').val();
      	 //alert("nickname = "+nickname);
      	 
-     	 if('${sessionScope.nickname}'==nickname || '${sessionScope.nickname}'== 'hr'){
+     	 if('${sessionScope.nickname}'==nickname || '${sessionScope.id}'== 'hr'){
+     		 alert('삭제한다!');
 	         $('form').attr('action', 'qnaDelete.do'); 
  	         $('form').submit();
      	 }
@@ -474,6 +475,7 @@
             <input type="hidden" name="re_level" value="${dto.re_level}" />
             <input type="hidden" name="pageNum" value="${param.pageNum}" /> 
             <input type="hidden" name="qna_category" value="${dto.qna_category}" /> 
+            <input type="hidden" name="content" value="${dto.content}"/>
          
          	<div class = "buttonBox">
          		<input type="image" id="qnaListBtn" name="qnaListBtn" value="목록으로" src = "../semiview/images/qna/qna_list.png"/>

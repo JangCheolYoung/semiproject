@@ -328,6 +328,32 @@ public class QnaDAO {
 		}
 
 	}// end qnaDeleteMethod()//////////////////////////////////
+	
+	// qna레코드 답글 삭제해주는 메소드.
+	public void answDeleteMethod(int qna_num) {
+		try {
+			conn = init();
+			String sql = "delete qna where qna_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}// end qnaDeleteMethod()//////////////////////////////////
 
 	// 답변글 작성시 re_step값 증가를 위한 함수
 	// FILO 구조를 위해서 사용 (후입선출, 가장 나중에 들어온 값(최근값)이 가장 먼저 출력되는 형태)
@@ -353,5 +379,53 @@ public class QnaDAO {
 		}
 
 	}// end reStepMethod()
+	
+	
+	
+	// questionPage에서 검색 select에서 선택한 카테고리와 pdto로 리스트 뽑아오는 메소드.
+	public List<QnaDTO> categoryListMethod(QnaPageDTO pdto, String category) {
+		List<QnaDTO> list = new ArrayList<QnaDTO>();
+
+		try {
+			conn = init();
+			String sql = "select b.* " + "from (select rownum rm, a.* " + "from (select * " + "from qna "
+					+ "order by ref desc, qna_num)a)b " + "where qna_category=? and rm>=? and rm<=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category); // 선택한 카테고리.
+			pstmt.setInt(2, pdto.getStartRow()); // 시작레코드값
+			pstmt.setInt(3, pdto.getEndRow()); // 끝레코드값
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				QnaDTO dto = new QnaDTO();
+				dto.setQna_num(rs.getInt("qna_num"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setWrite_date(rs.getDate("write_date"));
+				dto.setReadcount(rs.getInt("readcount"));
+				dto.setRef(rs.getInt("ref"));
+				dto.setRe_step(rs.getInt("re_step"));
+				dto.setRe_level(rs.getInt("re_level"));
+				dto.setQna_category(rs.getString("qna_category"));
+				list.add(dto);
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}// end listMethod()///////////////////////////////////////////////
 
 }// end class/////////////////////////////////////////

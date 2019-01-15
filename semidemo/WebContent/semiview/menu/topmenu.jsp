@@ -93,7 +93,7 @@
    /* background-color: pink; */
 }
 
-.wrap #topMenuBox #momstarBox #momstar{
+.wrap #topMenuBox #momstarBox #momstargram{
    width: 70%;
    height: 70%;
    padding-left : 17%;
@@ -153,6 +153,7 @@
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="../semiview/menu/information/js/jquery-ui.js"></script>
 <script type="text/javascript">
    $(document).ready(function(){
       $('#home').hover(
@@ -186,7 +187,7 @@
             $(this).parent().css({"border-bottom" : "none"});
             $('#recipeSubBox').css({"display" : "none"});
             });
-      $('#momstar').hover(
+      $('#momstargram').hover(
             function() {
             $(this).attr("src",$(this).attr("src").replace("off.png","on.png"));
             $(this).parent().css({"border-bottom" : "2px solid #ed9a9a"});
@@ -279,7 +280,7 @@
                <input type = "image" id = "recipe" name = "recipe" alt="레시피" src="../semiview/images/topmenu/topmenuRecipe_off.png"/>
             </div>   
             <div id = "momstarBox">
-               <input type = "image" id = "momstar" name = "momstar" alt="맘스타그램" src="../semiview/images/topmenu/topmenuMomstar_off.png"/>
+               <input type = "image" id = "momstargram" name = "momstargram" alt="맘스타그램" src="../semiview/images/topmenu/topmenuMomstar_off.png"/>
             </div>
             <div id = "handoutBox">
                <input type = "image" id = "handout" name = "handout" alt="무료나눔" src="../semiview/images/topmenu/topmenuHandout_off.png"/>

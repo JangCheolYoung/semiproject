@@ -359,6 +359,8 @@
 			 		<input type = "hidden" name = "re_level" value = "${param.re_level}" />
 			 		<input type = "hidden" name = "pageNum" value = "${param.pageNum}" />
 			 		<input type = "hidden" name = "qna_category" value="${param.qna_category}"/>
+			 		<input type = "hidden" name = "content" value="${param.content}"/>
+			 		
 			 	</c:if>
 			 		<input type = "hidden" name = "nickname" value="${sessionScope.nickname}"/>
 				
@@ -395,7 +397,7 @@
 					</div>
 					
 					<div class="qna_contentBox">
-						<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요."></textarea>
+						<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${param.content}</textarea>
 					</div>
 					
 					<div class="qna_buttonBox"><!-- div 추가했습니다. -->

@@ -289,7 +289,7 @@
 	float: right;
 }
 
-#content #inputContent .qna_buttonBox .qna_cancelButtonBox #cancel{
+#content #inputContent .qna_buttonBox .qna_cancelButtonBox #cancelBtn{
 	display: inline-block;
 	width: 40px;
 	height: 40px;
@@ -380,7 +380,7 @@
 						</div>
 						
 						<div class="qna_cancelButtonBox">
-							<input type="image" id="cancel" name="cancel" value="취소" src = "../semiview/images/qna/qna_cancel.png"/><!-- 아이디값 추가했습니다. -->
+							<input type="image" id="cancelBtn" name="cancelBtn" value="취소" src = "../semiview/images/qna/qna_cancel.png"/><!-- 아이디값 추가했습니다. -->
 						</div>
 						
 					</div>

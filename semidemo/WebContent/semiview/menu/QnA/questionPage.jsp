@@ -384,6 +384,14 @@ tr td a #title{
 						//alert('로그인된 닉네임 : ${sessionScope.nickname}');
 					}
 				});
+				
+				
+				$('#search_category').on('change', function(){
+					
+					$('#frm').attr('action', 'qnaCategorySearch.do?category='+$('#search_category').val());
+					$('#frm').submit();
+					
+				});
 
 			});
 </script>
@@ -402,17 +410,19 @@ tr td a #title{
 			<div id="contentIn">
 				<div class="qna_board">
 					<div id="top">
-						<div class="top_category">
-							<!-- 추가한 div요소입니다. -->
+					
+					<!-- 불필요하여 주석처리 했습니다. -->
+						<!-- <div class="top_category">
+							추가한 div요소입니다.
 							<select name="category" id="category">
-								<option value="all">전체</option>
-								<option value="recipe">레시피</option>
-								<option value="momtalk">맘톡</option>
-								<option value="handout">무료나눔</option>
-								<option value="info">육아정보</option>
-								<option value="etc">기타</option>
+								<option value="">전체</option>
+								<option value="육아정보">육아정보</option>
+								<option value="레시피">레시피</option>
+								<option value="맘스타그램">맘스타그램</option>
+								<option value="무료나눔">무료나눔</option>
+								<option value="기타">기타</option>
 							</select>
-						</div>
+						</div> -->
 
 						<!-- 추가한 div요소입니다. -->
 						<div class="top_search">
@@ -420,13 +430,14 @@ tr td a #title{
 								id=searchlogo>
 							<div class="top_search_category">
 								<select name="search_category" id="search_category">
-									<option value="all">전체</option>
-									<option value="recipe">레시피</option>
-									<option value="momtalk">맘톡</option>
-									<option value="handout">무료나눔</option>
-									<option value="info">육아정보</option>
-									<option value="etc">기타</option>
-								</select> <input type="text" id="serach_text" />
+									<option value="">전체</option>
+									<option value="육아정보">육아정보</option>
+									<option value="레시피">레시피</option>
+									<option value="맘스타그램">맘스타그램</option>
+									<option value="무료나눔">무료나눔</option>
+									<option value="기타">기타</option>
+								</select> 
+								<input type="text" id="serach_text" />
 							</div>
 						</div>
 						<div id="writeBtn">

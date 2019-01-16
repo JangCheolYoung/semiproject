@@ -17,6 +17,7 @@ public class LoginAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
+		
 		MemberDTO dto = new MemberDTO();
 		dto.setId(id);
 		dto.setPassword(password);
@@ -38,10 +39,16 @@ public class LoginAction {
 			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("gender", dto.getGender());
 			
-			
 			session.setMaxInactiveInterval(30*60);//로그인 해놓고 아무 활동도 안하면 30분 뒤에 로그아웃이 되는 거.
-			
-			out.println("<script> history.go(-2); location.reload();</script>");
+			String page = req.getParameter("page");
+
+			if(page != "") {
+				resp.sendRedirect(page);
+			}else {
+				String path="/semiview/main/semimain.jsp";
+				RequestDispatcher dis = req.getRequestDispatcher(path);
+				dis.forward(req, resp);
+			}
 		}else if(check==0) {
 			System.out.println("비밀번호 틀림!");
 			out.println("<script> alert('비밀번호를 확인해주세요.'); </script>");

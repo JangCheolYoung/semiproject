@@ -434,7 +434,7 @@
 		</div>
          
 		<div class = "qnaNicknameBox">
-			<span>글쓴이 : ${dto.nickname}</span>
+			<span>작성자 : ${dto.nickname}</span>
 		</div>
 		<div class = "qnaReadcountBox">
 			<span>조회수 : ${dto.readcount}</span>

@@ -357,8 +357,10 @@ div#writeBtn {
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(
 			function() {
+		
 				$('#loginBtn').hover(
 						function() {
 							$(this).attr(
@@ -436,6 +438,7 @@ div#writeBtn {
 		<!------------------------------------ QnA 부분 -------------------------------------->
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
 		<form id="frm" name="frm">
+		<input type="hidden" name="page" value="question.do"/>
 			<div id="contentIn">
 				<div class="qna_board">
 					<div id="top">

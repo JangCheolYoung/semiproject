@@ -84,10 +84,14 @@ public class semiMainController extends HttpServlet {
 			logout.execute(req, resp);
 
 			resp.sendRedirect("main.do");
+			
 		} else if (action.equals("/loginPro.do")) {
-
+			
+			
 			LoginAction login = new LoginAction();
 			login.execute(req, resp);
+			
+			
 			
 		} else if (action.equals("/signup.do")) {
 			// 회원가입 페이지로 이동

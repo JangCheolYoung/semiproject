@@ -251,12 +251,13 @@
           $('#frmTop').submit();
       });
       $('#mypage').on('click', function(){
-    	 if($('#session_id').val() != ''){
-    		 
-    	 }
+    	if($('#session_id').val() != ''){
+	  		$('#frmTop').attr('action', 'myPage.do');//main컨트롤러에 추가해주어야 함
+	  		$('#frmTop').submit();
+    	}else{
+    		
+    	}
     	  
-         $('#frmTop').attr('action', 'myPage.do');//main컨트롤러에 추가해주어야 함
-          $('#frmTop').submit();
       });
    });
 </script>

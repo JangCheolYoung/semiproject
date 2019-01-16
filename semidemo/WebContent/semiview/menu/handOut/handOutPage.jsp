@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>무료나눔 상품페이지</title>
-<link rel="stylesheet" type="text/css" href="../semiview/menu/handOut/handOut_css/handOutPage.css" />
+<link rel="stylesheet" type="text/css"
+	href="../semiview/menu/handOut/handOut_css/handOutPage.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
@@ -40,6 +41,31 @@
 									$(this).attr("src").replace("on.png",
 											"off.png"));
 						});
+
+				
+				$('#handOut').on('click', function(){
+					
+					if('${sessionScope.id}' == ''){
+						alert("로그인 후 이용해주세요.");
+						$('#frm').attr('action', 'login.do');
+						$('#frm').submit();
+						return false;
+					}else{
+						//alert('로그인된 닉네임 : ${sessionScope.nickname}');
+					}
+				});
+				
+				
+				$('#ImageTd, #titleTd').on('click', function(){
+					if('${sessionScope.id}' == ''){
+						alert("로그인 후 이용해주세요.");
+						$('#frm').attr('action', 'login.do');
+						$('#frm').submit();
+						return false;
+					}else{
+						
+					}
+				}); 
 			});
 </script>
 </head>
@@ -49,8 +75,11 @@
 			<jsp:include page="../topmenu.jsp" />
 		</header>
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
+			<!-- 나눔글 작성하기 이미지. -->
+			<form id="frm" name="frm">
+			<input type="hidden" name="page" value="handOut.do"/>
 			<a href="handOutWrite.do"><img id="handOut"
-				src="../semiview/images/handout/handout_off.png"/></a>
+				src="../semiview/images/handout/handout_off.png" /></a>
 			<div id="inputContent">
 				<!-- 여기서부터 무료나눔 첫페이지 요소 이다. -->
 				<div class="inputDiv">
@@ -59,18 +88,18 @@
 							<tbody>
 								<tr>
 									<td colspan="4" id="ImageTd">
-									<div class="imageDiv">
-										<a href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
-											<img src="../semiview/images/handout/${dto.main_picture}" />
-										</a>
-									</div>
+										<div class="imageDiv">
+											<a
+												href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
+												<img src="../semiview/images/handout/${dto.main_picture}" />
+											</a>
+										</div>
 									</td>
 								</tr>
 								<tr>
-									<td id="titleTd" colspan="2">
-										<a href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
-										${dto.title}</a>
-									</td>
+									<td id="titleTd" colspan="2"><a
+										href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
+											${dto.title}</a></td>
 									<td colspan="2">[${dto.area}]</td>
 								</tr>
 								<tr>
@@ -112,6 +141,7 @@
 					</c:if>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 	<a href="login.do"><img id="loginBtn"

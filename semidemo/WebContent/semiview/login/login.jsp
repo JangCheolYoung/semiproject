@@ -78,6 +78,7 @@
 	</h1>
 	<div id="login">
 		<form action="loginPro.do" name="form" id="form" method="post" style="width:550px;">
+		<input type="hidden" name="page" value="${param.page}"/>
 			<div class="form-group">
 				<input type="text" class="form-control" id="id" name="id" placeholder="아이디" maxlength="20" style="width:295px;"/>
 				<input type="checkbox" id="idSaveCheck" name="idSaveCheck" value="idSaveCheck" checked=""

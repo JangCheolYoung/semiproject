@@ -202,7 +202,7 @@
 	
 }
 
-#content #inputContent .handout_nickname input{
+#content #inputContent .handout_nickname span{
 	width: 300px;
 	height: 40px;
 	margin-top: 10px;
@@ -628,11 +628,11 @@
 					<img src="../semiview/images/handout/handout_writeLogo.png"/>
 				</div>
 				<form name="writeForm" id="writeForm" method="POST" action="handOutWriteForm.do" enctype="multipart/form-data">
+				<div class="handout_nickname">
+					<span class="writer">작성자 : ${sessionScope.nickname}</span>
+				</div>
 				<div class="handout_title">
 					<input type="text" id="title" name="title" placeholder="제목" />
-				</div>
-				<div class="handout_nickname">
-					<input type="text" placeholder="닉네임" name="nickname" />
 				</div>
 				<div class="handout_categori">
 					<select id="area" name="area">

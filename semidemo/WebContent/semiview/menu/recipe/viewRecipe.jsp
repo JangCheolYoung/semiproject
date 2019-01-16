@@ -152,7 +152,7 @@ p {
 
 </body>
 <footer>
-	<a href="recipeSearch.do"><img id=sch_img
+	<a href="recipeSearchForm.do"><img id=sch_img
 		src="../semiview/images/sch_img_.png"></a> <a href="#top"><img
 		id=bottom src="../semiview/images/top_img.png"></a>
 </footer>

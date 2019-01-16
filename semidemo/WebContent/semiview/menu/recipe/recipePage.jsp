@@ -33,6 +33,7 @@
 		<header>
 			<jsp:include page="../topmenu.jsp" />
 		</header>
+			<br/>
 		<div id="content"
 			alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
 			

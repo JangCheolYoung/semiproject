@@ -17,9 +17,9 @@ $(document).ready(function() {
 					if(result=='null'){
 						$('#findPassword').text('잘못된 정보를 입력하셨습니다.');
 						$('#findPassword').css('color', 'red');
-					
+
 					}else if(result!=null){
-						$('#findPassword').text('password = ' + result);
+						$('#findPassword').text("회원님의 패스워드는 " + result+" 입니다.");
 						$('#findPassword').css('color', 'blue');
 					}
 				}

@@ -389,7 +389,7 @@ public class QnaDAO {
 		try {
 			conn = init();
 			String sql = "select b.* " + "from (select rownum rm, a.* " + "from (select * " + "from qna "
-					+ "order by ref desc, qna_num)a)b " + "where qna_category=? and rm>=? and rm<=?";
+					+ "order by ref desc, qna_num)a where qna_category=?)b " + "where rm>=? and rm<=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, category); // 선택한 카테고리.

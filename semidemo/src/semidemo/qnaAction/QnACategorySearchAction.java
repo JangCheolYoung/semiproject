@@ -13,6 +13,7 @@ public class QnACategorySearchAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		String category = req.getParameter("category");
+		System.out.println(category);
 		String pageNum = req.getParameter("pageNum");
 		if (pageNum == null || pageNum.equals("null")) {
 			pageNum = "1";
@@ -31,7 +32,7 @@ public class QnACategorySearchAction {
 			// 리퀘스트 영역에 저장
 			req.setAttribute("pdto", pdto);
 			//req.setAttribute("list", list);
-			List<QnaDTO> list = dao.categoryListMethod(pdto, category);
+			List<QnaDTO> list = dao.categoryListMethod(pdto, "육아정보");
 			req.setAttribute("list", list);
 		}
 		

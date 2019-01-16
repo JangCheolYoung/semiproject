@@ -147,14 +147,14 @@ p {
 			<div id="inputContent">
 
 				<c:choose>
-					<c:when test="${fn:length(alist) > 0}">
+					<c:when test="${fn:length(aList) > 0}">
 						<br>
 						<center>
 							'<b>${param.data}</b>' 에 대한 검색 결과입니다.<br>
 						</center>
 						<br>
 						<br>
-						<c:forEach var="dto" items="${list}">
+						<c:forEach var="dto" items="${aList}">
 							<table align="center">
 								<tr>
 									<td><img

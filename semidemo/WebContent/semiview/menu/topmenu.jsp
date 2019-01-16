@@ -251,6 +251,10 @@
           $('form').submit();
       });
       $('#mypage').on('click', function(){
+    	 if($('#session_id').val() != ''){
+    		 
+    	 }
+    	  
          $('form').attr('action', 'myPage.do');//main컨트롤러에 추가해주어야 함
           $('form').submit();
       });
@@ -259,7 +263,7 @@
 
 </head>
 <body>
-
+	<input type="hidden" id="session_id" value="${sessionScope.id}"/>
    <!-- 전체를 감싸고 있는 div -->
    <div class = "wrap">
       <!-- 메인 베너 -->

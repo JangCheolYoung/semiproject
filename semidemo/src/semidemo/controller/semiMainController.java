@@ -272,7 +272,8 @@ public class semiMainController extends HttpServlet {
 			resp.sendRedirect("question.do");
 
 		} else if (action.equals("/qnaCategorySearch.do")) {
-
+			String category = (String)req.getParameter("category");
+			System.out.println("main : "+ category);
 			QnACategorySearchAction qnaCategorySearch = new QnACategorySearchAction();
 			qnaCategorySearch.execute(req, resp);
 			resp.sendRedirect("question.do");

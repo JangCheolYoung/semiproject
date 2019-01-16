@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="../semiview/css/recipe.css" />
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('#data').focus();
 		$('#loginBtn').hover(
 				function(){$(this).attr("src", $(this).attr("src").replace("off.png","on.png"));},
 				function(){$(this).attr("src", $(this).attr("src").replace("on.png","off.png"));});
@@ -26,7 +27,7 @@
 			alert('검색어를 입력하세요');
 			$('#data').focus();
 		} else if (check.test(data)) {
-			$('#f').submit();
+			f.submit();
 		} else{
 			alert('올바른 검색어를 입력하세요');
 			$('#data').focus();
@@ -46,6 +47,7 @@
 	border: solid #dbdbdb 3px;
 	vertical-align: middle;
 	outline-style: none;
+	margin-left: 6%;
 }
 
 #btn {
@@ -74,11 +76,11 @@
 
 				<div id="search">
 					<center>
-						<img id="rmain" src="../semiview/images/recipe_off.png" />
+						<img id="rmain" src="../semiview/images/recipe/recipe_off.png" />
 					</center>
 					<form id='f' method='get' action='recipeSearch.do'>
-						<input type="text" name="data" id="data" /> 
-						<input type="button" id="searchBtn" value="검색" />
+						<span><input type="text" name="data" id="data" /></span> 
+						<span><input type="button" id="searchBtn" value="검색" /></span>
 					</form>
 				</div>
 			</div>

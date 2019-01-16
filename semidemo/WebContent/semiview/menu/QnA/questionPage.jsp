@@ -231,7 +231,7 @@
 	float: left;
 }
 
-#contentIn .qna_board #top .top_search #serach_text {
+#contentIn .qna_board #top .top_search #search_text {
 	width: 150px;
 	height: 24px;
 	float: left;
@@ -269,7 +269,6 @@
 }
 
 #contentIn .qna_board #table_div #table thead th {
-	width: 150px;
 	padding: 7px;
 	font-weight: bold;
 	vertical-align: top;
@@ -279,7 +278,6 @@
 }
 
 #contentIn .qna_board #table_div #table tbody td {
-	width: 150px;
 	padding: 3px;
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
@@ -322,10 +320,36 @@ div#writeBtn {
 	/* background-color: yellow; */
 }
 
-
-tr td a #title{
-
+.category{
+	width: 80px;
 }
+
+.title{
+	width: 390px;
+}
+.writer{
+	width: 100px;
+}
+
+.write_time{
+	width: 100px;
+}
+
+.view{
+	width: 80px;
+}
+
+
+
+/*제목 div */
+.title2{
+}
+
+/*제목 링크*/
+.title2 a{
+	display: inline;
+}
+
 
 /*--------------------------------------------------------------------------------*/
 </style>
@@ -387,8 +411,11 @@ tr td a #title{
 				
 				
 				$('#search_category').on('change', function(){
+					var category = $(this).val();
+					alert(category);
 					
-					$('#frm').attr('action', 'qnaCategorySearch.do?category='+$('#search_category').val());
+					$('#frm').attr('action', "qnaCategorySearch.do?category="+category);
+					
 					$('#frm').submit();
 					
 				});
@@ -398,6 +425,7 @@ tr td a #title{
 </head>
 
 <body>
+<br/>
 	<div class="layer" id="wrap">
 		<header>
 			<jsp:include page="../topmenu.jsp" />
@@ -406,7 +434,7 @@ tr td a #title{
 
 		<!------------------------------------ QnA 부분 -------------------------------------->
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-		<form id="frm">
+		<form id="frm" name="frm">
 			<div id="contentIn">
 				<div class="qna_board">
 					<div id="top">
@@ -425,7 +453,7 @@ tr td a #title{
 						</div> -->
 
 						<!-- 추가한 div요소입니다. -->
-						<div class="top_search">
+						<!-- <div class="top_search">
 							<img alt="검색 로고입니다." src="../semiview/images/qna/loupe.png"
 								id=searchlogo>
 							<div class="top_search_category">
@@ -437,11 +465,11 @@ tr td a #title{
 									<option value="무료나눔">무료나눔</option>
 									<option value="기타">기타</option>
 								</select> 
-								<input type="text" id="serach_text" />
+								<input type="text" id="search_text" />
 							</div>
-						</div>
+						</div>-->
 						<div id="writeBtn">
-						</div>
+						</div> 
 					</div>
 
 					<div id="table_div">
@@ -449,26 +477,28 @@ tr td a #title{
 
 							<thead>
 								<tr>
-									<th>seq_num</th>
-									<th>분류</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일시</th>
-									<th>조회수</th>
+									<!--  <th>seq_num</th>-->
+									<th class="category">분류</th>
+									<th class="title">제목</th>
+									<th class="writer">작성자</th>
+									<th class="write_time">작성일시</th>
+									<th class="view">조회수</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${requestScope.list}" var="dto">
 									<tr>
-										<td>${dto.qna_num}</td>
+										<!--<td>${dto.qna_num}</td>-->
 										<td>${dto.qna_category}</td>
-										<td>
-											<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> <c:if
-												test="${dto.re_level !=0 }">
-												<img src="../semiview/images/level.gif" width="10">
-												<img src="../semiview/images/re.gif" />
-											</c:if> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 --> 
-											<a href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}"><div id="title">${dto.title }</div></a>
+										<td class="title2">
+											<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> 
+											<c:if test="${dto.re_level !=0 }">
+												<img class="titleImg" src="../semiview/images/level.gif" width="10">
+												<img class="titleImg" src="../semiview/images/re.gif" />
+											</c:if>
+											<a class="title3" href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">
+											<span id="title">${dto.title }</span></a> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 -->
+											
 										</td>
 										<td>${dto.nickname}</td>
 										<td>${dto.write_date}</td>
@@ -511,7 +541,6 @@ tr td a #title{
 			</div>
 		</div>
 
-	</div>
 	<a href="login.do"><img id="loginBtn"
 		src="../semiview/images/loginBtn_off.png" /></a>
 

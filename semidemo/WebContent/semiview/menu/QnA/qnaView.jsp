@@ -247,7 +247,7 @@
 }
 
 #content #inputContent .qnaTitleBox span{
-	width: 200px;
+	width: 100%;
 	height: 61px;
 	margin-top: 10px;
 	display: table-cell;

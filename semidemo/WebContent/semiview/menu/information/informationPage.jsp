@@ -160,7 +160,7 @@
 	position: fixed;
 	right: 100px;
 	z-index: 3;
-	top: 300px;
+	top: 50%;
 	width: 150px;
 	height: 211px;
 	text-decoration: none;
@@ -399,6 +399,8 @@ div dt {
 						</div>
 					</div>
 				</div>
+				<br/>
+				<br/>
 				<div id="text01">
 					<img id="infm1" src="../semiview/images/information/text01.jpg" />
 

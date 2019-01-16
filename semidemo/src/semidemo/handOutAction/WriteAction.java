@@ -41,7 +41,7 @@ public class WriteAction {
 		dto.setType_list(multi.getParameter("kinds"));
 		dto.setPeriod_list(multi.getParameter("period of use"));
 		dto.setCondition_list(multi.getParameter("Product status"));
-		//dto.setNickname(multi.getParameter("nickname"));
+		dto.setNickname(multi.getParameter("nickname"));
 		dto.setContent(multi.getParameter("contents"));
 		dto.setMain_picture(multi.getFilesystemName("mainfile"));
 		dto.setPicture1(multi.getFilesystemName("file1"));

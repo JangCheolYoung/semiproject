@@ -140,31 +140,132 @@
 
 /*---------------------------글쓰기 공간 css-----------------------------------*/
 
-/*무료 나눔하기 이미지 사이즈 조절*/
-#handOut {
-	display: inline-block;
-	margin-top: 10px;
-	width: 291px;
-	height: 113px;
+#content{
+	width: 100%;
+	height: 800px;
+	/* background-color: yellow; */
+	margin-right: auto;
+	margin-left: auto;	
 }
 
-/*제목,닉네임,카테고리,내용 DIV*/
-#left {
-	float: left;
-	border: 5px solid black;
-	border-radius: 10px;
+#content #inputContent {
+	width: 90%;
+	height: 800px;
+	/* background-color: pink; */
+	margin:auto;
+	margin-top:30px;
 }
+
+#content #inputContent .handout_logoBox{
+	width: 100%;
+	height: 130px;
+	border-bottom: 3px solid #ccc;
+	margin: auto;
+}
+
+
+#content #inputContent .handout_logoBox img{
+	width: 250px;
+	height: 130px;
+	size : 250px 130px;
+	float: left;
+}
+
+#content #inputContent .handout_title {
+	width: 100%;
+	height: 71px;
+	margin-top: 10px;
+	/* background-color: aqua; */
+	border-bottom: 1px solid #ccc;
+	
+	
+}
+
+#content #inputContent .handout_title #title{
+	width: 300px;
+	height: 40px;
+	margin-top: 10px;
+	display: table-cell;
+	vertical-align: center;
+	line-height: 61px;
+	border-radius: 5px;
+	/* background-color: yellow; */
+}
+
+#content #inputContent .handout_nickname {
+	width: 100%;
+	height: 71px;
+	margin-top: 10px;
+	/* background-color: aqua; */
+	border-bottom: 1px solid #ccc;
+	
+	
+}
+
+#content #inputContent .handout_nickname input{
+	width: 300px;
+	height: 40px;
+	margin-top: 10px;
+	display: table-cell;
+	vertical-align: center;
+	line-height: 61px;
+	border-radius: 5px;
+	/* background-color: yellow; */
+}
+
+#content #inputContent .handout_categori {
+	width: 100%;
+	height: 71px;
+	margin-top: 10px;
+	/* background-color: aqua; */
+	border-bottom: 1px solid #ccc;
+}
+
+#content #inputContent .handout_categori select{
+	width: 200px;
+	height: 40px;
+	margin-top: 10px;
+	display: table-cell;
+	vertical-align: center;
+	line-height: 61px;
+	/* background-color: yellow; */
+}
+
+#content #inputContent .handout_content {
+	width: 100%;
+	height: 300px;
+	margin-top: 10px;
+	/* background-color: aqua; */
+	border-bottom: 3px solid #ccc;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+}
+
+#content #inputContent .handout_content textarea {
+	width: 73%;
+	height: 250px;
+	margin-top: 10px;
+	/* background-color: aqua; */
+	border-bottom: 1px solid #ccc;
+	display: block;
+	float: left;
+	border-radius: 5px;
+}
+
 
 /*이미지,file 선택 DIV*/
 #right {
 	float: right;
-	border: 5px solid black;
-	border-radius: 10px;
+	border: 1px solid black;
+	border-radius: 5px;
+	 
 }
 
 /*등록하기 , 취소하기 버튼 DIV*/
 #upAndcenclebutton {
 	clear: both;
+	margin-top: 10px;
+	margin: auto;
 }
 
 /*메인이미지,이미지1,2,3 라벨 스타일 적용 : 라벨을 블록요소로 지정해서 버튼처럼 만들었다.*/
@@ -194,33 +295,46 @@
 	border: 0;
 }
 
-/*제목, 닉네임 text 스타일 적용*/
-input {
-	width: 200px;
-	height: 42px;
-	border-radius: 5px;
-}
-
-/*내용 textarea 스타일 적용*/
-textarea {
-	width: 700px;
-	height: 200px;
-	border-radius: 5px;
-}
-
 /*등록하기,취소하기 버튼 사이즈 조절 css*/
 .uploadAndcancel {
 	width: 111px;
 	height: 53px;
 }
 
-#contentLabel {
-	display: block;
-	float: left;
-	height: 200px;
-	line-height: 200px;
+/*등록 버튼 css*/
+#upload {
+	width:100px;
+    background-color: #FFDCE1;
+    border: none;
+    /* color:#fff; */
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
+#cancel{
+	width:100px;
+    background-color: #FFDCE1;
+    border: none;
+    /* color:#fff; */
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#mainImage{
+	padding: 5px 5px;
+}
 
 
 /*-------------------------------------------------------------------------*/
@@ -293,7 +407,7 @@ textarea {
 				
 				
 				//등록버튼 서브밋 이벤트.
-				$('form').on('submit',function(){
+				$('#upload').on('click',function(){
 									
 					$('[name=contents]').val($('[name=contents]').val().replace(/\n/gi,'<br/>'));
 					
@@ -304,11 +418,6 @@ textarea {
 			            return false;
 			         }
 
-			         var contents = $('#contents').val();
-			         if (contents == "") {
-			            alert("내용을 입력하세요!");
-			            return false;
-			         }
 			         //지역 콤보박스
 			         var area = $('#area').val();
 			         if (area == "지역별") {
@@ -334,6 +443,11 @@ textarea {
 				            return false;
 				         }
 			         
+			         var contents = $('#contents').val();
+			         if (contents == "") {
+			            alert("내용을 입력하세요!");
+			            return false;
+			         }
 			         
 			     				
 					//이미지 파일 선택 안하면 alert 띄우기
@@ -344,7 +458,7 @@ textarea {
 					if(str.length < 1){
 						alert('메인이미지를 선택하세요');
 						return false;
-					}/* else if(str1.length < 1){
+					}else if(str1.length < 1){
 						alert('이미지1를 선택하세요');
 						return false;
 					
@@ -355,7 +469,8 @@ textarea {
 					}else if(str3.length < 1){
 						alert('이미지3를 선택하세요');
 						return false;
-					} */
+					}
+					
 					
 										
 				});
@@ -374,13 +489,13 @@ textarea {
 						//null이면
 						alert('jpg, gif, png만 가능합니다.');
 						$('#mainfile').val(''); //초기화를 시켜줌
-						$('#mainImage').attr('src',"../semiview/images/camera.png");
+						$('#mainImage').attr('src',"../semiview/images/handout/photo.png");
 						
 						return false;
 					}
 					if(this.files && this.files[0]){
-						if(this.files[0].size > 1000000){
-							alert('1MB바이트 이하만 첨부하실 수 있습니다.');
+						if(this.files[0].size > 10000000){
+							alert('10MB바이트 이하만 첨부하실 수 있습니다.');
 							$('#mainfile').val('');
 							return false;
 						}
@@ -418,8 +533,8 @@ textarea {
 						return false;
 					}
 					if(this.files && this.files[0]){
-						if(this.files[0].size > 1000000){
-							alert('1MB바이트 이하만 첨부하실 수 있습니다.');
+						if(this.files[0].size > 10000000){
+							alert('10MB바이트 이하만 첨부하실 수 있습니다.');
 							$('#file1').val('');
 							return false;
 						}
@@ -445,8 +560,8 @@ textarea {
 						return false;
 					}
 					if(this.files && this.files[0]){
-						if(this.files[0].size > 1000000){
-							alert('1MB바이트 이하만 첨부하실 수 있습니다.');
+						if(this.files[0].size > 10000000){
+							alert('10MB바이트 이하만 첨부하실 수 있습니다.');
 							$('#file2').val('');
 							return false;
 						}
@@ -472,13 +587,14 @@ textarea {
 						return false;
 					}
 					if(this.files && this.files[0]){
-						if(this.files[0].size > 1000000){
-							alert('1MB바이트 이하만 첨부하실 수 있습니다.');
+						if(this.files[0].size > 10000000){
+							alert('10MB바이트 이하만 첨부하실 수 있습니다.');
 							$('#file3').val('');
 							return false;
 						}
 					}
-				}); 
+				});
+				
 				
 				
 						
@@ -489,7 +605,7 @@ textarea {
 <jsp:scriptlet>
 
 	//치환 변수 선언
-	pageContext.setAttribute("cr", "\r"); //space
+	pageContext.setAttribute("cr", "\r");  //space
 	pageContext.setAttribute("cn", "\n"); //Enter
 	pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
 	
@@ -499,90 +615,87 @@ textarea {
 	<div class="layer" id="wrap">
 		<header>
 			<jsp:include page="../topmenu.jsp" />
-  		 </header>
+		</header>
 
 		<!-- ----------------------------글쓰기 DIV 시작------------------------------ -->
 
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
-			<a href="handOutWrite.do"><img id="handOut"
-				src="../semiview/PJ/handout_off.png" /></a>
+			<!-- <a href="handOutWrite.do"><img id="handOut"
+				src="../semiview/PJ/handout_off.png" /></a> -->
 			<!-- 무료나눔하기 글쓰기 페이지 구현 소스 -->
 			<div id="inputContent">
-				<div id="left">
-					<h1> 글쓰기 </h1>
-					<form name="writeForm" id="writeForm" method="POST"
-						action="handOutWriteForm.do" enctype="multipart/form-data">
-						<div class="writeContent">
-							<label>제목 </label><input type="text" id="title" name="title"
-								placeholder="예)아기 침대 무료 나눔해요" />
-						</div>
-						<div class="writeContent">
-							<label>닉네임 </label><input type="text" placeholder="홍길동" name="nickname" />
-							
-						</div>
-						<div class="writeContent">
-							<label>카테고리</label> <select id="area" name="area">
-								<option value="지역별">지역별</option>
-								<option value="서울">서울</option>
-								<option value="경기">경기</option>
-								<option value="광주">광주</option>
-								<option value="대구">대구</option>
-								<option value="대전">대전</option>
-								<option value="부산">부산</option>
-								<option value="울산">울산</option>
-							</select> 
-							<select id="kinds" name="kinds">
-								<option value="종류">종류</option>
-								<option value="가구">가구</option>
-								<option value="장난감">장난감</option>
-								<option value="옷">옷</option>
-								<option value="신발">신발</option>
-								<option value="카시트">카시트</option>
-								<option value="유모차">유모차</option>
-							</select> <select id="useTerm" name="period of use">
-								<option value="사용기간">사용기간</option>
-								<option value="1개월~3개월">1개월~3개월</option>
-								<option value="4개월~6개월">4개월~6개월</option>
-								<option value="7개월~9개월">7개월~9개월</option>
-								<option value="10개월~12개월">10개월~12개월</option>
-								<option value="1년이상">1년이상</option>
-							</select> <select id="itemCondition" name="Product status">
-								<option value="상품상태">상품상태</option>
-								<option value="최상">최상</option>
-								<option value="상">상</option>
-								<option value="중">중</option>
-								<option value="하">하</option>
-							</select>
-						</div>
-						<div class="writeContent">
-							<label id="contentLabel">내용 </label>
-							<textarea id="contents" name="contents"
-								placeholder="무료 나눔 상품에 대해 설명해주세요"></textarea>
-						</div>
+				<div class="handout_logoBox">
+					<img src="../semiview/images/handout/handout_writeLogo.png"/>
 				</div>
-				<div id="right">
-					<div class="mainImage">
-						<img id="mainImage" width="200px" height="200px"
-							src="../semiview/images/camera.png" /></br> 
-						<label for="mainfile" class="fileImages">메인이미지</label> 
+				<form name="writeForm" id="writeForm" method="POST" action="handOutWriteForm.do" enctype="multipart/form-data">
+				<div class="handout_title">
+					<input type="text" id="title" name="title" placeholder="제목" />
+				</div>
+				<div class="handout_nickname">
+					<input type="text" placeholder="닉네임" name="nickname" />
+				</div>
+				<div class="handout_categori">
+					<select id="area" name="area">
+						<option value="지역별">지역별</option>
+						<option value="서울">서울</option>
+						<option value="경기">경기</option>
+						<option value="광주">광주</option>
+						<option value="대구">대구</option>
+						<option value="대전">대전</option>
+						<option value="부산">부산</option>
+						<option value="울산">울산</option>
+					</select> 
+					<select id="kinds" name="kinds">
+						<option value="종류">종류</option>
+						<option value="가구">가구</option>
+						<option value="장난감">장난감</option>
+						<option value="옷">옷</option>
+						<option value="신발">신발</option>
+						<option value="카시트">카시트</option>
+						<option value="유모차">유모차</option>
+					</select> 
+					<select id="useTerm" name="period of use">
+						<option value="사용기간">사용기간</option>
+						<option value="1개월~3개월">1개월~3개월</option>
+						<option value="4개월~6개월">4개월~6개월</option>
+						<option value="7개월~9개월">7개월~9개월</option>
+						<option value="10개월~12개월">10개월~12개월</option>
+						<option value="1년이상">1년이상</option>
+					</select> 
+					<select id="itemCondition" name="Product status">
+						<option value="상품상태">상품상태</option>
+						<option value="최상">최상</option>
+						<option value="상">상</option>
+						<option value="중">중</option>
+						<option value="하">하</option>
+					</select>
+				</div>
+				<div class="handout_content">
+					<textarea id="contents" name="contents"	placeholder="무료 나눔 상품에 대해 설명해주세요"></textarea>
+					<div id="right">
+						<div class="mainImage">
+							<img id="mainImage" width="200px" height="200px"
+								src="../semiview/images/handout/photo.png" /></br> 
+							<label for="mainfile" class="fileImages">메인이미지</label> 
 							<a href="handOutWriteForm.do" id="fileSelect" class="inputFiles">
 							<input type="file" name="mainfile" id="mainfile"/></a> 
-						<label for="file1" class="fileImages">이미지1</label> 
-						<a href="handOutWriteForm.do" id="fileSelect" class="inputFiles">
+							<label for="file1" class="fileImages">이미지1</label> 
+							<a href="handOutWriteForm.do" id="fileSelect" class="inputFiles">
 							<input type="file" id="file1" name="file1"/></a></br> 
-						<label for="file2" class="fileImages">이미지2</label>
-						<a href="handOutWriteForm.do" id="fileSelect" class="inputFiles">
+							<label for="file2" class="fileImages">이미지2</label>
+							<a href="handOutWriteForm.do" id="fileSelect" class="inputFiles">
 							<input	type="file" id="file2"  name="file2"/></a> 
-						<label for="file3"	class="fileImages">이미지3</label> 
-						<a href="handOutWriteForm.do" id="fileSelect" class="inputFiles">
+							<label for="file3"	class="fileImages">이미지3</label> 
+							<a href="handOutWriteForm.do" id="fileSelect" class="inputFiles">
 							<input type="file" id="file3" name="file3"/></a></br>
+						</div>
 					</div>
 				</div>
+				
+				
 				<div id="upAndcenclebutton" alt="등록/취소 버튼 div" align="center">
 					
 					<input type="submit" name="submit" id="upload" value="등록" class="uploadAndcancel"/>
-					
-					 
 					<a href="handOut.do"> 
 					<input type="button" name="cancel" id="cancel" value="취소" class="uploadAndcancel"/>
 					</a>

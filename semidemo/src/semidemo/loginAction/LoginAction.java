@@ -41,9 +41,7 @@ public class LoginAction {
 			
 			session.setMaxInactiveInterval(30*60);//로그인 해놓고 아무 활동도 안하면 30분 뒤에 로그아웃이 되는 거.
 			
-			RequestDispatcher dis = req.getRequestDispatcher("/semiview/main/semimain.jsp");
-			dis.forward(req, resp);
-			
+			out.println("<script> history.go(-2); location.reload();</script>");
 		}else if(check==0) {
 			System.out.println("비밀번호 틀림!");
 			out.println("<script> alert('비밀번호를 확인해주세요.'); </script>");

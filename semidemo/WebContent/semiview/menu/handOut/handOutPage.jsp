@@ -47,10 +47,10 @@
 	<div class="layer" id="wrap">
 		<header>
 			<jsp:include page="../topmenu.jsp" />
-  		 </header>
+		</header>
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
 			<a href="handOutWrite.do"><img id="handOut"
-				src="../semiview/images/handout/handout_off.png" /></a>
+				src="../semiview/images/handout/handout_off.png"/></a>
 			<div id="inputContent">
 				<!-- 여기서부터 무료나눔 첫페이지 요소 이다. -->
 				<div class="inputDiv">
@@ -58,20 +58,23 @@
 						<table>
 							<tbody>
 								<tr>
-									<td colspan="4" id="ImageTd"><a
-										href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
-											<img style="border: 1px solid black;"
-											src="../semiview/images/handout/${dto.main_picture}" />
-									</a></td>
+									<td colspan="4" id="ImageTd">
+									<div class="imageDiv">
+										<a href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
+											<img src="../semiview/images/handout/${dto.main_picture}" />
+										</a>
+									</div>
+									</td>
 								</tr>
 								<tr>
-									<td colspan="2"><a
-										href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
-											${dto.title} </a></td>
+									<td id="titleTd" colspan="2">
+										<a href="handOutView.do?handout_post_num=${dto.handout_post_num}&pageNum=${pdto.currentPage}">
+										${dto.title}</a>
+									</td>
 									<td colspan="2">[${dto.area}]</td>
 								</tr>
 								<tr>
-									<td colspan="1">${dto.nickname}|</td>
+									<td colspan="1">by&nbsp;${dto.nickname}</td>
 									<td colspan="3">조회수 : ${dto.readcount}</td>
 								</tr>
 

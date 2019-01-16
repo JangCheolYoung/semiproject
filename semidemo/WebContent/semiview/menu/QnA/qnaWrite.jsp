@@ -322,17 +322,27 @@
 				return false;
 			}
 			if(title == ''){
-				alert("제목을 입력하세요.")
+				alert("제목을 입력하세요.");
 				return false;
 			}
 			if(content == ''){
-				alert("내용을 입력하세요.")
+				alert("내용을 입력하세요.");
+				return false;
+			}
+			
+			if(strByteLength(title) > 70){
+				alert("제목은 간략하게 입력해 주세요.");
 				return false;
 			}
 			
 			
 		});
 	});
+	
+	var strByteLength = function(s,b,i,c){
+		for(b=i=0;c=s.charCodeAt(i++);b+=c>>11?3:c>>7?2:1);
+		return b;
+	};
 	
 	
 </script>

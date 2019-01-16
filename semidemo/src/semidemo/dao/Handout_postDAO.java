@@ -58,19 +58,19 @@ public class Handout_postDAO {
 		try {
 			conn = init();
 			
-			String sql = "insert into handout_post values(handout_post_num_seq.nextval,?,?,?,?,?,'영철이',?,?,?,?,?,0)";
+			String sql = "insert into handout_post values(handout_post_num_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,0)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getTitle());
 			pstmt.setString(2, dto.getArea());
 			pstmt.setString(3, dto.getType_list());
 			pstmt.setString(4, dto.getPeriod_list());
 			pstmt.setString(5, dto.getCondition_list());
-			//pstmt.setString(6, dto.getNickname());
-			pstmt.setString(6, dto.getContent());
-			pstmt.setString(7, dto.getMain_picture());
-			pstmt.setString(8, dto.getPicture1());
-			pstmt.setString(9, dto.getPicture2());
-			pstmt.setString(10, dto.getPicture3());
+			pstmt.setString(6, dto.getNickname());
+			pstmt.setString(7, dto.getContent());
+			pstmt.setString(8, dto.getMain_picture());
+			pstmt.setString(9, dto.getPicture1());
+			pstmt.setString(10, dto.getPicture2());
+			pstmt.setString(11, dto.getPicture3());
 			pstmt.executeUpdate();
 			conn.commit();
 

@@ -322,6 +322,25 @@
 	
 		
 		$('#updateBtn').on('click',function(){
+			
+			
+			var title = $('#qna_title').val();
+			var content = $('#qna_content').val();
+			
+			if(title == ''){
+				alert("제목을 입력하세요.");
+				return false;
+			}
+			if(content == ''){
+				alert("내용을 입력하세요.");
+				return false;
+			}
+			
+			if(strByteLength(title) > 70){
+				alert("제목은 간략하게 입력해 주세요.");
+				return false;
+			}
+			
 			$('form').attr('action', 'qnaUpdate.do?pageNum='+${param.pageNum});
 			$('form').attr('enctype', 'multipart/form-data');
 			$('form').submit();
@@ -333,7 +352,10 @@
 	
 		
 	});
-	
+	var strByteLength = function(s,b,i,c){
+		for(b=i=0;c=s.charCodeAt(i++);b+=c>>11?3:c>>7?2:1);
+		return b;
+	};
 	
 </script>
 </head>

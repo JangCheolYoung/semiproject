@@ -148,20 +148,30 @@
 
 /*무료나눔하기 이미지*/
 #handOut {
-	float: left;
+	float: right;
+	width: 180px;
+	height: 60px;
+	margin-top: 30px;
+	margin-right: 70px;
 }
 
 table {
+	margin: 10px;
+	padding: 5px;
 	display: inline-block;
-	/* background-color: gray; */
-	border: 1px solid black;
+	border: 5px solid #FFCCCA;
+	border-radius: 8px;
+	
 	float: left;
+	
 }
 
 /*이미지 사이즈*/
 table img {
 	width: 269px;
 	height: 176px;
+	border-radius: 8px;
+	
 }
 
 /*a링크*/
@@ -171,4 +181,23 @@ a{
 	font-weight: bold;
 }
 
+/*제목 css a 요소의 width 값을 주어 그 width 값 이상일 시에 ...이 뜨도록 한다.*/
+#titleTd a{
+	display: inline-block;
+	width: 150px;
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	white-space: nowrap;
+	
+}
 
+.imageDiv{
+	border-bottom: 2px solid #FFCCCA;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	
+}
+
+#handOutImageDiv{
+		
+}

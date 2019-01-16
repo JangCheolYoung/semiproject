@@ -340,15 +340,16 @@ div#writeBtn {
 }
 
 
-
-/*제목 div */
-.title2{
-}
-
 /*제목 링크*/
-.title2 a{
+.title2 p a{
 	display: inline;
 }
+.title2 p{
+  margin-top:0px;
+  margin-bottom:0px;
+  text-align: left;
+}
+
 
 
 /*--------------------------------------------------------------------------------*/
@@ -439,35 +440,6 @@ div#writeBtn {
 				<div class="qna_board">
 					<div id="top">
 					
-					<!-- 불필요하여 주석처리 했습니다. -->
-						<!-- <div class="top_category">
-							추가한 div요소입니다.
-							<select name="category" id="category">
-								<option value="">전체</option>
-								<option value="육아정보">육아정보</option>
-								<option value="레시피">레시피</option>
-								<option value="맘스타그램">맘스타그램</option>
-								<option value="무료나눔">무료나눔</option>
-								<option value="기타">기타</option>
-							</select>
-						</div> -->
-
-						<!-- 추가한 div요소입니다. -->
-						<!-- <div class="top_search">
-							<img alt="검색 로고입니다." src="../semiview/images/qna/loupe.png"
-								id=searchlogo>
-							<div class="top_search_category">
-								<select name="search_category" id="search_category">
-									<option value="">전체</option>
-									<option value="육아정보">육아정보</option>
-									<option value="레시피">레시피</option>
-									<option value="맘스타그램">맘스타그램</option>
-									<option value="무료나눔">무료나눔</option>
-									<option value="기타">기타</option>
-								</select> 
-								<input type="text" id="search_text" />
-							</div>
-						</div>-->
 						<div id="writeBtn">
 						</div> 
 					</div>
@@ -491,14 +463,16 @@ div#writeBtn {
 										<!--<td>${dto.qna_num}</td>-->
 										<td>${dto.qna_category}</td>
 										<td class="title2">
-											<!-- 답변글일경우 앞에 공백이미지를 배치하기 위해서--> 
-											<c:if test="${dto.re_level !=0 }">
-												<img class="titleImg" src="../semiview/images/level.gif" width="10">
-												<img class="titleImg" src="../semiview/images/re.gif" />
-											</c:if>
-											<a class="title3" href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">
-											<span id="title">${dto.title }</span></a> <!-- num값 뿐만아니라 현재페이지 값도 받아야함 -->
-											
+											<p>
+												<c:if test="${dto.re_level !=0 }">
+													<img class="titleImg" src="../semiview/images/level.gif" width="10">
+													<img class="titleImg" src="../semiview/images/re.gif" />
+												</c:if>
+												<a class="title3" href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">
+													<span id="title">${dto.title }</span>
+												</a> 
+												
+											</p>
 										</td>
 										<td>${dto.nickname}</td>
 										<td>${dto.write_date}</td>

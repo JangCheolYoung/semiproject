@@ -227,36 +227,36 @@
       /*-------------------------------------------------------------------------------*/
       //페이지 이동
       $('#home').on('click', function(){
-         $('form').attr('action', '*');
-          $('form').submit();
+         $('#frmTop').attr('action', '*');
+          $('#frmTop').submit();
       });
       $('#info').on('click', function(){
-         $('form').attr('action', 'info.do');
-          $('form').submit();
+         $('#frmTop').attr('action', 'info.do');
+          $('#frmTop').submit();
       });
       $('#recipe').on('click', function(){
-         $('form').attr('action', 'recipe.do');
-          $('form').submit();
+         $('#frmTop').attr('action', 'recipe.do');
+          $('#frmTop').submit();
       });
       $('#momstargram').on('click', function(){
-         $('form').attr('action', 'momTalk.do');
-          $('form').submit();
+         $('#frmTop').attr('action', 'momTalk.do');
+          $('#frmTop').submit();
       });
       $('#handout').on('click', function(){
-         $('form').attr('action', 'handOut.do');
-          $('form').submit();
+         $('#frmTop').attr('action', 'handOut.do');
+          $('#frmTop').submit();
       });
       $('#qna').on('click', function(){
-         $('form').attr('action', 'question.do');
-          $('form').submit();
+         $('#frmTop').attr('action', 'question.do');
+          $('#frmTop').submit();
       });
       $('#mypage').on('click', function(){
     	 if($('#session_id').val() != ''){
     		 
     	 }
     	  
-         $('form').attr('action', 'myPage.do');//main컨트롤러에 추가해주어야 함
-          $('form').submit();
+         $('#frmTop').attr('action', 'myPage.do');//main컨트롤러에 추가해주어야 함
+          $('#frmTop').submit();
       });
    });
 </script>
@@ -272,7 +272,7 @@
       </div>
       
       <!-- 페이지 이동 메뉴바(버튼 형식) -->
-      <form name = "frm" id = "frm">
+      <form name = "frm" id = "frmTop">
          <div id = "topMenuBox">
             <div id = "homeBox">
                <input type = "image" id = "home" name = "home" alt="홈" src="../semiview/images/topmenu/topmenuHome_off.png"/>

@@ -47,40 +47,47 @@ function listView(handout_post_num){
 function show(comment) {
 	
 	for (index in comment) {
-	 
 		
-		var div = $('<div style="clear: both;"></div>'); //div 생성.
+		
+		var div = $('<div style="border: 1px solid black; margin: auto; margin-bottom: 10px; margin-top: 10px; width:90%; height: 80px; overflow: auto; border-radius: 3px;"></div>'); //div 생성.
 		$('#commContent').append(div); //새로 만든 div 추가
 		//이미지 div 생성
-		var imgDiv = $('<div style="float: left;"></div>'); 
+		var imgDiv = $('<div style="float: left; margin: 10px 10px; padding-top: 5px;"></div>'); 
 		$(div).append(imgDiv);
 		var img = $('<img id="comm_img" style="width:50px; height: 50px;" src="../semiview/images/handout/'+comment[index].image+'"/>');
 		$(imgDiv).append(img);
 		//가운데 div 에 nickname, write_time, content 넣기
-		var centerDiv = $('<div style="float: left;"></div>');
+		var centerDiv = $('<div id="centerDiv" style="float: left; margin-left: 5px; margin-top: 5px;"></div>');
 		$(div).append(centerDiv);
-		var nickname = $('<span id="comm_nickname">'+comment[index].nickname+'&nbsp;&nbsp;&nbsp;'+'</span>');
+		var nickname = $('<span id="comm_nickname" style="font-weight: 600;">'+comment[index].nickname+'&nbsp;&nbsp;&nbsp;'+'</span>');
 		$(centerDiv).append(nickname);
 		var write_time = $('<span id="comm_write_time">'+comment[index].write_time+'</span>');
 		$(centerDiv).append(write_time);
-		var content = $('<p id="comm_content">'+comment[index].content+'</p>');
+		var content = $('<p id="comm_content" style="width: 600px;">'+comment[index].content+'</p>');
 		$(centerDiv).append(content);
-		//버튼 div 생성
-		var btnDiv = $('<div style="float: right;"></div>');
+			
+		//버튼 div 생성	
+		var btnDiv = $('<div style="float: right; width: 100px; height: 80px;"></div>');
 		$(div).append(btnDiv);
-		var inputupdate = $('<input type="button" id="commUpdateBtn" name="commUpdateBtn" value="댓글수정"/>');
-		$(btnDiv).append(inputupdate);
-		var inputdelete = $('<input type="button" id="commDeleteBtn" name="commDeleteBtn" value="댓글삭제"/>');
-		$(btnDiv).append(inputdelete);
+		//var inputupdate = $('<input type="button" id="commUpdateBtn" name="commUpdateBtn" value="댓글수정"/>');
+		var inputUpdate = $('<input type="image" id="commUpdateBtn" name="commUpdateBtn" src="../semiview/images/handout/handout_modify.png" style="width: 40px; height:40px;"/>');
+		$(btnDiv).append(inputUpdate);
+		//var inputdelete = $('<input type="button" id="commDeleteBtn" name="commDeleteBtn" value="댓글삭제"/>');
+		var inputDelete = $('<input type="image" id="commDeleteBtn" name="commDeleteBtn" src="../semiview/images/handout/handout_delete.png" style="width: 40px; height:40px;"/>');
+		$(btnDiv).append(inputDelete);
+		
+		
 		var handout_comm_num = $('<input type="hidden" id="handout_comm_num" name="hanout_comm_num" value="'+comment[index].handout_comm_num+'"/>');
 		$(btnDiv).append(handout_comm_num);
 		
-		var tfDiv = $('<div class = "tfDiv" style = "display : none;" ></div>'); //수정 버튼을 띄울떄 나올 div.
+		var tfDiv = $('<div class="tfDiv" style = "position: absolute; display : none; margin-top:30px; padding-left: 70px;" ></div>'); //수정 버튼을 띄울떄 나올 div.
 		$(div).append(tfDiv);
-		var tf = $('<textarea rows="4" cols="45" id="commtf" name="commtf" placeholder="수정사항을 입력해주세요." ></textarea>');
+		var tf = $('<textarea rows="2" cols="80" id="commtf" name="commtf" placeholder="수정사항을 입력해주세요."></textarea>');
 		$(tfDiv).append(tf);
-		var inputUpdate = $('<input type="image" value="'+comment[index].handout_comm_num+'" src="../semiview/images/handout/checked.png" id = "inputUpdate" style = "width: 30px; height: 30px; size: 30px; padding-left:20px;"/>');
+		var inputUpdate = $('<input type="image" value="'+comment[index].handout_comm_num+'" src="../semiview/images/checked.png" id = "inputUpdate" style = "width: 30px; height: 30px; size: 30px; padding-left:20px;"/>');
 		$(tfDiv).append(inputUpdate);
+		
+		
 		}
 		
 		

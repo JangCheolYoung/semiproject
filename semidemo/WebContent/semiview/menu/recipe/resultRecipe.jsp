@@ -165,7 +165,7 @@ p {
 								</tr>
 								<tr>
 									<td rowspan="2"><img
-										src="../semiview/images/recipe/${dto.main_picture}"
+										src="../semiview/images/recipe/${dto.recipe_title}.jpg"
 										id="recipe_img"></td>
 									<td><p>재료</p></td>
 									<td>${dto.ingredient}</td>
@@ -196,7 +196,6 @@ p {
 			</div>
 		</div>
 	</div>
-	<a href="login.do"><img id="loginBtn"src="../semiview/images/loginBtn_off.png" /></a>
 
 
 </body>

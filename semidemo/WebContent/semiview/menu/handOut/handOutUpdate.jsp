@@ -203,7 +203,7 @@
 	
 }
 
-#content #inputContent .handout_nickname input{
+#content #inputContent .handout_nickname span{
 	width: 300px;
 	height: 40px;
 	margin-top: 10px;
@@ -613,11 +613,11 @@
 				</div>
 				<form name="writeForm" id="writeForm" method="POST"	action="handOutUpdatePro.do?pageNum=${param.pageNum}" enctype="multipart/form-data">
 				<input type="hidden" id="handout_post_num" name="handout_post_num" value="${dto.handout_post_num}"/>
+				<div class="handout_nickname">
+					<span>작성자 : ${dto.nickname}</span>
+				</div>
 				<div class="handout_title">
 					<input type="text" id="title" name="title" placeholder="제목" value="${dto.title}" />
-				</div>
-				<div class="handout_nickname">
-					<input type="text" placeholder="닉네임" name="nickname" value="${dto.nickname}"/>
 				</div>
 				<div class="handout_categori">
 					<select id="area" name="area">
@@ -687,8 +687,6 @@
 			</div>
 		</div>
 	</div>
-	<a href="login.do"><img id="loginBtn"
-		src="../semiview/images/loginBtn_off.png" /></a>
 
 </body>
 </html>

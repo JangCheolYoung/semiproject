@@ -36,6 +36,7 @@ public class CommentInsertController extends HttpServlet{
 		
 		
 		String nickname = req.getParameter("nickname");
+		System.out.println("CommentInsertController안에 "+nickname);
 		String comment_content = req.getParameter("comment_content");
 		String image = req.getParameter("image");
 		

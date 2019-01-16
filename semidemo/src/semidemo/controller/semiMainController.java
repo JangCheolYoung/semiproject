@@ -1,7 +1,6 @@
 package semidemo.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import semidemo.dao.RecipeDAO;
-import semidemo.dto.RecipeDTO;
 import semidemo.handOutAction.DeleteAction;
 import semidemo.handOutAction.ListAction;
 import semidemo.handOutAction.UpdateFormAction;
@@ -27,6 +24,8 @@ import semidemo.loginAction.SignAction;
 import semidemo.momTalkAction.MomTalkPostDeleteAction;
 import semidemo.momTalkAction.MomTalkPostViewAction;
 import semidemo.momTalkAction.MomTalkPostWriteAction;
+import semidemo.myPageAction.Mypage_handoutAction;
+import semidemo.myPageAction.Mypage_qnaAction;
 import semidemo.qnaAction.QnACategorySearchAction;
 import semidemo.qnaAction.QnADeleteAction;
 import semidemo.qnaAction.QnAListAction;
@@ -132,6 +131,8 @@ public class semiMainController extends HttpServlet {
 			recipeList.execute(req, resp);
 			
 			String r_lv = req.getParameter("r_lv");
+			
+			System.out.println(r_lv);
 			path = "/semiview/menu/recipe/viewRecipe.jsp?r_lv="+r_lv;
 			
 		}else if(action.equals("/recipeSearchForm.do")) {
@@ -149,7 +150,7 @@ public class semiMainController extends HttpServlet {
 		}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-		else if (action.equals("/momTalk.do")) {
+		else if (action.equals("/momstargram.do")) {
 			// 맘톡 페이지로 이동
 
 			// 가존에 입력되어 있던 값들을 삭제하고 다시 불러와야함
@@ -160,28 +161,28 @@ public class semiMainController extends HttpServlet {
 			// 맘톡 메인 페이지 경로 지정
 			path = "/semiview/menu/momTalk/momstargramPage.jsp";
 
-		} else if (action.equals("/write.do")) {
-			// 맘톡 페이지에서 글을 입력했을때
-
-			// 새롭게 입력된 값을 넘겨줌
+		}else if(action.equals("/write.do")) {
+			//맘톡 페이지에서 글을 입력했을때
+			
+			//새롭게 입력된 값을 넘겨줌
 			MomTalkPostWriteAction postWrite = new MomTalkPostWriteAction();
-			postWrite.execute(req, resp); // 글이 저장됨
-
-			// 다시 전체 리스트를 보여주는 맘톡의 메인페이지로 이동
-			resp.sendRedirect("momTalk.do");
-
-		} else if (action.equals("/delete.do")) {
-			// 맘톡 페이지에서 글을 삭제했을때
-
-			// 해당하는 게시물의 num값을 넘겨주어 해당하는 게시물 전체를 삭제한다.
+			postWrite.execute(req, resp); //글이 저장됨
+			
+			//다시 전체 리스트를 보여주는 맘톡의 메인페이지로 이동
+			resp.sendRedirect("momstargram.do");
+			
+		}else if(action.equals("/delete.do")) {
+			//맘톡 페이지에서 글을 삭제했을때
+			
+			//해당하는 게시물의 num값을 넘겨주어 해당하는 게시물 전체를 삭제한다.
 			MomTalkPostDeleteAction postDelete = new MomTalkPostDeleteAction();
 			postDelete.execute(req, resp);
-
-			// 다시 전체 리스트를 보여주는 맘톡의 메인페이지로 이동
-			resp.sendRedirect("momTalk.do");
-
+			
+			//다시 전체 리스트를 보여주는 맘톡의 메인페이지로 이동
+			resp.sendRedirect("momstargram.do");
+			
 		}
-
+		
 ////////////////////////////////////////////////////////////////////////////////////////////////
 		 else if (action.equals("/handOut.do")) {
 				//상품 리스트 페이지
@@ -282,6 +283,18 @@ public class semiMainController extends HttpServlet {
 			QnACategorySearchAction qnaCategorySearch = new QnACategorySearchAction();
 			qnaCategorySearch.execute(req, resp);
 			resp.sendRedirect("question.do");
+			
+		}else if(action.equals("/myPage.do")) {
+			
+			//handout list 가져오기
+			Mypage_handoutAction list = new Mypage_handoutAction();
+			list.execute(req, resp);
+			
+			Mypage_qnaAction qnalist = new Mypage_qnaAction();
+			qnalist.execute(req, resp);
+			
+			//handout 찾을것
+			path = "/semiview/menu/Mypage/Mypage.jsp";
 		}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////		

@@ -365,8 +365,9 @@
       // 답글 이미지 눌렀을 때 발생하는 이벤트//////////////////////////////////////////
       $('#answerBtn').on('click', function(){
     	  
+    	 var nickname = $('#nickname').val();
     	  // 관리자 아이디로 로그인 했을때만 답변을 등록할 수 있다.
-    	  if('${sessionScope.id}' == 'hr'){
+    	  if('${sessionScope.nickname}'==nickname || '${sessionScope.id}' == 'hr'){
     		  
 	         $('form').attr('action', 'qnaWriteForm.do');
 	         $('form').submit();
@@ -381,7 +382,6 @@
       
       // 수정 이미지를 눌렀을 때 발생하는 이벤트/////////////////////////////////////////////////////
       $('#updateBtn').on('click', function(){
-    	  
     	 
     	 var nickname = $('#nickname').val();
     	 //alert("nickname = "+nickname);
@@ -415,8 +415,19 @@
       });
    });
 </script>
+
+
 </head>
 <body>
+<jsp:scriptlet>
+
+	//치환 변수 선언
+	pageContext.setAttribute("cr", "\r");  //space
+	pageContext.setAttribute("cn", "\n"); //Enter
+	pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+	
+
+</jsp:scriptlet>
    <div class="layer" id="wrap">
       <header>
 			<jsp:include page="../topmenu.jsp" />
@@ -447,12 +458,12 @@
 		</div>
 		<div class = "qnaContentBox">
 			<span>내용</span>
-			<div class = "qnaImagefile">
-				<%-- <img src="../semiview/images/qna/${dto.image}"/> --%>
-				<!-- <img src="../semiview/images/닝닝이들세로사진.jpg"/> -->
-				<!-- <img src="../semiview/images/아보카도정사각형사진.jpg"/> -->
-				<img src="../semiview/images/캡처가로긴이미지.PNG"/> 
-			</div>
+				<c:set var ="file" value="${dto.image}"/>
+				<c:if test="${!empty file}">
+					<div class = "qnaImagefile">
+						<img src="../semiview/images/qna/${dto.image}"/>
+					</div>
+				</c:if>
 			<div class = "qnaContent">
 				${dto.content}
 			</div>
@@ -492,7 +503,6 @@
       
    </div>
    
-   <a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>
 
 </body>
 </html>

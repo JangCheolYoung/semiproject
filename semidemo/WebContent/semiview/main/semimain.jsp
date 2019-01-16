@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,8 @@
 <link rel="stylesheet" type="text/css" href="main/reset.css" />
 <style type="text/css">
 .wrap {
-	margin-left: auto;
-	margin-top: 100px;
-	width: 1400px;
+	margin: auto;
+	width: 1000px;
 }
 
 .wrap #loginBtn {
@@ -28,43 +27,52 @@
 }
 
 .wrap .mainImage {
-	margin: 35px auto;
-	margin-bottom: 35px;
+	margin: auto;
 	width: 1000px;
 }
 
 .category {
-	width: 1400px;
+	display: block;
+	width: 800px;
 	height: 420px;
+	text-align: center;
+	margin: 0 auto;
 }
 
 .category #recipeBtn {
 	width: 200px;
 	height: 200px;
-	margin-right: 70px;
+	margin: 10px;
 }
 
-.category #momTalkBtn {
+.category #momstargramBtn {
 	width: 200px;
 	height: 200px;
-	margin-right: 70px;
+	margin: 10px;	
 }
 
 .category #handOutBtn {
 	width: 200px;
 	height: 200px;
-	margin-right: 70px;
+	margin: 10px;
 }
 
 .category #infoBtn {
 	width: 200px;
 	height: 200px;
-	margin-right: 70px;
+	margin: 10px;
 }
 
 .category #questionBtn {
 	width: 200px;
 	height: 200px;
+	margin: 10px;
+}
+
+.category #mypageBtn {
+	width: 200px;
+	height: 200px;
+	margin: 10px;
 }
 </style>
    
@@ -97,11 +105,11 @@
          });
          
          //맘톡
-         $('#momTalkBtn').on('click mouseover', function(){
-            $(this).attr('src', $(this).attr('src').replace("momTalk_off", "momTalk_on"));
+         $('#momstargramBtn').on('click mouseover', function(){
+            $(this).attr('src', $(this).attr('src').replace("momstargram_off", "momstargram_on"));
          });
-         $('#momTalkBtn').on('mouseleave', function(){
-            $(this).attr('src', $(this).attr('src').replace("momTalk_on", "momTalk_off"));
+         $('#momstargramBtn').on('mouseleave', function(){
+            $(this).attr('src', $(this).attr('src').replace("momstargram_on", "momstargram_off"));
          });
          
          //무료나눔
@@ -128,6 +136,14 @@
             $(this).attr('src', $(this).attr('src').replace("question_on", "question_off"));
          });
          
+         //마이페이지
+         $('#mypageBtn').on('click mouseover', function(){
+            $(this).attr('src', $(this).attr('src').replace("mypage_off", "mypage_on"));
+         });
+         $('#mypageBtn').on('mouseleave', function(){
+            $(this).attr('src', $(this).attr('src').replace("mypage_on", "mypage_off"));
+         });
+         
          /////////////////////////////////////////////////////////////////////////////////////
          //버튼별 action 지정
          
@@ -148,8 +164,8 @@
             $('form').submit();
          });
          //맘톡
-         $('#momTalkBtn').on('click', function(){
-            $('form').attr('action', 'momTalk.do');
+         $('#momstargramBtn').on('click', function(){
+            $('form').attr('action', 'momstargram.do');
              $('form').submit();
          });
          //무료나눔
@@ -165,6 +181,11 @@
          //Q&A
          $('#questionBtn').on('click', function(){
             $('form').attr('action', 'question.do');
+             $('form').submit();
+         });
+       //MyPage
+         $('#mypageBtn').on('click', function(){
+            $('form').attr('action', 'myPage.do');
              $('form').submit();
          });
          
@@ -198,11 +219,12 @@
          <input type="image" id="logoutBtn" src="../semiview/images/logoutBtn_off.png" hidden=""/>
          <img alt="메인이미지" src="../semiview/images/mammaLogo.png" class="mainImage"/>
          <div class = "category">
+         		<input type="image" id="infoBtn" src="../semiview/images/info_off.png"/>
                <input type="image" id="recipeBtn" src="../semiview/images/recipe_off.png"/>
-               <input type="image" id="momTalkBtn" src="../semiview/images/momTalk_off.png"/>
+               <input type="image" id="momstargramBtn" src="../semiview/images/momstargram_off.png"/>
                <input type="image" id="handOutBtn" src="../semiview/images/handOut_off.png"/>
-               <input type="image" id="infoBtn" src="../semiview/images/info_off.png"/>
                <input type="image" id="questionBtn" src="../semiview/images/question_off.png"/>
+               <input type="image" id="mypageBtn" src="../semiview/images/mypage_off.png"/>
          </div>
       </form>
    </div>

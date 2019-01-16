@@ -34,6 +34,8 @@ public class MomTalkCommInputController extends HttpServlet{
 		dto.setContent(content);
 		dto.setNickname(nickname);
 		
+		System.out.println("In MomTalkCommInputController : "+dto.getContent());
+		
 		dao.commInputMethod(dto);
 		
 		resp.setContentType("text/html;charset=utf-8");

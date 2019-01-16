@@ -22,14 +22,16 @@ public class MomtalkAllDeleteController extends HttpServlet{
 		
 		Momtalk_postDAO dao = Momtalk_postDAO.getInstance(); //전체 검색해올 dao
 		
-		//momtalk 테이블에 저장되어 있는 해당 num값 게시물 삭제
-		dao.deleteMethod(momtalk_post_num);
-		
 		//해당 게시물에 있는 댓글들도 모두 삭제
 		dao.commAllDeleteMethod(momtalk_post_num);
 		
-		resp.setContentType("text/html;charset=utf-8");
+		//momtalk 테이블에 저장되어 있는 해당 num값 게시물 삭제
+		dao.deleteMethod(momtalk_post_num);
+		
+		/*resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out = resp.getWriter();
-		out.print(momtalk_post_num);
+		out.print(momtalk_post_num);*/
+		resp.sendRedirect("momTalk.do");
+		
 	}//end doGet()///////////////////////////////////////////
 }//end class

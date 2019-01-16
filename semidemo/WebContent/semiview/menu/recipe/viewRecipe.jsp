@@ -34,7 +34,7 @@
 }
 
 table {
-	width: 800px;`
+	width: 800px;
 	border: 2px dashed #cfcfcf;
 	margin-bottom: 20px;
 	padding-bottom: 10px;
@@ -48,6 +48,10 @@ tr {
 td {
 	text-align: left;
 	padding: 0px 15px 10px;
+}
+
+#lv_img {
+margin: 20px;
 }
 
 #level_img {
@@ -96,7 +100,7 @@ p {
 
 #sch_img {
 	position: fixed;
-	right: 6%;
+	right: 5%;
 	bottom: 5%;
 	text-decoration: none;
 }
@@ -122,7 +126,7 @@ p {
 						<table align="center">
 							<tr>
 								<td rowspan="3"><img
-									src="../semiview/images/recipe/${dto.main_picture}"
+									src="../semiview/images/recipe/${dto.recipe_title}.jpg"
 									id="recipe_img"></td>
 								<td><p>요리명</p></td>
 								<td>${dto.recipe_title}</td>
@@ -147,14 +151,10 @@ p {
 			</div>
 		</div>
 	</div>
-	<a href="login.do"><img id="loginBtn"
-		src="../semiview/images/loginBtn_off.png" /></a>
-
 </body>
 <footer>
 	<a href="recipeSearchForm.do"><img id=sch_img
 		src="../semiview/images/sch_img_.png"></a> <a href="#top"><img
 		id=bottom src="../semiview/images/top_img.png"></a>
 </footer>
-
 </html>

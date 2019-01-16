@@ -285,4 +285,83 @@ public class Momtalk_postDAO {
 			
 		}//end commDeleteMethod()
 	
+	// ------------------------------------------------------------------------------
+	
+	//좋아요 증가시키기
+	public void likeUpCntMethod(int momtalk_post_num) {
+		try {
+			conn = init();
+			String sql = "update momtalk_post set like_cnt = like_cnt+1 where momtalk_post_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, momtalk_post_num);
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}//end likeUpCntMethod()
+	
+	
+	// ------------------------------------------------------------------------------
+	
+	//좋아요 감소시키기
+	public void likeDownCntMethod(int momtalk_post_num) {
+		try {
+			conn = init();
+			String sql = "update momtalk_post set like_cnt = like_cnt-1 where momtalk_post_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, momtalk_post_num);
+			pstmt.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}//end likeDownCntMethod()
+		
+	
+	// ------------------------------------------------------------------------------
+	
+	//좋아요 값 리턴하기
+	public int returnLikeCntMethod(int momtalk_post_num) {
+		int result = 0;
+		
+		try {
+			conn = init();
+			String sql = "select like_cnt from momtalk_post where momtalk_post_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, momtalk_post_num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt("like_cnt");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}//end returnLikeCntMethod()
+	
 }//end class

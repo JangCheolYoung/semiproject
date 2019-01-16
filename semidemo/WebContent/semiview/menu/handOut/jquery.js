@@ -1,14 +1,12 @@
 
 
-
-
 //댓글 입력
 function insertHandOutComment(){
 	var handout_post_num = $('#handout_post_num').val();
-	var nickname = $('#nickname').val();
 	var comment_content = $('#comment_content').val();
+	var nickname = $('#session_nickname').val();
+	alert(nickname);
 	var image = $('#image').val();
-	
 	$.ajax({
 		type : 'POST',
 		dataType : 'text',
@@ -17,6 +15,7 @@ function insertHandOutComment(){
 			handout_post_num : handout_post_num, nickname:nickname,comment_content:comment_content,image:image
 		},
 		success : function(){
+			alert('success');
 			$('#commContent').empty(); //commentList 의 자식 삭제. (객체는 남아있고 자식 요소만 삭제 된다.)
 			listView(handout_post_num); //listView 재호출
 			
@@ -59,9 +58,9 @@ function show(comment) {
 		//가운데 div 에 nickname, write_time, content 넣기
 		var centerDiv = $('<div id="centerDiv" style="float: left; margin-left: 5px; margin-top: 5px;"></div>');
 		$(div).append(centerDiv);
-		var nickname = $('<span id="comm_nickname" style="font-weight: 600;">'+comment[index].nickname+'&nbsp;&nbsp;&nbsp;'+'</span>');
+		var nickname = $('<span id="comm_nickname" style="font-weight: 600;">'+comment[index].nickname+'</span>');
 		$(centerDiv).append(nickname);
-		var write_time = $('<span id="comm_write_time">'+comment[index].write_time+'</span>');
+		var write_time = $('<span id="comm_write_time">&nbsp;&nbsp;&nbsp;'+comment[index].write_time+'</span>');
 		$(centerDiv).append(write_time);
 		var content = $('<p id="comm_content" style="width: 600px;">'+comment[index].content+'</p>');
 		$(centerDiv).append(content);

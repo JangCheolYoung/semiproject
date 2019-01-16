@@ -1,4 +1,60 @@
 var titleNum; //전역변수로 선언
+var isEnd = false;
+var cnt=0;
+var pm=1;
+//좋아요 증가 요청
+function likeUpCnt(momtalk_post_num){
+	$.ajax({
+		type:'GET',
+		dataType:'text',
+		url:'likeUpCnt?momtalk_post_num='+momtalk_post_num,
+		success:function(res){
+			alert("좋아요 증가 성공!");
+			alert(res);
+			returnLikeCnt(res);
+		},
+		error:function(res){
+			alert("좋아요 증가 실패!");
+		}
+	});
+}
+
+//좋아요 감소 요청
+function likeDownCnt(momtalk_post_num){
+	$.ajax({
+		type:'GET',
+		dataType:'text',
+		url:'likeDownCnt?momtalk_post_num='+momtalk_post_num,
+		success:function(res){
+			alert("좋아요 감소 성공!");
+			alert(res);
+			returnLikeCnt(res);
+		},
+		error:function(res){
+			alert("좋아요 감소 실패!");
+		}
+	});
+}
+
+//좋아요 값 받아오기
+function returnLikeCnt(momtalk_post_num){
+	var spanId = ".result"+titleNum;
+	$.ajax({
+		type:'GET',
+		dataType:'text',
+		url:'returnLikeCnt?momtalk_post_num='+momtalk_post_num,
+		success:function(res){
+			alert("좋아요 값 받아오기 성공!");
+			alert(res);
+			var span = $('<span class="span1">'+res+'</span>');
+			$(spanId).append(span);
+		},
+		error:function(res){
+			alert("좋아요 값 받아오기 실패!");
+		}
+	});
+}
+
 
 //게시글+댓글 삭제요청
 function allDelete(momtalk_post_num){
@@ -31,7 +87,7 @@ function listInput(momtalk_post_num, content, nickname){
 			listView(res);
 		},
 		error:function(res){
-			//alert("실패!");
+			alert("실패!");
 		}
 	});
 }
@@ -113,13 +169,16 @@ function viewMessage(res){
 		var input = $('<input type = "hidden" name = "momtalk_comm_num" value="'+res[index].momtalk_comm_num+'" />');
 		$(div).append(input);
 		
-		var image = $('<img class = "commImage" src="../semiview/images/commImage.png" style = "width: 45px; height: 45px; size: 45px; padding-top:10px;"/>');
+		var image = $('<img class = "commImage" src="../semiview/images/momtalk/commImage.png" style = "width: 40px; height: 40px; size: 40px; padding-top:15px; padding-right:15px"/>');
 		$(div).append(image);
-		var span1 = $('<span>&nbsp;&nbsp;'+res[index].nickname+'&nbsp;&nbsp;</span>');
+		
+		var span1 = $('<span class="span1">'+res[index].nickname+'</span>');
 		$(div).append(span1);
-		var span2 = $('<span>|&nbsp;&nbsp;'+res[index].write_time+'</span>');
+		
+		var span2 = $('<span class="span2">&nbsp;&nbsp;|&nbsp;&nbsp;'+res[index].write_time+'</span>');
 		$(div).append(span2);
-		var p1 = $('<p style = "background-color : #FFCCCC;">'+res[index].content+'</p>');
+		
+		var p1 = $('<p style = "background-color : #FFCCCC; border-radius : 8px;">&nbsp;&nbsp;&nbsp;'+res[index].content+'</p>');
 		$(div).append(p1);
 		
 		//style = "display : none;"
@@ -127,13 +186,13 @@ function viewMessage(res){
 		$(div).append(tfDiv);
 			var tf = $('<textarea rows="4" cols="45" id="commtf" name="commtf" placeholder="수정사항을 입력해주세요." ></textarea>');
 			$(tfDiv).append(tf);
-			var inputModi = $('<input type="image" value="수정하기" src="../semiview/images/checked.png" class = "inputModi" style = "width: 30px; height: 30px; size: 30px; padding-left:20px;"/>');
+			var inputModi = $('<input type="image" value="수정하기" src="../semiview/images/momtalk/checked.png" class = "inputModi" style = "width: 30px; height: 30px; size: 30px; padding-left:20px;"/>');
 			$(tfDiv).append(inputModi);
 		
 		
-		var inputupdate = $('<input type="image" src="../semiview/images/commmodi.png" class = "commModi" style = "width: 30px; height: 30px; size: 30px; padding-right:20px; float : right;"/>');
+		var inputupdate = $('<input type="image" src="../semiview/images/momtalk/commmodi.png" class = "commModi" style = "width: 30px; height: 30px; size: 30px; padding-right:20px; float : right;"/>');
 		$(div).append(inputupdate);
-		var inputdelete = $('<input type="image" src="../semiview/images/commdelete.png" class = "commDel" style = "width: 30px; height: 30px; size: 30px; padding-right:10px; float : right;"/>');
+		var inputdelete = $('<input type="image" src="../semiview/images/momtalk/commdelete.png" class = "commDel" style = "width: 30px; height: 30px; size: 30px; padding-right:10px; float : right;"/>');
 		$(div).append(inputdelete);
 	}
 	

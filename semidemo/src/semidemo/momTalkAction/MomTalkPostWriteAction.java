@@ -35,9 +35,9 @@ public class MomTalkPostWriteAction{
 		//String saveDirectory = path + "/temp"; //저장장소 지정
 		//System.out.println(saveDirectory);
 		
-		String saveDirectory = "c:\\temp";
+		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\semidemo\\semiview\\images\\momtalk";
 		
-		System.out.println(saveDirectory);
+		//System.out.println(saveDirectory);
 		
 		File file = new File(saveDirectory);
 		if(!file.exists()) //파일이 존재하지 않으면

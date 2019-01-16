@@ -23,6 +23,9 @@ public class CommentUpdateController extends HttpServlet{
 		int handout_comm_num = Integer.parseInt(req.getParameter("handout_comm_num"));
 		String comm_content = req.getParameter("comm_content");
 		
+		System.out.println("handout_post_num = "+handout_post_num);
+		System.out.println("handout_comm_num = "+handout_comm_num);
+		System.out.println("comm_content = "+comm_content);
 		
 				
 		Handout_commDAO dao = Handout_commDAO.getInstance();

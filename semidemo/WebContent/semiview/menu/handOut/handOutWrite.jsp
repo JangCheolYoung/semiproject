@@ -630,6 +630,7 @@
 				<form name="writeForm" id="writeForm" method="POST" action="handOutWriteForm.do" enctype="multipart/form-data">
 				<div class="handout_nickname">
 					<span class="writer">작성자 : ${sessionScope.nickname}</span>
+					<input type="hidden" name="nickname" id ="nickname" value="${sessionScope.nickname}"/>
 				</div>
 				<div class="handout_title">
 					<input type="text" id="title" name="title" placeholder="제목" />
@@ -704,8 +705,6 @@
 			</div>
 		</div>
 	</div>
-	<a href="login.do"><img id="loginBtn"
-		src="../semiview/images/loginBtn_off.png" /></a>
 
 </body>
 </html>

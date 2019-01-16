@@ -314,6 +314,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		
+		
+		
 		$('#loginBtn').hover(
 			function() {
 			$(this).attr("src",$(this).attr("src").replace("off.png","on.png"));},
@@ -361,6 +365,15 @@
 </head>
 
 <body>
+<jsp:scriptlet>
+
+	//치환 변수 선언
+	pageContext.setAttribute("cr", "\r");  //space
+	pageContext.setAttribute("cn", "\n"); //Enter
+	pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+	
+
+</jsp:scriptlet>
 	<div class="layer" id="wrap">
 		<header>
 			<jsp:include page="../topmenu.jsp" />
@@ -387,9 +400,8 @@
 					</div>
 					
 					<div class="qna_contentBox">
-						<span>내용: </span><textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${dto.content}</textarea>
+						<span>내용: </span><textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요."><c:out value="${dto.content}" /></textarea>
 					</div>
-					
 					<div class="qna_buttonBox"><!-- div 추가했습니다. -->
 					
 						<div class="qna_imageButtonBox">
@@ -417,7 +429,6 @@
 		
 	</div>
 	
-	<a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>
 
 </body>
 </html>

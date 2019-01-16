@@ -3,7 +3,6 @@ package semidemo.dto;
 public class RecipeDTO {
 	private String growth_level;
 	private String recipe_title;
-	private String main_picture;
 	private String ingredient;
 	private String r_order;
 	private String tip;
@@ -26,14 +25,6 @@ public class RecipeDTO {
 
 	public void setRecipe_title(String recipe_title) {
 		this.recipe_title = recipe_title;
-	}
-
-	public String getMain_picture() {
-		return main_picture;
-	}
-
-	public void setMain_picture(String main_picture) {
-		this.main_picture = main_picture;
 	}
 
 	public String getIngredient() {

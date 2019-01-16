@@ -86,10 +86,6 @@
 			</div>
 		</div>
 	</div>
-	<footer>
-		<a href="login.do"><img id="loginBtn"
-			src="../semiview/images/loginBtn_off.png" /></a>
-	</footer>
 
 
 </body>

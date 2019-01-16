@@ -468,8 +468,8 @@ div#writeBtn {
 										<td class="title2">
 											<p>
 												<c:if test="${dto.re_level !=0 }">
-													<img class="titleImg" src="../semiview/images/level.gif" width="10">
-													<img class="titleImg" src="../semiview/images/re.gif" />
+													<img class="titleImg" src="../semiview/images/qna/level.gif" width="20">
+													<img class="titleImg" src="../semiview/images/qna/re.png" />
 												</c:if>
 												<a class="title3" href="qnaView.do?qna_num=${dto.qna_num }&pageNum=${pdto.currentPage}">
 													<span id="title">${dto.title }</span>
@@ -517,9 +517,6 @@ div#writeBtn {
 
 			</div>
 		</div>
-
-	<a href="login.do"><img id="loginBtn"
-		src="../semiview/images/loginBtn_off.png" /></a>
 
 </body>
 </html>

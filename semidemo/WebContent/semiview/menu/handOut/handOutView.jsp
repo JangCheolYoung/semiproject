@@ -468,9 +468,9 @@
 	margin-bottom: 5px;
 }
 
-#nicknameDiv input{
+#nicknameDiv span{
 	width: 150px;
-	height: 30px;
+	height: 50px;
 	border-radius: 5px;
 }
 
@@ -583,27 +583,40 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 				//목록
 				$('#list').on('click', function() {
-					$('form').attr('action', 'handOut.do');
-					$('form').submit();
+					$('#frm').attr('action', 'handOut.do');
+					$('#frm').submit();
 				});
 
-				//수정
+				//수정  //본인의 글만 수정할 수 있따///////////////////////////////////
 				$('#update').on('click', function() {
-					$('form').attr('action', 'handOutUpdateWrite.do');
-					$('form').submit();
-				});
-
-				// 게시물삭제
-				$('#del').on('click', function() {
+					var writer = $('#writer').val();
 					
-					$('form').attr('action', 'handOutDelete.do');
-					$('form').submit();
+					if('${sessionScope.nickname}'== writer){
+						$('#frm').attr('action', 'handOutUpdateWrite.do');
+						$('#frm').submit();
+					}else{
+						alert('권한이 없습니다.');
+					}
+				});
+				
+
+				// 게시물삭제/// 본인의 글만 삭제할 수 있다.
+				$('#del').on('click', function() {
+					var writer = $('#writer').val();
+					
+					if('${sessionScope.nickname}'== writer || '${sessionScope.id}' == 'hr'){
+						alert('aa');
+						$('#frm').attr('action', 'handOutDelete.do');
+						$('#frm').submit();
+					}else{
+						alert('권한이 없습니다.');
+					}
 				});	
 				
 				//취소
 				$('#cancel').on('click', function() {
-					$('form').attr('action', 'handOut.do');
-					$('form').submit();
+					$('#frm').attr('action', 'handOut.do');
+					$('#frm').submit();
 				});
 				
 				//댓글입력
@@ -640,80 +653,102 @@
 					
 				});
 				
-								
-							
-				//댓글 수정 버튼
+
+
+//////////////////////댓글 수정 버튼//////////////////////////////////////////////////////////////////
+
+				
 				$(document).on('click','[name="commUpdateBtn"]', function(){
-					
 					var selEle = $(this).parent().parent(); //댓글수정 버튼 부모요소 div 요소를 가지고온다.
-					//var selEle = $(this).parent().parent();
-					alert(selEle.html());
-					//var comm_content = selEle.children('p[id=comm_content]').html(); // 댓글 내용
-					//alert(comm_content);
-										
-					//selEle.children('#commtf').val(comm_content); // 기존에 댓글을 textarea 에 넣는다.
-					//selEle.children('div[class="tfDiv"]').css({'display':'block'}); //댓글 수정 창 띄우기
-					//return false;
+					var spanNickname = selEle.children('div[id="centerDiv"]').children('span:nth-of-type(1)').text();
+					var session_nickname = $('#session_nickname').val();
 					
-					if(selEle.children('div[class="tfDiv"]').css("display") =="none"){
-						var pInput = selEle.children('div[id="centerDiv"]').children('p').text();
-						alert(pInput);
-						selEle.children('div[class="tfDiv"]').children('textarea').val(pInput);
-						selEle.children('div[class="tfDiv"]').show();
+					alert('spanNickname : ' + spanNickname);
+					alert('session_nickname : ' + session_nickname);
+					if(spanNickname== session_nickname){
+						if(selEle.children('div[class="tfDiv"]').css("display") =="none"){
+							var pInput = selEle.children('div[id="centerDiv"]').children('p').text();
+							alert(pInput);
+							selEle.children('div[class="tfDiv"]').children('textarea').val(pInput);
+							selEle.children('div[class="tfDiv"]').show();
+						}else{
+							selEle.children('div[class="tfDiv"]').hide();
+						}
 					}else{
-						selEle.children('div[class="tfDiv"]').hide();
-					}
+						alert('권한이 없습니다.');
+					} 
 
 				});
-				//댓글 수정 버튼 누를 시 초록색 체크 버튼
+				
+///////////////////댓글 수정 버튼 누를 시 초록색 체크 버튼////////////////////////////////////////////////////////////////////
 				$(document).on('click','[id="inputUpdate"]', function(){
-					var topselEle = $(this).parents(); // 수정 버튼 가장 위의 부모요소를 가지고 온다.
-					var childselEle = $(this).parent(); //수정 버튼 부모요소 div 요소 가지고 온다
 					
-					//input type="hidden" 으로 된 handout_post_num 의 value 값을 변수에 저장한다.					
-					var handout_post_num = $('#handout_post_num').val();
-					
-					
-					//inputUpdate에 value 값을 handout_comm_num 변수에 저장한다.
-					var handout_comm_num = $(this).val();
-					
-					
-					//댓글 수정 textarea 에서 입력한 값을 변수에 저장한다.
-					var comm_content = childselEle.children('textarea').val();
-					
-					if(comm_content == ""){
-						alert('수정사항을 입력해주세요.');
+						var topselEle = $(this).parents(); // 수정 버튼 가장 위의 부모요소를 가지고 온다.
+						var childselEle = $(this).parent(); //수정 버튼 부모요소 div 요소 가지고 온다
+						
+						//input type="hidden" 으로 된 handout_post_num 의 value 값을 변수에 저장한다.					
+						var handout_post_num = $('#handout_post_num').val();
+						
+						
+						//inputUpdate에 value 값을 handout_comm_num 변수에 저장한다.
+						var handout_comm_num = $(this).val();
+						
+						
+						//댓글 수정 textarea 에서 입력한 값을 변수에 저장한다.
+						var comm_content = childselEle.children('textarea').val();
+						
+						if(comm_content == ""){
+							alert('수정사항을 입력해주세요.');
+							return false;
+						}
+						
+						//초록색 체크 버튼 누를시에 다시 댓글 수정 textarea 와 초록색 버튼 숨기기.
+						topselEle.children('div[class="tfDiv"]').css({'display':'none'});
+						
+						//ajax 처리를 위해 매개 변수를 받아 넘겨준다.
+						UpdateHandOutComment(handout_comm_num, comm_content, handout_post_num);
+						
 						return false;
-					}
-					
-					//초록색 체크 버튼 누를시에 다시 댓글 수정 textarea 와 초록색 버튼 숨기기.
-					topselEle.children('div[class="tfDiv"]').css({'display':'none'});
-					
-					//ajax 처리를 위해 매개 변수를 받아 넘겨준다.
-					UpdateHandOutComment(handout_comm_num, comm_content, handout_post_num);
-					
-					return false;
+						
 					
 				});
 				
 				//댓글삭제 버튼
 				$(document).on('click','[name="commDeleteBtn"]', function(){
+					var parentDiv = $(this).parent().parent(); 
+					var spanNickname = parentDiv.children('div[id="centerDiv"]').children('span:nth-of-type(1)').text();
+					var session_id = $('#session_id').val();
+					var session_nickname = $('#session_nickname').val();
 					
-					//댓글삭제 다음에 위치한 handout_comm_num 값을 가지고 와서 변수에 넣는다.
-					var selEle = $(this).next(); 
+					alert('spanNickname : ' + spanNickname);
+					alert('session_id : ' + session_id);
+					alert('session_nickname : ' + session_nickname);
 					
-					
-					var handout_post_num = $('#handout_post_num').val();
-					
-					var handout_comm_num = selEle.val();
-					
-					
-					DeleteHandOutComment(handout_comm_num, handout_post_num);
-					
-					return false;
-				})
-
-			});
+					if(spanNickname== session_nickname){
+						//댓글삭제 다음에 위치한 handout_comm_num 값을 가지고 와서 변수에 넣는다.
+						var selEle = $(this).next(); 
+						var handout_post_num = $('#handout_post_num').val();
+						var handout_comm_num = selEle.val();
+						DeleteHandOutComment(handout_comm_num, handout_post_num);
+							
+						return false;
+						
+					}else if(session_id == 'hr'){
+						var handout_post_num = $('#handout_post_num').val();
+						alert(handout_post_num);
+						var handout_comm_num = $(this).next().val();
+						alert(handout_comm_num);
+						var comm_content = '삭제된 댓글입니다.';
+						alert(comm_content);
+						
+						UpdateHandOutComment(handout_comm_num, comm_content, handout_post_num);
+						
+					}else{
+						alert('권한이 없습니다.');
+					}
+				});
+				
+	});
 </script>
 
 <script type="text/javascript" src="../semiview/menu/handOut/jquery.js"></script>
@@ -730,7 +765,7 @@
 </jsp:scriptlet>
 
 	<div class="layer" id="wrap">
-		<<header>
+		<header>
 			<jsp:include page="../topmenu.jsp" />
 		</header>
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
@@ -740,7 +775,7 @@
 				</div>
 				
 				<div class="handout_nickname">
-					<span>글쓴이 : ${dto.nickname}</span>
+					<span>작성자 : ${dto.nickname}</span>
 				</div>
 				
 				<div class="handout_readcount">
@@ -786,8 +821,11 @@
 				</div>
 				
 		<!-- -------------------------------------------------------------------- -->
-				<form name="frm" method="POST">
+				<form name="frm" id="frm" method="POST">
+				<input type = "hidden" name = "nickname" id="session_nickname" value="${sessionScope.nickname}"/>
+				<input type = "hidden" name = "session_id" id="session_id" value="${sessionScope.id}"/>
 					<div class="buttonBox">
+						<input type="hidden" name="writer" id="writer" value="${dto.nickname}"/> 
 						<input type="hidden" name="handout_post_num" value="${dto.handout_post_num}" id="handout_post_num"/> 
 						<input type="hidden" name="pageNum" value="${param.pageNum}" id="pageNum"/> 
 					
@@ -815,10 +853,10 @@
 				<div id="commAdd">
 					<div id="nicknameAndTextInputDIV">
 						<div id="nicknameDiv">
-						<input type="text" id="nickname" name="nickname" value="닉네임"/>
+							<span>${sessionScope.nickname}</span>
 						</div>
 						<div id="textInputDiv">
-						<textarea class="commTextArea" id="comment_content" name="textInput" placeholder="댓글을 입력해주세요"></textarea>
+						<textarea class="commTextArea" id="comment_content" name="textInput" placeholder="댓글을 입력해주세요" ></textarea>
 						</div>
 					</div>	
 					<div id="commBtnDIV">
@@ -844,8 +882,6 @@
 		</div>
 	</div>
 	
-	<a href="login.do"><img id="loginBtn"
-		src="../semiview/images/loginBtn_off.png" /></a>
 
 </body>
 </html>

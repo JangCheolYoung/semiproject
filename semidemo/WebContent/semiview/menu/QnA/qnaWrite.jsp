@@ -241,13 +241,14 @@
 	height: 50px;
 	/* background-color: orange; */
 	margin-top : 10px;
+	margin-right: 84%;
 }
 
 #content #inputContent .qna_buttonBox .qna_imageButtonBox{
 	width: 50px;
 	height: 50px;
 	/* background-color: yellow; */
-	display: inline-block;
+	display: hidden;
 	padding-left: 80%;
 	padding-right: 10px;
 }
@@ -312,7 +313,7 @@
 		);
 		
 		$('#submit').on('click', function(){
-			
+			$('[name=qna_content]').val($('[name=qna_content]').val().replace(/\n/gi,'<br/>'));
 			var category = $('#qna_category').val();
 			var title = $('#qna_title').val();
 			var content = $('#qna_content').val();
@@ -346,9 +347,21 @@
 	
 	
 </script>
+
+
 </head>
 
 <body>
+
+<jsp:scriptlet>
+
+	//치환 변수 선언
+	pageContext.setAttribute("cr", "\r");  //space
+	pageContext.setAttribute("cn", "\n"); //Enter
+	pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+	
+
+</jsp:scriptlet>
 	<div class="layer" id="wrap">
 		<header>
 			<jsp:include page="../topmenu.jsp" />
@@ -388,7 +401,7 @@
 							<select name="qna_category" id="qna_category">
 								<option>분류</option>
 								<option value="레시피">레시피</option>
-								<option value="맘톡">맘톡</option>
+								<option value="맘스타그램">맘스타그램</option>
 								<option value="무료나눔">무료나눔</option>
 								<option value="육아정보">육아정보</option>
 								<option value="기타">기타</option>
@@ -409,13 +422,18 @@
 					<div class="qna_contentBox">
 						<textarea id="qna_content" name="qna_content" placeholder="내용을 입력하세요.">${param.content}</textarea>
 					</div>
-					
-					<div class="qna_buttonBox"><!-- div 추가했습니다. -->
-					
-						<div class="qna_imageButtonBox">
+					<c:if test="${!empty param.qna_num }">
+						<div class="qna_buttonBox" style="margin-left:87%"><!-- div 추가했습니다. -->
+					</c:if>
+					<c:if test="${empty param.qna_num }">
+						<div class="qna_buttonBox"><!-- div 추가했습니다. -->
+					</c:if>
+						<c:if test="${empty param.qna_num }">
+						<div class="qna_imageButtonBox" style="display:inline-block;">
 							<label for = "image" id = "imagelabel"></label>
 							<input type="file" id="image" name="image" value="첨부파일"/><!-- 아이디값 추가했습니다. -->
 						</div>
+						</c:if>
 						
 						<div class="qna_submitButtonBox">
 							<label for = "submit" id = "submitlabel"></label>
@@ -433,7 +451,6 @@
 		<!--------------------------------- 글쓰기 입력부분 -------------------------------------------->
 		
 	</div>
-	<a href = "login.do"><img id="loginBtn" src="../semiview/images/loginBtn_off.png"/></a>
 
 </body>
 </html>

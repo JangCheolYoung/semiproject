@@ -41,7 +41,7 @@ public class LoginAction {
 			
 			session.setMaxInactiveInterval(30*60);//로그인 해놓고 아무 활동도 안하면 30분 뒤에 로그아웃이 되는 거.
 			String page = req.getParameter("page");
-
+			System.out.println("page = "+page);
 			if(page != "") {
 				resp.sendRedirect(page);
 			}else {

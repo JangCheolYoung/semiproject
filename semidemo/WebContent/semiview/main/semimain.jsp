@@ -149,44 +149,51 @@
          
          //로그인
          $('#loginBtn').on('click', function(){
-            $('form').attr('action', 'login.do');
-             $('form').submit();
+            $('#frm').attr('action', 'login.do');
+             $('#frm').submit();
          });
          //로그아웃
          $('#logoutBtn').on('click', function(){
-            $('form').attr('action', 'logout.do');
-             $('form').submit();
+            $('#frm').attr('action', 'logout.do');
+             $('#frm').submit();
          });
          
          //레시피
          $('#recipeBtn').on('click', function(){
-            $('form').attr('action', 'recipe.do');
-            $('form').submit();
+            $('#frm').attr('action', 'recipe.do');
+            $('#frm').submit();
          });
          //맘톡
          $('#momstargramBtn').on('click', function(){
-            $('form').attr('action', 'momstargram.do');
-             $('form').submit();
+            $('#frm').attr('action', 'momstargram.do');
+             $('#frm').submit();
          });
          //무료나눔
          $('#handOutBtn').on('click', function(){
-            $('form').attr('action', 'handOut.do');
-             $('form').submit();
+            $('#frm').attr('action', 'handOut.do');
+             $('#frm').submit();
          });
          //육아정보
          $('#infoBtn').on('click', function(){
-            $('form').attr('action', 'info.do');
-             $('form').submit();
+            $('#frm').attr('action', 'info.do');
+             $('#frm').submit();
          });
          //Q&A
          $('#questionBtn').on('click', function(){
-            $('form').attr('action', 'question.do');
-             $('form').submit();
+            $('#frm').attr('action', 'question.do');
+             $('#frm').submit();
          });
        //MyPage
          $('#mypageBtn').on('click', function(){
-            $('form').attr('action', 'myPage.do');
-             $('form').submit();
+        	 if('${sessionScope.id}' != ''){
+	            $('#frm').attr('action', 'myPage.do');
+	             $('#frm').submit();
+        	 }else{
+        		 alert("로그인 후 이용가능한 서비스 입니다.");
+          	   	$('#frm').attr('action', 'login.do');
+                 $('#frm').submit();
+        	 }
+        	 
          });
          
          ////////////////////////////////////////////////////////////////////
@@ -194,6 +201,7 @@
          String id = (String) session.getAttribute("id");
          boolean login = id == null ? false : true;
          %>
+         
          <%
             if (login) {
          %>
@@ -214,7 +222,7 @@
 <body>
 
    <div class = "wrap">
-      <form name = "frm" method = "get" action="main.do">
+      <form id="frm" name = "frm" method = "get" action="main.do">
          <input type="image" id="loginBtn" src="../semiview/images/loginBtn_off.png" hidden=""/>
          <input type="image" id="logoutBtn" src="../semiview/images/logoutBtn_off.png" hidden=""/>
          <img alt="메인이미지" src="../semiview/images/mammaLogo.png" class="mainImage"/>

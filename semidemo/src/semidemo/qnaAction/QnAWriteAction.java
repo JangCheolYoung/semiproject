@@ -64,8 +64,6 @@ public class QnAWriteAction {
 			dto.setRe_step(Integer.parseInt(multi.getParameter("re_step"))+1);
 			dto.setRe_level(Integer.parseInt(multi.getParameter("re_level"))+1);
 			
-			System.out.println(dto.getRe_step());
-			System.out.println(dto.getRe_level());
 		}
 		
 

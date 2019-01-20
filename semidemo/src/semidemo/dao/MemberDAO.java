@@ -261,8 +261,8 @@ public class MemberDAO {
 
 			if (rs.next()) {
 				id = rs.getString("id");
-
 			}
+			System.out.println(id);
 
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -281,13 +281,9 @@ public class MemberDAO {
 	// 비밀번호 찾기
 	public String findPassword(String id, String pass_ques, String pass_answ) {
 		String password = null;
-		System.out.println(id);
-		System.out.println(pass_ques);
-		System.out.println(pass_answ);
 
 		try {
 			conn = init();
-			System.out.println("findPassword DB 접근 성공");
 			String sql = "SELECT password FROM member WHERE id=? AND pass_ques=? AND pass_answ=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -297,7 +293,6 @@ public class MemberDAO {
 			
 			if (rs.next()) {
 				password=rs.getString("password");// 다 맞는 거 입력했을 경우
-				System.out.println(password);
 				
 			}else
 				password=null;

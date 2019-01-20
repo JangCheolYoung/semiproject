@@ -75,6 +75,7 @@ public class semiMainController extends HttpServlet {
 		
 		else if (action.equals("/login.do")) {
 			// 로그인 페이지로 이동
+			System.out.println(req.getParameter("page"));
 			path = "/semiview/login/login.jsp";
 
 		} else if (action.equals("/logout.do")) {
@@ -107,7 +108,6 @@ public class semiMainController extends HttpServlet {
 
 		} else if (action.equals("/idDuplication.do")) {
 			// 아이디 중복 파라미터 값을 넘겨주는 과정
-			System.out.println("중복검사액션점두");
 			IdDupChkAction idDup = new IdDupChkAction();
 			idDup.execute(req, resp);
 
@@ -132,7 +132,6 @@ public class semiMainController extends HttpServlet {
 			
 			String r_lv = req.getParameter("r_lv");
 			
-			System.out.println(r_lv);
 			path = "/semiview/menu/recipe/viewRecipe.jsp?r_lv="+r_lv;
 			
 		}else if(action.equals("/recipeSearchForm.do")) {
@@ -157,7 +156,7 @@ public class semiMainController extends HttpServlet {
 			// 1. 기존에 입력되어 있던 값 가져오기
 			MomTalkPostViewAction postView = new MomTalkPostViewAction();
 			postView.execute(req, resp); // aList라는 이름으로 리퀘스트 영역에 모든 값을 받아옴
-
+System.out.println("asd");
 			// 맘톡 메인 페이지 경로 지정
 			path = "/semiview/menu/momTalk/momstargramPage.jsp";
 
@@ -279,7 +278,6 @@ public class semiMainController extends HttpServlet {
 
 		} else if (action.equals("/qnaCategorySearch.do")) {
 			String category = (String)req.getParameter("category");
-			System.out.println("main : "+ category);
 			QnACategorySearchAction qnaCategorySearch = new QnACategorySearchAction();
 			qnaCategorySearch.execute(req, resp);
 			resp.sendRedirect("question.do");

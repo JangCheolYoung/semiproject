@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semidemo.dao.Handout_postDAO;
+import semidemo.dto.Handout_PageDTO;
 import semidemo.dto.Handout_postDTO;
-import semidemo.dto.PageDTO;
+
 
 
 
@@ -25,7 +26,7 @@ public class ListAction {
 		
 		
 		if(cnt>0) {
-			PageDTO pdto = new PageDTO(currentPage, cnt);
+			Handout_PageDTO pdto = new Handout_PageDTO(currentPage, cnt);
 			req.setAttribute("pdto", pdto);
 			req.setAttribute("aList", dao.listMethod(pdto));
 		}

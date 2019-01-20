@@ -13,7 +13,6 @@ public class QnACategorySearchAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		String category = req.getParameter("category");
-		System.out.println(category);
 		String pageNum = req.getParameter("pageNum");
 		if (pageNum == null || pageNum.equals("null")) {
 			pageNum = "1";

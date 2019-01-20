@@ -9,11 +9,10 @@
 <link rel="stylesheet" href="css/jquery-ui.css">
 <style type="text/css">
 .layer {
-	position: absolute;
-	top: 0;
-	left: 15%;
+   position: absolute;
+   top: 0;
+   left: 15%;
 }
-
 #topbannerDiv {
 	width: 1000px;
 	height: auto;

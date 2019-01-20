@@ -161,7 +161,6 @@ public class QnaDAO {
 			if (rs.next()) {
 				dto = new QnaDTO();
 				dto.setQna_num(rs.getInt("qna_num"));
-				// System.out.println("qnaViewMethod "+ dto.getQna_num());
 				dto.setNickname(rs.getString("nickname"));
 				dto.setTitle(rs.getString("title"));
 				dto.setWrite_date(rs.getDate("write_date"));
@@ -360,7 +359,6 @@ public class QnaDAO {
 	public void reStepMethod(HashMap<String, Integer> map) {
 		try {
 			conn = init();
-			System.out.println("reStepMethod 메소드!!");
 			String sql = "update qna set re_step = re_step+1 where ref = ? and re_step>?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, map.get("ref"));

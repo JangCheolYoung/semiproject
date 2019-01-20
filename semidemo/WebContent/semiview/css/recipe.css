@@ -1,9 +1,8 @@
  	@charset "UTF-8";
-
 .layer {
-	position: absolute;
-	top: 0;
-	left: 15%;
+   position: absolute;
+   top: 0;
+   left: 15%;
 }
 
 #topbannerDiv {

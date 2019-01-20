@@ -555,7 +555,12 @@
 		$('.menuBtn').on('click', function(){
 			//alert($(this).parents().children('input[name = "nickname"]').val());
 			
-			if('${sessionScope.nickname }' == $(this).parents().children('input[name = "nickname"]').val()){
+			if('${sessionScope.nickname }' != $(this).parents().children('input[name = "nickname"]').val()){
+				
+				alert("다른회원의 댓글은 삭제할 수 없습니다.");
+				return false;
+			}else{
+				
 				//회원인 경우
 				if(confirm("정말로 삭제하시겠습니까?")){
 					//확인버튼 누를 경우 실행
@@ -575,11 +580,8 @@
 					//취소버튼 누를 경우 실행
 					return false;
 				}						
-			}else{ //본인이 입력한 댓글이 아닌 경우
-				alert("다른회원의 댓글은 삭제할 수 없습니다.");
-				return false;
+				
 			}
-			
 		});
 		
 		//게시글 입력 버튼-----------------------------------------------------------------------

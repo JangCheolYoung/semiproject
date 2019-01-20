@@ -17,13 +17,14 @@ $(document).ready(function(){
             			url:'FindIdServlet',
             			data:{emailAdd:emailAdd},
             			success:function(res){
-            				var result=res
-            				if(result!=null){
-            					$('#findId').text("회원님의 ID는 " + res + " 입니다.");
-            					$('#findId').css('color', 'blue');
-            				} else if(result==null){
+            				var result=res;
+            			
+            				if(result==null || result == "null"){
             					$('#findId').text('이메일에 해당하는 아이디가 없습니다.');
             					$('#findId').css('color', 'red');
+            				}else if(result!=null || result != 'null'){
+            					$('#findId').text("회원님의 ID는 " + res + " 입니다.");
+            					$('#findId').css('color', 'blue');
             				}
             			}
             		});

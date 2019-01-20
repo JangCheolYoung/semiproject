@@ -141,7 +141,7 @@ public class Momtalk_postDAO {
 			pstmt.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch blocwk
 			e.printStackTrace();
 		}finally {
 			try {

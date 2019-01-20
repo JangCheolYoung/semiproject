@@ -32,12 +32,12 @@ public class FindIdController extends HttpServlet{
 		resp.setContentType("text/html;charset=utf-8");
 
 		String emailAdd = req.getParameter("emailAdd");
+		System.out.println(emailAdd);
 		MemberDAO dao = MemberDAO.getInstance();
 		
 		String res = dao.findId2(emailAdd);
 		
-		resp.getWriter().write(res + "");
-
+		resp.getWriter().write(res+"");
 	}//end doProcess()////////////////////
 }//end class
 

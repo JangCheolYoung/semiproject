@@ -8,11 +8,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 .layer {
-	position: absolute;
-	top: 0;
-	left: 15%;
+   position: absolute;
+   top: 0;
+   left: 15%;
 }
-
 #topbannerDiv {
 	width: 1000px;
 	height: 150px;
@@ -415,7 +414,6 @@ div#writeBtn {
 				
 				$('#search_category').on('change', function(){
 					var category = $(this).val();
-					alert(category);
 					
 					$('#frm').attr('action', "qnaCategorySearch.do?category="+category);
 					

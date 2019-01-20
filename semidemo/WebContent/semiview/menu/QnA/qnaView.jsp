@@ -403,7 +403,6 @@
      	 //alert("nickname = "+nickname);
      	 
      	 if('${sessionScope.nickname}'==nickname || '${sessionScope.id}'== 'hr'){
-     		 alert('삭제한다!');
 	         $('form').attr('action', 'qnaDelete.do'); 
  	         $('form').submit();
      	 }

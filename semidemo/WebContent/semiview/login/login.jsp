@@ -77,6 +77,7 @@
 		<img id="login_img" src="../semiview/images/login.png" />
 	</h1>
 	<div id="login">
+	${param.page}
 		<form action="loginPro.do" name="form" id="form" method="post" style="width:550px;">
 		<input type="hidden" name="page" value="${param.page}"/>
 			<div class="form-group">

@@ -59,7 +59,6 @@ public class MypageDAO {
 		List<Handout_postDTO> aList = new ArrayList<Handout_postDTO>();
 		try {
 			conn = init();
-			System.out.println("Mypage listMethod DB 연결 성공!");
 			String sql = "select b.* from (select rownum rm, a.* from (select * from handout_post order by handout_post_num desc)a)b where rm>=? and rm<=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, pdto.getStartRow());
@@ -81,10 +80,8 @@ public class MypageDAO {
 				dto.setPicture2(rs.getString("picture2"));
 				dto.setPicture3(rs.getString("picture3"));
 				dto.setReadcount(rs.getInt("readcount"));
-				System.out.println(dto.getMain_picture());
 				aList.add(dto);
 			}
-			System.out.println("aList.size() :"+aList.size());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -161,7 +158,6 @@ public class MypageDAO {
 
 		try {
 			conn = init();
-			System.out.println("qlistMethod 입장");
 			String sql = "select b.* " + "from (select rownum rm, a.* " + "from (select * " + "from qna "
 					+ "order by ref desc, qna_num)a)b " + "where rm>=? and rm<=?";
 
@@ -182,7 +178,6 @@ public class MypageDAO {
 				dto.setQna_category(rs.getString("qna_category"));
 				list.add(dto);
 			}
-			System.out.println("list.size()="+list.size());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

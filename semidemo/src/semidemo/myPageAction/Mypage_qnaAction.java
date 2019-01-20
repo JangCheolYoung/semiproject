@@ -17,7 +17,6 @@ public class Mypage_qnaAction {
 		
 		MypageDAO dao = MypageDAO.getInstance();
 		int cnt = dao.qrowTotalCount();
-		System.out.println("qnaAction cnt"+ cnt);
 		
 		if(cnt>0) {
 			Mypage_PageDTO pdto = new Mypage_PageDTO(currentPage, cnt);

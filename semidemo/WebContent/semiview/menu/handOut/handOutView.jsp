@@ -605,7 +605,6 @@
 					var writer = $('#writer').val();
 					
 					if('${sessionScope.nickname}'== writer || '${sessionScope.id}' == 'hr'){
-						alert('aa');
 						$('#frm').attr('action', 'handOutDelete.do');
 						$('#frm').submit();
 					}else{
@@ -663,12 +662,9 @@
 					var spanNickname = selEle.children('div[id="centerDiv"]').children('span:nth-of-type(1)').text();
 					var session_nickname = $('#session_nickname').val();
 					
-					alert('spanNickname : ' + spanNickname);
-					alert('session_nickname : ' + session_nickname);
 					if(spanNickname== session_nickname){
 						if(selEle.children('div[class="tfDiv"]').css("display") =="none"){
 							var pInput = selEle.children('div[id="centerDiv"]').children('p').text();
-							alert(pInput);
 							selEle.children('div[class="tfDiv"]').children('textarea').val(pInput);
 							selEle.children('div[class="tfDiv"]').show();
 						}else{
@@ -720,9 +716,6 @@
 					var session_id = $('#session_id').val();
 					var session_nickname = $('#session_nickname').val();
 					
-					alert('spanNickname : ' + spanNickname);
-					alert('session_id : ' + session_id);
-					alert('session_nickname : ' + session_nickname);
 					
 					if(spanNickname== session_nickname){
 						//댓글삭제 다음에 위치한 handout_comm_num 값을 가지고 와서 변수에 넣는다.
@@ -735,11 +728,8 @@
 						
 					}else if(session_id == 'hr'){
 						var handout_post_num = $('#handout_post_num').val();
-						alert(handout_post_num);
 						var handout_comm_num = $(this).next().val();
-						alert(handout_comm_num);
 						var comm_content = '삭제된 댓글입니다.';
-						alert(comm_content);
 						
 						UpdateHandOutComment(handout_comm_num, comm_content, handout_post_num);
 						

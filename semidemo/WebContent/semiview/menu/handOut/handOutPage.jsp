@@ -78,8 +78,10 @@
 			<!-- 나눔글 작성하기 이미지. -->
 			<form id="frm" name="frm">
 			<input type="hidden" name="page" value="handOut.do"/>
+			
 			<a href="handOutWrite.do"><img id="handOut"
 				src="../semiview/images/handout/handout_off.png" /></a>
+				
 			<div id="inputContent">
 				<!-- 여기서부터 무료나눔 첫페이지 요소 이다. -->
 				<div class="inputDiv">

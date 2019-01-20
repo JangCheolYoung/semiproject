@@ -10,8 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import semidemo.dto.Handout_PageDTO;
 import semidemo.dto.Handout_postDTO;
-import semidemo.dto.PageDTO;
+
 
 public class Handout_postDAO {
 	private Connection conn;
@@ -117,7 +118,7 @@ public class Handout_postDAO {
 		return cnt;
 	}// end rowTotalCount()//////////
 
-	public List<Handout_postDTO> listMethod(PageDTO pdto) {
+	public List<Handout_postDTO> listMethod(Handout_PageDTO pdto) {
 		List<Handout_postDTO> aList = new ArrayList<Handout_postDTO>();
 		try {
 			conn = init();

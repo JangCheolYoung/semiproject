@@ -319,6 +319,7 @@
           $('#frmTop').submit();
       });
       $('#logout').on('click', function(){
+    	 
         $('#frmTop').attr('action', 'logout.do');
           $('#frmTop').submit();
       });

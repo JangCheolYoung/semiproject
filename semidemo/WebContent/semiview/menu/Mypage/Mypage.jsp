@@ -8,11 +8,10 @@
 <title>마이페이지</title>
 <style type="text/css">
 .layer {
-	position: absolute;
-	top: 0;
-	left: 15%;
+   position: absolute;
+   top: 0;
+   left: 15%;
 }
-
 #topbannerDiv {
 	width: 1000px;
 	height: 150px;
@@ -139,7 +138,6 @@
 }
 /*---------------------------임정욱 css---------------------------------*/
 .userbox {
-	width:100%;
 	margin-top: 20px;
 	border-bottom: :3px solid #e7e7e7;
 	padding-bottom: 20px;
@@ -153,7 +151,7 @@
 
 #inputContent {
 	width: 100%;
-	height: 900px;
+	height: 700px;
 	margin: auto;
 }
 
@@ -168,7 +166,6 @@ td img {
 	height: 300px;
 	border: 1px solid #e7e7e7;
 	border-radius: 3px;
-	margin-bottom: 10px;
 }
 
 .handout #realHandoutDiv{
@@ -178,50 +175,73 @@ td img {
 
 .handout #handout_table{
 	float: left;
-	
+	padding-left: 15px;
 	margin-top: 10px;
 }
-
-.QNA{
-	width: 100%;
-	height: 300px;
+a{
+   text-decoration: none;
+   color: black;
+   font-weight: bold;
 }
 
-
-
-.QnAtable {
-    border-collapse: collapse;
-    text-align: center;
-    line-height: 1.5;
-    width: 100%;
+#titleTd a{
+   display: inline-block;
+   width: 90px;
+   overflow: hidden; 
+   text-overflow: ellipsis; 
+   white-space: nowrap;
+   
+}
+/* 질문바   */
+.qnatable{
 
 }
-.QnAtable thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #369;
-    border-bottom: 3px solid #036;
+.qnatable thead tr th{
+	width: 150px;
+	padding:7px;
+	font-weight: bold;
+	vertical-align: top;
+	color:#fff;
+	background-color: #ffccca;
 }
-.QnAtable tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #f3f6f7;
+.QNADIV{
+ 	width: 100%;
+	border-top: 3px solid #e7e7e7;
+	margin-top: 15px;
 }
-.QnAtable td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
+.QNADIV .QNA{
+/* 	width:80%;
+	margin: auto; */
+margin-top: 10px; 	
 }
+.content_div {
+background-color: orange;
+margin-left:10px;
+}
+.qnacont{
+margin: 10px;
+}
+.qnatable{
+margin: auto;
+width: 100%;
 
-#handoutQnAPageNum{
-	margin: auto;
+}
+#handoutQnAPageNum {
+	text-align: center;
+	font-size: 20px;
+	padding: 10px;
+	border-bottom: 3px solid #e7e7e7;
+	margin-bottom: 20px;
+}
+.qnatable tbody tr td{
+	padding: 10px;
 	text-align: center;
 }
+.qnatable tbody{
+
+}
+
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -322,7 +342,7 @@ td img {
 		<div id="content" alt="페이지마다 바뀔 DIV 요소입니다. css 설정 안해놓은 상태입니다.">
 			<div id="inputContent">
 				<!-- -------------------------회원 정보 부분--------------------------- -->
-				<div class=userbox style="text-align: center;">
+				<div class=userbox style="text-align: center; border-bottom: 3px solid #e7e7e7">
 					<img alt="회원성별" src="../semiview/images/info_off.png"> <br />
 					<thead>
 						<tr>
@@ -347,12 +367,16 @@ td img {
                        			 <tr>
                            			<td colspan="4" id="ImageTd">
                            				<div class="imageDiv">
-                              		   		<img src="../semiview/images/handout/${hdto.main_picture}" />
+                           					<a href="handOutView.do?handout_post_num=${hdto.handout_post_num}&pageNum=${pdto.currentPage}">
+                              		   		<img src="../semiview/images/handout/${hdto.main_picture}" /></a>
                            				</div>
                           		    </td>
                         		</tr>
                         		<tr>
-                           			<td id="titleTd" colspan="2">${hdto.title}</td>
+                           			<td id="titleTd" colspan="2">
+                           			<a href="handOutView.do?handout_post_num=${hdto.handout_post_num}&pageNum=${pdto.currentPage}">
+                           			${hdto.title}</a>
+                           			</td>
                            			<td colspan="2">[${hdto.area}]</td>
                         		</tr>
                         		<tr>
@@ -370,10 +394,11 @@ td img {
 			<!-- ------------------------------------------------------------- -->
 
 			<!-- ------------------------------질문글---------------------------- -->
+				
+			<div class="QNADIV">
 				<div class="QNA">
-				<!-- <table class="qnatable"> -->
-					<table class="QnAtable">
-					<thead>
+				 <table class="qnatable">
+					 <thead>
 						<tr>
 							<th>분류</th>
 							<th>제목</th>
@@ -383,23 +408,19 @@ td img {
 					</thead>
 					<c:forEach items="${requestScope.qList}" var="qdto">
 						<c:if test="${qdto.nickname == sessionScope.nickname}">
-						
 						<tbody>
 							<tr>
 								<td>${qdto.qna_category}</td>
-								<td>${qdto.title}</td>
+								<td><a href="qnaView.do?qna_num=${qdto.qna_num }&pageNum=${pdto.currentPage}">${qdto.title}</a></td>
 								<td>${qdto.write_date}</td>
 								<td>${qdto.readcount}</td>
 							</tr>
-						
 						</tbody>
 						</c:if>
 					</c:forEach>
-						</table>
-				</div>
+				</table>
 			</div>
-			
-				<div id="handoutQnAPageNum">
+		<div id="handoutQnAPageNum">
 					<c:if test="${requestScope.pdto.startPage > 1 }">
 						<span><a class="aPage"
 							href="myPage.do?pageNum=${pdto.startPage-pdto.blockPage}">이전</a></span>
@@ -415,7 +436,7 @@ td img {
 						<span><a class="aPage"
 						href="myPage.do?pageNum=${pdto.startPage+pdto.blockPage}">다음</a></span>
 					</c:if>
-				</div>
+		</div>
 		</div>
 	</div>
 
